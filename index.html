@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Munch Bakery — التحليل المالي للفروع</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0d1117;--bg2:#161b22;--bg3:#21262d;--bg4:#30363d;--text:#e6edf3;--text2:#8b949e;--gold:#f0b429;--green:#3fb950;--red:#f85149;--blue:#58a6ff;--border:#30363d}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;direction:rtl}
+.bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 24px;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.logo{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600}
+.badge{font-size:11px;background:rgba(63,185,80,.15);color:var(--green);border:1px solid rgba(63,185,80,.25);padding:3px 10px;border-radius:20px;display:flex;align-items:center;gap:5px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.upd{font-size:11px;color:var(--text2);font-family:'IBM Plex Mono',monospace}
+.main{padding:20px 24px;max-width:1300px;margin:0 auto}
+.hdr{margin-bottom:20px;display:flex;justify-content:space-between;align-items:flex-end}
+.hdr h2{font-size:20px;font-weight:700}
+.hdr p{font-size:13px;color:var(--text2);margin-top:3px}
+.per{font-size:12px;color:var(--gold);background:rgba(240,180,41,.1);border:1px solid rgba(240,180,41,.2);padding:4px 12px;border-radius:20px}
+.kgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.kcard{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;position:relative;overflow:hidden}
+.kcard::before{content:'';position:absolute;top:0;right:0;width:3px;height:100%}
+.kcard.g::before{background:var(--gold)} .kcard.gn::before{background:var(--green)} .kcard.bl::before{background:var(--blue)} .kcard.rd::before{background:var(--red)}
+.klbl{font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.kval{font-size:24px;font-weight:700;font-family:'IBM Plex Mono',monospace;line-height:1}
+.ksub{font-size:12px;color:var(--text2);margin-top:6px}
+.ksub.up{color:var(--green)} .ksub.dn{color:var(--red)}
+.tabs{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:4px;display:flex;gap:3px;margin-bottom:18px;overflow-x:auto}
+.tab{padding:8px 16px;background:none;border:none;cursor:pointer;font-size:13px;color:var(--text2);border-radius:8px;font-family:inherit;transition:all .2s;white-space:nowrap}
+.tab.on{background:var(--bg3);color:var(--text);font-weight:500}
+.pane{display:none} .pane.on{display:block;animation:fi .25s ease}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:14px}
+.stitle{font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.stitle::after{content:'';flex:1;height:1px;background:var(--border)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.cw{position:relative;width:100%}
+.leg{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+.li{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text2)}
+.ld{width:9px;height:9px;border-radius:2px}
+table.dt{width:100%;border-collapse:collapse;font-size:13px}
+table.dt th{padding:9px 10px;font-size:11px;font-weight:600;color:var(--text2);border-bottom:1px solid var(--border);text-align:right}
+table.dt td{padding:9px 10px;border-bottom:1px solid var(--bg3);color:var(--text);vertical-align:middle}
+table.dt tr:last-child td{border-bottom:none}
+table.dt tr:hover td{background:rgba(255,255,255,.02)}
+.tag{display:inline-flex;align-items:center;gap:2px;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:500;font-family:'IBM Plex Mono',monospace}
+.tg{background:rgba(63,185,80,.12);color:var(--green)} .tr{background:rgba(248,81,73,.12);color:var(--red)} .tn{background:var(--bg4);color:var(--text2)}
+.num{font-family:'IBM Plex Mono',monospace}
+.rrow{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--bg3)}
+.rrow:last-child{border-bottom:none}
+.rn{font-size:18px;font-weight:700;font-family:'IBM Plex Mono',monospace;color:var(--text2);width:26px;text-align:center}
+.rnm{min-width:140px;font-size:13px;font-weight:500}
+.rbb{flex:1;height:6px;background:var(--bg4);border-radius:3px;overflow:hidden}
+.rbf{height:100%;border-radius:3px}
+.rv{font-size:12px;font-family:'IBM Plex Mono',monospace;min-width:65px;text-align:left;color:var(--text2)}
+.ri{display:flex;gap:12px;padding:12px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);margin-bottom:8px}
+.rrank{font-size:20px;font-weight:700;font-family:'IBM Plex Mono',monospace;color:var(--text2);min-width:28px}
+.rb h4{font-size:13px;font-weight:600;margin-bottom:4px}
+.rb p{font-size:12px;color:var(--text2);line-height:1.7}
+.rc{padding:13px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);border-right:3px solid var(--gold);margin-bottom:8px}
+.rc.gn{border-right-color:var(--green)} .rc.rd{border-right-color:var(--red)}
+.rtl{font-size:13px;font-weight:600;margin-bottom:4px}
+.rbd{font-size:12px;color:var(--text2);line-height:1.7}
+.exec{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:16px;font-size:13px;color:var(--text2);line-height:1.8;margin-top:14px}
+.exec strong{color:var(--text)}
+.loading{display:flex;flex-direction:column;align-items:center;justify-content:center;height:60vh;gap:16px}
+.spin{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media(max-width:800px){.kgrid{grid-template-columns:1fr 1fr}.g2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="logo">🧁 Munch Bakery — التحليل المالي</div>
+  <div style="display:flex;align-items:center;gap:14px">
+    <div class="badge"><span class="dot"></span>Auto-Updated</div>
+    <div class="upd" id="upd">—</div>
+  </div>
+</div>
+<div class="main" id="app">
+  <div class="loading"><div class="spin"></div><div style="color:var(--text2);font-size:14px">جارٍ تحميل البيانات…</div></div>
+</div>
+<script>
+const C=['#f0b429','#3fb950','#58a6ff','#f85149','#a371f7','#ff9500'];
+const MA=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+function fmt(n){if(Math.abs(n)>=1e6)return(n/1e6).toFixed(2)+'M';if(Math.abs(n)>=1e3)return(n/1e3).toFixed(1)+'K';return Math.round(n).toLocaleString()}
+function fs(n){return 'ر.س '+fmt(n)}
+function fp(n){return parseFloat(n).toFixed(1)+'%'}
+function dt(v){const c=v>=0?'tg':'tr',i=v>=0?'▲':'▼';return '<span class="tag '+c+'">'+i+' '+Math.abs(v).toFixed(1)+'%</span>'}
+const CH={};
+function mk(id,cfg){const c=document.getElementById(id);if(!c)return;if(CH[id])CH[id].destroy();CH[id]=new Chart(c,cfg)}
+const BASE={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}};
+
+async function load(){
+  const r = await fetch('data.json?t='+Date.now());
+  const data = await r.json();
+  const B = data.branches || [];
+  document.getElementById('upd').textContent = 'آخر تحديث: '+data.updated;
+
+  // Compute metrics
+  const totR=B.reduce((s,b)=>s+b.total,0);
+  const totG=B.reduce((s,b)=>s+(b.total-b.cogs),0);
+  const mx=B[0]?.total||1;
+  B.forEach(b=>{
+    const vals=Object.values(b.monthly||{});
+    const n=vals.length;
+    const q4=vals.slice(-3).reduce((s,v)=>s+v,0);
+    const q3=vals.slice(-6,-3).reduce((s,v)=>s+v,0);
+    b.qoq=q3>0?parseFloat(((q4-q3)/q3*100).toFixed(1)):0;
+    b.gp=b.total-b.cogs;
+    b.gm=parseFloat((b.gp/b.total*100).toFixed(1));
+    b.sc=Math.round((b.total/mx)*50+(b.gm/80)*30+(b.qoq>0?Math.min(b.qoq/10,1)*20:0));
+  });
+
+  // Build months array (last 12)
+  const now=new Date();
+  const m12=[],ml=[];
+  for(let i=11;i>=0;i--){const d=new Date(now.getFullYear(),now.getMonth()-i,1);m12.push(d.toISOString().slice(0,7));const p=d.toISOString().slice(0,7).split('-');ml.push(MA[parseInt(p[1])-1]+' '+p[0].slice(2));}
+
+  document.getElementById('app').innerHTML = `
+  <div class="hdr"><div><h2>لوحة التحليل المالي للفروع</h2><p>بيانات تلقائية من Odoo POS — تتحدث كل ساعة</p></div><span class="per">📅 ${data.date_from} – ${data.date_to}</span></div>
+  <div class="kgrid">
+    <div class="kcard g"><div class="klbl">إجمالي الإيرادات</div><div class="kval">${fs(totR)}</div><div class="ksub">${B.length} فروع</div></div>
+    <div class="kcard gn"><div class="klbl">إجمالي الأرباح</div><div class="kval">${fs(totG)}</div><div class="ksub up">${fp(totG/totR*100)} هامش إجمالي</div></div>
+    <div class="kcard bl"><div class="klbl">أفضل فرع</div><div class="kval" style="font-size:16px;line-height:1.4">${B[0]?.name||'—'}</div><div class="ksub">${B[0]?fs(B[0].total):'—'}</div></div>
+    <div class="kcard rd"><div class="klbl">يحتاج متابعة</div><div class="kval" style="font-size:16px;line-height:1.4">${B.find(b=>b.qoq<-5)?.name||B[B.length-1]?.name||'—'}</div><div class="ksub dn">${B.find(b=>b.qoq<-5)?fp(B.find(b=>b.qoq<-5).qoq)+' QoQ':'أقل إيرادات'}</div></div>
+  </div>
+  <div class="tabs">
+    <button class="tab on" onclick="sw(0)">📊 نظرة عامة</button>
+    <button class="tab" onclick="sw(1)">📈 التحليل الأفقي والعمودي</button>
+    <button class="tab" onclick="sw(2)">💰 الربحية</button>
+    <button class="tab" onclick="sw(3)">🏆 التصنيف والتقرير</button>
+  </div>
+  <div class="pane on" id="p0">
+    <div class="card"><div class="stitle">الإيرادات الشهرية لكل فرع</div><div class="leg" id="lg"></div><div class="cw"><canvas id="cm" style="height:280px"></canvas></div></div>
+    <div class="g2">
+      <div class="card"><div class="stitle">إجمالي الإيرادات</div><div class="cw"><canvas id="ct" style="height:220px"></canvas></div></div>
+      <div class="card"><div class="stitle">توزيع الإيرادات</div><div class="cw"><canvas id="cp" style="height:220px"></canvas></div></div>
+    </div>
+  </div>
+  <div class="pane" id="p1">
+    <div class="stitle">التحليل العمودي</div>
+    <div class="card" style="overflow-x:auto"><table class="dt"><thead><tr><th>الفرع</th><th>الإيرادات</th><th>تكلفة البضاعة%</th><th>هامش إجمالي%</th><th>QoQ</th></tr></thead><tbody>
+    ${B.map((b,i)=>`<tr><td><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:${C[i%6]};margin-left:7px"></span><strong>${b.name}</strong></td><td class="num">${fs(b.total)}</td><td>${fp(22.5)}</td><td><strong>${fp(b.gm)}</strong></td><td>${dt(b.qoq)}</td></tr>`).join('')}
+    </tbody></table></div>
+    <div class="stitle">نمو QoQ لكل فرع</div>
+    <div class="card"><div class="cw"><canvas id="ch" style="height:260px"></canvas></div></div>
+  </div>
+  <div class="pane" id="p2">
+    <div class="g2">
+      <div class="card"><div class="stitle">هامش الربح الإجمالي</div><div class="cw"><canvas id="cmar" style="height:250px"></canvas></div></div>
+      <div class="card"><div class="stitle">نقطة التعادل الشهرية</div>
+        ${B.map(b=>{const be=Math.round(b.total*0.13/12/(b.gm/100));const avg=Math.round(b.total/12);return `<div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bg3);font-size:13px"><span style="color:var(--text2)">${b.name}</span><span class="tag ${avg>=be?'tg':'tr'}">${avg>=be?'✓ تجاوز':'✗ لم يصل'} ${fs(be)}</span></div>`;}).join('')}
+      </div>
+    </div>
+    <div class="stitle">جدول الربحية</div>
+    <div class="card" style="overflow-x:auto"><table class="dt"><thead><tr><th>الفرع</th><th>الإيرادات</th><th>تكلفة البضاعة</th><th>إجمالي الربح</th><th>هامش%</th><th>QoQ</th></tr></thead><tbody>
+    ${B.map(b=>`<tr><td><strong>${b.name}</strong></td><td class="num">${fs(b.total)}</td><td class="num" style="color:var(--red)">${fs(b.cogs)}</td><td class="num" style="color:var(--green)">${fs(b.gp)}</td><td><strong>${fp(b.gm)}</strong></td><td>${dt(b.qoq)}</td></tr>`).join('')}
+    </tbody></table></div>
+  </div>
+  <div class="pane" id="p3">
+    <div class="stitle">تصنيف الفروع (أداء مركّب)</div>
+    <div class="card">${[...B].sort((a,b2)=>b2.sc-a.sc).map((b,i)=>`<div class="rrow"><div class="rn">${i+1}</div><div class="rnm">${b.name}</div><div class="rbb"><div class="rbf" style="width:${b.sc}%;background:${C[B.indexOf(b)%6]}"></div></div><div class="rv">${b.sc}pts</div>${dt(b.qoq)}</div>`).join('')}</div>
+    <div class="g2">
+      <div>
+        <div class="stitle">أعلى 3 فروع</div>
+        ${B.slice(0,3).map((b,i)=>`<div class="ri"><div class="rrank">${['🥇','🥈','🥉'][i]}</div><div class="rb"><h4>${b.name}</h4><p>الإيرادات: <strong>${fs(b.total)}</strong> | هامش: <strong>${fp(b.gm)}</strong> | QoQ: ${dt(b.qoq)}</p></div></div>`).join('')}
+      </div>
+      <div>
+        <div class="stitle">توصيات</div>
+        <div class="rc gn"><div class="rtl">🎯 تعزيز الفروع الرابحة</div><div class="rbd">ركّز الموارد على أعلى فرعين إيرادات لتعظيم العائد.</div></div>
+        ${B.some(b=>b.qoq<-5)?'<div class="rc rd"><div class="rtl">⚠️ تدخل عاجل</div><div class="rbd">'+B.filter(b=>b.qoq<-5).map(b=>b.name).join('، ')+' يعانون تراجعاً حاداً — مراجعة تشغيلية فورية.</div></div>':''}
+        <div class="rc"><div class="rtl">💰 تحسين هامش التكلفة</div><div class="rbd">التفاوض الموحّد مع الموردين يخفض COGS عبر جميع الفروع.</div></div>
+      </div>
+    </div>
+    <div class="exec"><strong>📋 الملخص التنفيذي</strong><br><br>
+    حققت المنشأة إجمالي إيرادات <strong>${fs(totR)}</strong> عبر ${B.length} فروع، بإجمالي ربح <strong>${fs(totG)}</strong> وهامش <strong>${fp(totG/totR*100)}</strong>. يتصدر <strong>${B[0]?.name}</strong> القائمة بـ ${fs(B[0]?.total||0)}.
+    </div>
+  </div>
+  `;
+
+  // Charts
+  document.getElementById('lg').innerHTML=B.map((b,i)=>`<div class="li"><span class="ld" style="background:${C[i%6]}"></span>${b.name}</div>`).join('');
+  mk('cm',{type:'line',data:{labels:ml,datasets:B.map((b,i)=>({label:b.name,data:m12.map(m=>Math.round(b.monthly?.[m]||0)),borderColor:C[i%6],backgroundColor:C[i%6]+'15',borderWidth:2,pointRadius:3,tension:.4,fill:false}))},options:{...BASE,scales:{x:{ticks:{color:'#8b949e',font:{size:10}},grid:{color:'rgba(48,54,61,.6)'}},y:{ticks:{color:'#8b949e',callback:v=>fmt(v),font:{size:10}},grid:{color:'rgba(48,54,61,.6)'}}}}});
+  mk('ct',{type:'bar',data:{labels:B.map(b=>b.name),datasets:[{data:B.map(b=>b.total),backgroundColor:C,borderRadius:5,borderSkipped:false}]},options:{...BASE,scales:{x:{ticks:{color:'#8b949e',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#8b949e',callback:v=>fmt(v),font:{size:10}},grid:{color:'rgba(48,54,61,.6)'}}}}});
+  mk('cp',{type:'doughnut',data:{labels:B.map(b=>b.name),datasets:[{data:B.map(b=>b.total),backgroundColor:C,borderWidth:0}]},options:{...BASE,cutout:'65%',plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.label+': '+fs(ctx.raw)}}}}});
+  mk('ch',{type:'bar',data:{labels:B.map(b=>b.name),datasets:[{data:B.map(b=>b.qoq),backgroundColor:B.map(b=>b.qoq>=0?'#3fb950':'#f85149'),borderRadius:4}]},options:{...BASE,scales:{x:{ticks:{color:'#8b949e',font:{size:10}},grid:{color:'rgba(48,54,61,.5)'}},y:{ticks:{color:'#8b949e',callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(48,54,61,.5)'},afterDataLimits:s=>{s.min=Math.min(s.min,-10);s.max=Math.max(s.max,15)}}}}});
+  mk('cmar',{type:'bar',data:{labels:B.map(b=>b.name),datasets:[{data:B.map(b=>parseFloat(b.gm.toFixed(1))),backgroundColor:B.map(b=>b.gm>=75?'#3fb950':b.gm>=65?'#f0b429':'#f85149'),borderRadius:5,indexAxis:'y'}]},options:{...BASE,indexAxis:'y',scales:{x:{ticks:{color:'#8b949e',callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(48,54,61,.5)'}},y:{ticks:{color:'#8b949e',font:{size:10}},grid:{display:false}}}}});
+}
+
+function sw(i){document.querySelectorAll('.tab').forEach((b,j)=>b.classList.toggle('on',i===j));document.querySelectorAll('.pane').forEach((p,j)=>p.classList.toggle('on',i===j));}
+load().catch(e=>{document.getElementById('app').innerHTML='<div style="text-align:center;padding:60px;color:var(--red)">❌ '+e.message+'</div>';});
+</script>
+</body>
+</html>
