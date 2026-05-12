@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_financial_dashboard_url" model="ir.actions.act_url">
+        <field name="name">التحليل المالي للفروع</field>
+        <field name="url">/financial-dashboard</field>
+        <field name="target">self</field>
+    </record>
+
+    <menuitem id="menu_financial_dashboard_root"
+              name="التحليل المالي"
+              sequence="90"/>
+
+    <menuitem id="menu_financial_dashboard"
+              name="لوحة الفروع"
+              parent="menu_financial_dashboard_root"
+              action="action_financial_dashboard_url"
+              sequence="10"/>
+</odoo>
