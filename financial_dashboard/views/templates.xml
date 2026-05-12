@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<template id="main_template" name="Financial Dashboard">
+<t t-call="web.layout">
+<t t-set="head_dashboard">
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0d1117;--bg2:#161b22;--bg3:#21262d;--bg4:#30363d;--text:#e6edf3;--text2:#8b949e;--text3:#6e7681;--gold:#f0b429;--gold-dim:rgba(240,180,41,0.12);--green:#3fb950;--green-dim:rgba(63,185,80,0.12);--red:#f85149;--red-dim:rgba(248,81,73,0.12);--blue:#58a6ff;--border:#30363d;--border2:#21262d;--r:8px;--rl:12px}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;direction:rtl}
+.topbar{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:50}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-icon{width:32px;height:32px;background:var(--gold-dim);border:1px solid rgba(240,180,41,0.3);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:16px}
+.logo h1{font-size:15px;font-weight:600;color:var(--text)}
+.logo p{font-size:11px;color:var(--text2);margin-top:1px}
+.topbar-right{display:flex;align-items:center;gap:14px}
+.live-badge{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--green);background:var(--green-dim);padding:4px 10px;border-radius:20px;border:1px solid rgba(63,185,80,0.2)}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.btn-refresh{background:transparent;border:1px solid var(--border);color:var(--text2);padding:6px 14px;border-radius:var(--r);font-size:12px;cursor:pointer;font-family:inherit;transition:all 0.2s}
+.btn-refresh:hover{border-color:var(--gold);color:var(--gold)}
+.btn-back{background:transparent;border:1px solid var(--border);color:var(--text2);padding:6px 14px;border-radius:var(--r);font-size:12px;cursor:pointer;font-family:inherit;text-decoration:none;transition:all 0.2s}
+.btn-back:hover{border-color:var(--blue);color:var(--blue)}
+.loading{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:100}
+.spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-txt{font-size:14px;color:var(--text2);margin-bottom:8px}
+.loading-step{font-size:12px;color:var(--text3);font-family:monospace}
+.main{padding:24px 28px;max-width:1440px;margin:0 auto}
+.page-hdr{margin-bottom:24px;display:flex;align-items:flex-end;justify-content:space-between}
+.page-hdr h2{font-size:22px;font-weight:700;color:var(--text);letter-spacing:-0.5px}
+.page-hdr p{font-size:13px;color:var(--text2);margin-top:4px}
+.period{font-size:12px;color:var(--gold);background:var(--gold-dim);border:1px solid rgba(240,180,41,0.2);padding:5px 12px;border-radius:20px;white-space:nowrap}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.kpi{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:18px 20px;position:relative;overflow:hidden}
+.kpi-acc{position:absolute;top:0;right:0;width:3px;height:100%}
+.kpi-lbl{font-size:11px;color:var(--text2);font-weight:500;letter-spacing:0.5px;margin-bottom:10px;text-transform:uppercase}
+.kpi-val{font-size:26px;font-weight:700;font-family:monospace;color:var(--text);line-height:1}
+.kpi-sub{font-size:12px;margin-top:8px;color:var(--text2)}
+.kpi-sub.up{color:var(--green)}
+.kpi-sub.dn{color:var(--red)}
+.tabs{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:4px;display:flex;gap:3px;margin-bottom:20px;overflow-x:auto}
+.tab{padding:8px 18px;background:none;border:none;cursor:pointer;font-size:13px;color:var(--text2);border-radius:var(--r);font-family:inherit;transition:all 0.2s;white-space:nowrap}
+.tab.active{background:var(--bg3);color:var(--text);font-weight:500}
+.pane{display:none}
+.pane.active{display:block;animation:fadeIn 0.25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.sec{font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.sec::after{content:'';flex:1;height:1px;background:var(--border)}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rl);padding:20px;margin-bottom:16px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.cw{position:relative;width:100%}
+.leg{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px}
+.li{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2)}
+.ld{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+table.dt{width:100%;border-collapse:collapse;font-size:13px}
+table.dt th{padding:10px 12px;font-size:11px;font-weight:600;color:var(--text2);border-bottom:1px solid var(--border);text-align:right;white-space:nowrap}
+table.dt td{padding:10px 12px;border-bottom:1px solid var(--border2);color:var(--text);vertical-align:middle}
+table.dt tr:last-child td{border-bottom:none}
+table.dt tr:hover td{background:rgba(255,255,255,0.02)}
+.tag{display:inline-flex;align-items:center;gap:3px;font-size:11px;padding:2px 7px;border-radius:4px;font-weight:500;font-family:monospace}
+.tg{background:var(--green-dim);color:var(--green)}
+.tr{background:var(--red-dim);color:var(--red)}
+.tn{background:var(--bg4);color:var(--text2)}
+.num{font-family:monospace}
+.rr{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--border2)}
+.rr:last-child{border-bottom:none}
+.rn{font-size:20px;font-weight:700;color:var(--text3);font-family:monospace;width:28px;flex-shrink:0;text-align:center}
+.rnm{min-width:140px;font-size:13px;font-weight:500}
+.rbb{flex:1;height:7px;background:var(--bg4);border-radius:4px;overflow:hidden}
+.rbf{height:100%;border-radius:4px}
+.rv{font-size:12px;font-family:monospace;min-width:70px;text-align:left;color:var(--text2)}
+.ri{display:flex;gap:14px;padding:14px;background:var(--bg3);border-radius:var(--r);border:1px solid var(--border);margin-bottom:8px}
+.rrank{font-size:22px;font-weight:700;font-family:monospace;color:var(--text3);min-width:30px}
+.rb h4{font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px}
+.rb p{font-size:12px;color:var(--text2);line-height:1.7}
+.rc{padding:14px;background:var(--bg3);border-radius:var(--r);border:1px solid var(--border);border-right:3px solid var(--gold);margin-bottom:8px}
+.rc.red{border-right-color:var(--red)}
+.rc.grn{border-right-color:var(--green)}
+.rt{font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px}
+.rbdy{font-size:12px;color:var(--text2);line-height:1.7}
+.exec{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:18px;font-size:13px;color:var(--text2);line-height:1.8;margin-top:16px}
+.exec strong{color:var(--text)}
+.ac{background:var(--bg3);border:1px solid var(--border);border-right:3px solid var(--red);border-radius:var(--r);padding:14px;margin-bottom:8px}
+.at{font-size:13px;font-weight:600;color:var(--red);margin-bottom:6px}
+.arow{display:flex;justify-content:space-between;font-size:12px;padding:4px 0;color:var(--text2);border-bottom:1px solid var(--border2)}
+.arow:last-child{border-bottom:none}
+.arow span:last-child{font-family:monospace;color:var(--text)}
+.be{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border2);font-size:13px}
+.be:last-child{border-bottom:none}
+@media(max-width:900px){.kpi-grid{grid-template-columns:1fr 1fr}.g2{grid-template-columns:1fr}}
+</style>
+</t>
+<t t-set="title">لوحة التحليل المالي — Munch Bakery</t>
+<div id="ld" class="loading"><div class="spinner"></div><div class="loading-txt">جارٍ تحميل البيانات من Odoo...</div><div class="loading-step" id="ls">تهيئة...</div></div>
+<div id="app" style="display:none">
+<div class="topbar"><div class="logo"><div class="logo-icon">🧁</div><div><h1>Munch Bakery — التحليل المالي للفروع</h1><p id="tp">بيانات لايف من Odoo POS</p></div></div><div class="topbar-right"><div class="live-badge"><span class="live-dot"></span>لايف</div><button class="btn-refresh" onclick="init()">⟳ تحديث</button><a href="/odoo/accounting" class="btn-back">← رجوع</a></div></div>
+<div class="main">
+<div class="page-hdr"><div><h2>لوحة التحليل المالي للفروع</h2><p>بيانات حقيقية من Odoo POS — تتحدث عند كل زيارة</p></div><span class="period" id="pb">📅 آخر 12 شهراً</span></div>
+<div class="kpi-grid"><div class="kpi"><div class="kpi-acc" style="background:var(--gold)"></div><div class="kpi-lbl">إجمالي الإيرادات</div><div class="kpi-val" id="k1">—</div><div class="kpi-sub" id="k1s">—</div></div><div class="kpi"><div class="kpi-acc" style="background:var(--green)"></div><div class="kpi-lbl">إجمالي الأرباح</div><div class="kpi-val" id="k2">—</div><div class="kpi-sub up" id="k2s">—</div></div><div class="kpi"><div class="kpi-acc" style="background:var(--blue)"></div><div class="kpi-lbl">أفضل فرع</div><div class="kpi-val" id="k3" style="font-size:17px;line-height:1.5">—</div><div class="kpi-sub up" id="k3s">—</div></div><div class="kpi"><div class="kpi-acc" style="background:var(--red)"></div><div class="kpi-lbl">عدد الفروع</div><div class="kpi-val" id="k4">—</div><div class="kpi-sub" id="k4s">—</div></div></div>
+<div class="tabs"><button class="tab active" onclick="sw(0)">📊 نظرة عامة</button><button class="tab" onclick="sw(1)">📈 التحليل الأفقي والعمودي</button><button class="tab" onclick="sw(2)">💰 الربحية</button><button class="tab" onclick="sw(3)">🔮 التنبؤ والتصنيف</button><button class="tab" onclick="sw(4)">📄 التقرير التنفيذي</button></div>
+<div class="pane active" id="pane-0"><div class="card"><div class="sec">الإيرادات الشهرية لكل فرع</div><div class="leg" id="lg0"></div><div class="cw"><canvas id="cm" role="img" aria-label="الإيرادات الشهرية" style="height:300px">بيانات الإيرادات</canvas></div></div><div class="g2"><div class="card"><div class="sec">إجمالي الإيرادات</div><div class="cw"><canvas id="ct" role="img" aria-label="إجمالي الإيرادات" style="height:240px">بيانات</canvas></div></div><div class="card"><div class="sec">توزيع حسب الفرع</div><div class="cw"><canvas id="cp" role="img" aria-label="توزيع" style="height:240px">بيانات</canvas></div></div></div></div>
+<div class="pane" id="pane-1"><div class="sec">التحليل العمودي</div><div class="card" style="overflow-x:auto"><table class="dt" id="tv"></table></div><div class="sec">التحليل الأفقي QoQ وYoY</div><div class="card"><div class="leg"><div class="li"><span class="ld" style="background:#f0b429"></span>QoQ</div><div class="li"><span class="ld" style="background:#58a6ff"></span>YoY</div></div><div class="cw"><canvas id="ch" role="img" aria-label="التحليل الأفقي" style="height:280px">بيانات</canvas></div></div><div class="sec">الشواذ والانحرافات</div><div id="an"></div></div>
+<div class="pane" id="pane-2"><div class="g2"><div class="card"><div class="sec">هامش الربح الإجمالي</div><div class="cw"><canvas id="cmar" role="img" aria-label="هامش الربح" style="height:260px">بيانات</canvas></div></div><div class="card"><div class="sec">نقطة التعادل الشهرية</div><div id="be"></div></div></div><div class="sec">جدول الربحية</div><div class="card" style="overflow-x:auto"><table class="dt" id="tp2"></table></div></div>
+<div class="pane" id="pane-3"><div class="sec">التنبؤ بالربع القادم</div><div class="card"><div class="leg"><div class="li"><span class="ld" style="background:#3fb950"></span>فعلي</div><div class="li"><span class="ld" style="background:#f0b429;opacity:0.7"></span>توقع</div></div><div class="cw"><canvas id="cf" role="img" aria-label="التنبؤ" style="height:280px">بيانات</canvas></div></div><div class="sec">تصنيف الفروع</div><div class="card" id="rk"></div></div>
+<div class="pane" id="pane-4"><div class="card"><div style="margin-bottom:24px"><div class="sec">أعلى 3 فروع</div><div id="t3"></div></div><div style="margin-bottom:24px"><div class="sec">فروع تحتاج تدخلاً</div><div id="b3"></div></div><div class="sec">التوصيات</div><div id="recs"></div><div class="exec" id="ex"></div></div></div>
+</div></div>
+<script>
+const C=['#f0b429','#3fb950','#58a6ff','#f85149','#a371f7','#ff9500'];
+const MAR=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+let G={B:[],CH:{},tab:0};
+function fmt(n){if(Math.abs(n)>=1e6)return(n/1e6).toFixed(2)+'M';if(Math.abs(n)>=1e3)return(n/1e3).toFixed(1)+'K';return Math.round(n).toLocaleString()}
+function fs(n){return 'ر.س '+fmt(n)}
+function fp(n){return parseFloat(n).toFixed(1)+'%'}
+function dt(v){const c=v>=0?'tg':'tr',i=v>=0?'▲':'▼';return '<span class="tag '+c+'">'+i+' '+Math.abs(v).toFixed(1)+'%</span>'}
+function step(m){document.getElementById('ls').textContent=m}
+async function rpc(model,method,args=[],kw={}){
+  const r=await fetch('/web/dataset/call_kw',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',method:'call',id:Date.now(),params:{model,method,args,kwargs:kw}})});
+  const d=await r.json();if(d.error)throw new Error(d.error.data?.message);return d.result;
+}
+async function fetchB(cid,df,dt2){
+  const mo={};let off=0;
+  while(true){
+    const o=await rpc('pos.order','search_read',[[['config_id','=',cid],['state','in',['done','invoiced']],['date_order','>=',df],['date_order','<=',dt2]]],{fields:['date_order','amount_total'],limit:5000,offset:off});
+    if(!o.length)break;
+    o.forEach(x=>{const m=x.date_order.slice(0,7);mo[m]=(mo[m]||0)+x.amount_total;});
+    off+=o.length;if(o.length<5000)break;
+  }
+  return mo;
+}
+async function init(){
+  document.getElementById('ld').style.display='flex';
+  document.getElementById('app').style.display='none';
+  Object.values(G.CH).forEach(c=>c.destroy());G.CH={};G.B=[];
+  try{
+    step('تحميل إعدادات الفروع...');
+    const cfgs=await rpc('pos.config','search_read',[[['active','=',true]]],{fields:['id','name'],limit:50});
+    const now=new Date();
+    const from=new Date(now.getFullYear(),now.getMonth()-11,1);
+    const df=from.toISOString().split('T')[0];
+    const dt2=now.toISOString().split('T')[0];
+    const m12=[];for(let i=0;i<12;i++){const d=new Date(from.getFullYear(),from.getMonth()+i,1);m12.push(d.toISOString().slice(0,7));}
+    const ml=m12.map(m=>{const p=m.split('-');return MAR[parseInt(p[1])-1]+' '+p[0].slice(2)});
+    const CR=0.225;const BD=[];
+    for(let i=0;i<cfgs.length;i++){
+      const c=cfgs[i];step('تحميل '+c.name+' ('+(i+1)+'/'+cfgs.length+')...');
+      const mo=await fetchB(c.id,df,dt2);
+      const ma=m12.map(m=>Math.round(mo[m]||0));
+      const tr=ma.reduce((s,v)=>s+v,0);if(tr===0)continue;
+      const q3=ma.slice(6,9).reduce((s,v)=>s+v,0);
+      const q4=ma.slice(9,12).reduce((s,v)=>s+v,0);
+      const q1=ma.slice(0,3).reduce((s,v)=>s+v,0);
+      const qoq=q3>0?parseFloat(((q4-q3)/q3*100).toFixed(1)):0;
+      const yoy=q1>0?parseFloat(((q4-q1)/q1*100).toFixed(1)):0;
+      const cogs=Math.round(tr*CR);const gp=tr-cogs;const gm=parseFloat((gp/tr*100).toFixed(1));
+      BD.push({name:c.name,ma,tr,cogs,gp,gm,qoq,yoy});
+    }
+    BD.sort((a,b)=>b.tr-a.tr);
+    const mx=BD[0]?.tr||1;
+    BD.forEach(b=>{b.sc=Math.round((b.tr/mx)*50+(b.gm/80)*30+(b.qoq>0?Math.min(b.qoq/10,1)*20:0));});
+    G.B=BD;G.m12=m12;G.ml=ml;
+    document.getElementById('pb').textContent='📅 '+df.slice(0,7)+' – '+dt2.slice(0,7);
+    document.getElementById('tp').textContent='البيانات: '+df.slice(0,7)+' – '+dt2.slice(0,7);
+    kpis();renderTab(0);
+    document.getElementById('ld').style.display='none';
+    document.getElementById('app').style.display='block';
+  }catch(e){step('خطأ: '+e.message);console.error(e);}
+}
+function kpis(){
+  const B=G.B;
+  const tr=B.reduce((s,b)=>s+b.tr,0);
+  const tg=B.reduce((s,b)=>s+b.gp,0);
+  document.getElementById('k1').textContent=fs(tr);
+  document.getElementById('k1s').textContent=B.length+' فروع';
+  document.getElementById('k2').textContent=fs(tg);
+  document.getElementById('k2s').textContent=fp(tg/tr*100)+' هامش إجمالي';
+  document.getElementById('k3').textContent=B[0]?.name||'—';
+  document.getElementById('k3s').textContent=B[0]?fs(B[0].tr):'—';
+  document.getElementById('k4').textContent=B.length;
+  document.getElementById('k4s').textContent='فرع نشط';
+}
+function sw(i){
+  document.querySelectorAll('.tab').forEach((b,j)=>b.classList.toggle('active',i===j));
+  document.querySelectorAll('.pane').forEach((p,j)=>p.classList.toggle('active',i===j));
+  G.tab=i;renderTab(i);
+}
+function renderTab(i){if(i===0)bOv();else if(i===1)bVH();else if(i===2)bPr();else if(i===3)bFc();else if(i===4)bRp();}
+function mk(id,cfg){const c=document.getElementById(id);if(!c)return;if(G.CH[id])G.CH[id].destroy();G.CH[id]=new Chart(c,cfg);return G.CH[id];}
+const BASE={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}};
+function bOv(){
+  if(G.CH['cm'])return;
+  const B=G.B,ML=G.ml;
+  document.getElementById('lg0').innerHTML=B.map((b,i)=>'<div class="li"><span class="ld" style="background:'+C[i%6]+'"></span>'+b.name+'</div>').join('');
+  mk('cm',{type:'line',data:{labels:ML,datasets:B.map((b,i)=>({label:b.name,data:b.ma,borderColor:C[i%6],backgroundColor:C[i%6]+'15',borderWidth:2,pointRadius:3,tension:0.4,fill:false}))},options:{...BASE,scales:{x:{ticks:{color:'#8b949e',font:{size:10}},grid:{color:'rgba(48,54,61,0.6)'}},y:{ticks:{color:'#8b949e',callback:v=>fmt(v),font:{size:10}},grid:{color:'rgba(48,54,61,0.6)'}}}}});
+  mk('ct',{type:'bar',data:{labels:B.map(b=>b.name),datasets:[{data:B.map(b=>b.tr),backgroundColor:C,borderRadius:5,borderSkipped:false}]},options:{...BASE,scales:{x:{ticks:{color:'#8b949e',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#8b949e',callback:v=>fmt(v),font:{size:10}},grid:{color:'rgba(48,54,61,0.6)'}}}}});
+  mk('cp',{type:'doughnut',data:{labels:B.map(b=>b.name),datasets:[{data:B.map(b=>b.tr),backgroundColor:C,borderWidth:0}]},options:{...BASE,cutout:'65%',plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.label+': '+fs(ctx.raw)}}}}});
+}
+function bVH(){
+  if(G.CH['ch'])return;
+  const B=G.B;
+  document.getElementById('tv').innerHTML='<thead><tr><th>الفرع</th><th>الإيرادات</th><th>تكلفة البضاعة %</th><th>هامش إجمالي %</th><th>QoQ</th><th>YoY</th></tr></thead><tbody>'+B.map((b,i)=>'<tr><td><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:'+C[i%6]+';margin-left:6px"></span><strong>'+b.name+'</strong></td><td class="num">'+fs(b.tr)+'</td><td>'+fp(22.5)+'</td><td class="num"><strong>'+fp(b.gm)+'</strong></td><td>'+dt(b.qoq)+'</td><td>'+(b.yoy===0?'<span class="tag tn">جديد</span>':dt(b.yoy))+'</td></tr>').join('')+'</tbody>';
+  mk('ch',{type:'bar',data:{labels:B.map(b=>b.name),datasets:[{label:'QoQ',data:B.map(b=>b.qoq),backgroundColor:'#f0b429',borderRadius:4},{label:'YoY',data:B.map(b=>b.yoy===0?null:b.yoy),backgroundColor:'#58a6ff',borderRadius:4}]},options:{...BASE,scales:{x:{ticks:{color:'#8b949e',font:{size:10}},grid:{color:'rgba(48,54,61,0.5)'}},y:{ticks:{color:'#8b949e',callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(48,54,61,0.5)'},afterDataLimits:s=>{s.min=Math.min(s.min,-10);s.max=Math.max(s.max,15)}}}}});
+  const an=B.filter(b=>b.qoq<-5||b.yoy<-5);
+  document.getElementById('an').innerHTML=an.length===0?'<div class="card" style="text-align:center;color:var(--text2);padding:20px">✅ لا توجد شواذ كبيرة</div>':an.map(b=>'<div class="ac"><div class="at">⚠️ '+b.name+'</div>'+(b.qoq<-5?'<div class="arow"><span>QoQ</span><span style="color:var(--red)">'+fp(b.qoq)+' ↓</span></div>':'')+(b.yoy<-5?'<div class="arow"><span>YoY</span><span style="color:var(--red)">'+fp(b.yoy)+' ↓</span></div>':'')+'<div class="arow"><span>الإيرادات</span><span>'+fs(b.tr)+'</span></div></div>').join('');
+}
+function bPr(){
+  if(G.CH['cmar'])return;
+  const B=G.B;
+  mk('cmar',{type:'bar',data:{labels:B.map(b=>b.name),datasets:[{data:B.map(b=>parseFloat(b.gm.toFixed(1))),backgroundColor:B.map(b=>b.gm>=75?'#3fb950':b.gm>=70?'#f0b429':'#f85149'),borderRadius:5,indexAxis:'y'}]},options:{...BASE,indexAxis:'y',scales:{x:{ticks:{color:'#8b949e',callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(48,54,61,0.5)'}},y:{ticks:{color:'#8b949e',font:{size:10}},grid:{display:false}}}}});
+  document.getElementById('be').innerHTML=B.map(b=>{const be=Math.round(b.tr*0.13/12/(b.gm/100));const avg=Math.round(b.tr/12);return '<div class="be"><span style="color:var(--text2)">'+b.name+'</span><span style="display:flex;align-items:center;gap:8px"><span class="num" style="font-size:12px">'+fs(be)+'/شهر</span><span class="tag '+(avg>=be?'tg':'tr')+'">'+(avg>=be?'✓ تجاوز':'✗ لم يصل')+'</span></span></div>';}).join('');
+  document.getElementById('tp2').innerHTML='<thead><tr><th>الفرع</th><th>الإيرادات</th><th>تكلفة البضاعة</th><th>إجمالي الربح</th><th>هامش إجمالي</th><th>QoQ</th></tr></thead><tbody>'+B.map(b=>'<tr><td><strong>'+b.name+'</strong></td><td class="num">'+fs(b.tr)+'</td><td class="num" style="color:var(--red)">'+fs(b.cogs)+'</td><td class="num" style="color:var(--green)"><strong>'+fs(b.gp)+'</strong></td><td><strong>'+fp(b.gm)+'</strong></td><td>'+dt(b.qoq)+'</td></tr>').join('')+'</tbody>';
+}
+function bFc(){
+  if(G.CH['cf'])return;
+  const B=G.B,ML=G.ml;
+  const agg=ML.map((_,i)=>B.reduce((s,b)=>s+(b.ma[i]||0),0));
+  const l3=agg.slice(-3);const tr=(l3[2]-l3[0])/2;const fc=Math.max(Math.round(l3[2]+tr*0.5),0);
+  mk('cf',{type:'line',data:{labels:[...ML,'Q التالي (توقع)'],datasets:[{label:'فعلي',data:[...agg,null],borderColor:'#3fb950',backgroundColor:'rgba(63,185,80,0.08)',borderWidth:2,pointRadius:4,tension:0.4,fill:true},{label:'توقع',data:[...Array(12).fill(null),fc],borderColor:'#f0b429',borderDash:[6,4],borderWidth:2,pointRadius:8,pointStyle:'triangle',fill:false}]},options:{...BASE,scales:{x:{ticks:{color:'#8b949e',font:{size:10}},grid:{color:'rgba(48,54,61,0.5)'}},y:{ticks:{color:'#8b949e',callback:v=>fmt(v),font:{size:10}},grid:{color:'rgba(48,54,61,0.5)'}}}}});
+  const srt=[...B].sort((a,b2)=>b2.sc-a.sc);
+  document.getElementById('rk').innerHTML='<div style="padding:4px 0">'+srt.map((b,i)=>'<div class="rr"><div class="rn">'+(i+1)+'</div><div class="rnm">'+b.name+'</div><div class="rbb"><div class="rbf" style="width:'+b.sc+'%;background:'+C[B.indexOf(b)%6]+'"></div></div><div class="rv">'+b.sc+' pts</div>'+dt(b.qoq)+'</div>').join('')+'</div>';
+}
+function bRp(){
+  const B=[...G.B].sort((a,b2)=>b2.sc-a.sc);
+  const md=['🥇','🥈','🥉'];
+  document.getElementById('t3').innerHTML=B.slice(0,3).map((b,i)=>'<div class="ri"><div class="rrank">'+md[i]+'</div><div class="rb"><h4>'+b.name+'</h4><p>الإيرادات: <strong>'+fs(b.tr)+'</strong> | هامش: <strong>'+fp(b.gm)+'</strong> | QoQ: '+dt(b.qoq)+'</p></div></div>').join('');
+  document.getElementById('b3').innerHTML=B.slice(-Math.min(2,B.length)).reverse().map((b,i)=>'<div class="ri" style="border-right:3px solid var(--red)"><div class="rrank" style="color:var(--red)">'+(i+1)+'</div><div class="rb"><h4>'+b.name+'</h4><p>'+(b.qoq<0?'تراجع QoQ '+dt(b.qoq)+' — ':'')+' الإيرادات: <strong>'+fs(b.tr)+'</strong> | هامش: <strong>'+fp(b.gm)+'</strong></p></div></div>').join('');
+  document.getElementById('recs').innerHTML='<div class="rc grn"><div class="rt">🎯 تعزيز الفروع الأعلى نمواً</div><div class="rbdy">الفروع بنمو QoQ إيجابي تستحق مزيداً من التسويق والمخزون.</div></div><div class="rc red"><div class="rt">⚠️ مراجعة الفروع المتراجعة</div><div class="rbdy">الفروع بنمو QoQ سلبي تحتاج دراسة تشغيلية فورية.</div></div><div class="rc"><div class="rt">💰 تحسين هامش التكلفة</div><div class="rbdy">التفاوض الموحّد مع الموردين يخفض COGS ويحسّن الهامش.</div></div>';
+  const tr=G.B.reduce((s,b)=>s+b.tr,0),tg=G.B.reduce((s,b)=>s+b.gp,0);
+  document.getElementById('ex').innerHTML='<strong>📋 الملخص التنفيذي</strong><br><br>حققت المنشأة إجمالي إيرادات <strong>'+fs(tr)+'</strong> عبر '+G.B.length+' فروع، بإجمالي ربح <strong>'+fs(tg)+'</strong> وهامش إجمالي <strong>'+fp(tg/tr*100)+'</strong>. يتصدر <strong>'+G.B[0]?.name+'</strong> القائمة. البيانات محدّثة لحظياً من Odoo POS.';
+}
+init();
+</script>
+</t>
+</template>
+</odoo>
