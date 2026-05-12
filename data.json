@@ -1,19 +1,19 @@
 {
-  "updated": "2026-05-12 16:50",
+  "updated": "2026-05-12 21:07",
   "date_from": "2025-05-12",
   "date_to": "2026-05-12",
   "branches": [
     {
       "name": "Jed - Marwah (FR)",
-      "total": 2442399,
-      "cogs_real": 526947,
-      "gross_profit_real": 1596864,
+      "total": 2445199,
+      "cogs_real": 527500,
+      "gross_profit_real": 1598745,
       "gross_margin_real": 65.4,
-      "total_txn": 28824,
+      "total_txn": 28858,
       "avg_ticket": 84.7,
       "discount_rate": 0.0,
       "monthly": {
-        "2026-05": 69612.28999999998,
+        "2026-05": 72411.79,
         "2026-04": 162791.21999999997,
         "2026-03": 219927.86999999956,
         "2026-02": 146839.45000000004,
@@ -28,7 +28,7 @@
         "2025-05": 196458.24000000002
       },
       "monthly_txn": {
-        "2026-05": 837,
+        "2026-05": 871,
         "2026-04": 1971,
         "2026-03": 2366,
         "2026-02": 1782,
@@ -59,47 +59,47 @@
         174132,
         228641,
         232649,
-        239130,
-        243622,
-        223975,
-        197903,
-        196654,
-        153274,
+        239288,
+        244707,
+        224506,
+        198529,
+        197010,
+        153317,
         106477,
         25269
       ],
       "daily": [
         291914,
-        313098,
+        315898,
         326823,
         465430,
         432011,
         319307,
         293817
       ],
-      "qoq": -18.7,
-      "yoy": -32.6,
+      "qoq": -18.2,
+      "yoy": -32.2,
       "payments": {
-        "Online Paid": 944564,
-        "Mada Card": 653828,
-        "Marwah Cash": 147442,
-        "Visa": 141930,
-        "Master Card": 54805,
+        "Mada Card": 655124,
+        "Online Paid": 945961,
+        "Master Card": 55258,
+        "Visa": 141989,
+        "Marwah Cash": 147721,
         "Amex Card": 884,
         "Taker Wallet": 38
       }
     },
     {
       "name": "Jed - Ajaweed (FR)",
-      "total": 2312082,
-      "cogs_real": 518653,
-      "gross_profit_real": 1491829,
+      "total": 2314678,
+      "cogs_real": 519219,
+      "gross_profit_real": 1493520,
       "gross_margin_real": 64.5,
-      "total_txn": 28597,
-      "avg_ticket": 80.9,
+      "total_txn": 28634,
+      "avg_ticket": 80.8,
       "discount_rate": 0.0,
       "monthly": {
-        "2026-05": 69344.33,
+        "2026-05": 71939.93,
         "2026-04": 164452.69999999984,
         "2026-03": 203018.69999999978,
         "2026-02": 127328.74999999988,
@@ -114,7 +114,7 @@
         "2025-05": 196762.84999999998
       },
       "monthly_txn": {
-        "2026-05": 889,
+        "2026-05": 926,
         "2026-04": 2132,
         "2026-03": 2252,
         "2026-02": 1642,
@@ -145,31 +145,31 @@
         177877,
         267701,
         268367,
-        258221,
-        251397,
-        211029,
-        186608,
-        126588,
+        258305,
+        251927,
+        211414,
+        187445,
+        127348,
         85118,
         53639,
         21776
       ],
       "daily": [
         285649,
-        288743,
+        291339,
         302011,
         444265,
         442450,
         285321,
         263642
       ],
-      "qoq": -13.8,
-      "yoy": -38.9,
+      "qoq": -13.3,
+      "yoy": -38.5,
       "payments": {
-        "Online Paid": 879254,
-        "Mada Card": 646943,
-        "Ajaweed Cash": 136578,
-        "Visa": 83300,
+        "Ajaweed Cash": 136895,
+        "Online Paid": 881173,
+        "Mada Card": 648206,
+        "Visa": 83916,
         "Master Card": 20362,
         "Taker Wallet": 233,
         "Amex Card": 24
@@ -177,15 +177,15 @@
     },
     {
       "name": "Jed - Hamadaniyyah (FR)",
-      "total": 2281094,
-      "cogs_real": 502279,
-      "gross_profit_real": 1481261,
+      "total": 2282680,
+      "cogs_real": 502603,
+      "gross_profit_real": 1482317,
       "gross_margin_real": 64.9,
-      "total_txn": 26814,
+      "total_txn": 26838,
       "avg_ticket": 85.1,
       "discount_rate": 0.0,
       "monthly": {
-        "2026-05": 64006.40000000001,
+        "2026-05": 65592.40000000001,
         "2026-04": 158681.8,
         "2026-03": 210394.5699999997,
         "2026-02": 126363.83999999998,
@@ -200,7 +200,7 @@
         "2025-05": 182861.74999999997
       },
       "monthly_txn": {
-        "2026-05": 775,
+        "2026-05": 799,
         "2026-04": 1998,
         "2026-03": 2320,
         "2026-02": 1558,
@@ -232,30 +232,30 @@
         253315,
         257034,
         254066,
-        253686,
-        207903,
-        176879,
-        138460,
+        253961,
+        208151,
+        177524,
+        138878,
         110577,
         66014,
         15186
       ],
       "daily": [
         263347,
-        282718,
+        284304,
         313266,
         432912,
         423771,
         301879,
         263200
       ],
-      "qoq": -15.0,
-      "yoy": -34.8,
+      "qoq": -14.7,
+      "yoy": -34.6,
       "payments": {
-        "Online Paid": 802451,
-        "Mada Card": 687763,
-        "Hamdaniyah Cash": 127356,
-        "Visa": 116429,
+        "Mada Card": 688458,
+        "Online Paid": 803992,
+        "Hamdaniyah Cash": 127560,
+        "Visa": 116488,
         "Master Card": 38822,
         "Amex Card": 460,
         "Taker Wallet": 44
@@ -263,15 +263,15 @@
     },
     {
       "name": "Medinah - Immam Bukhari (FR)",
-      "total": 1794346,
-      "cogs_real": 408353,
-      "gross_profit_real": 1151929,
+      "total": 1796228,
+      "cogs_real": 408752,
+      "gross_profit_real": 1153167,
       "gross_margin_real": 64.2,
-      "total_txn": 22002,
-      "avg_ticket": 81.6,
+      "total_txn": 22027,
+      "avg_ticket": 81.5,
       "discount_rate": 0.0,
       "monthly": {
-        "2026-05": 48386.860000000015,
+        "2026-05": 50268.260000000024,
         "2026-04": 126112.94999999987,
         "2026-03": 152170.24999999956,
         "2026-02": 87681.04999999999,
@@ -286,7 +286,7 @@
         "2025-05": 179901.66999999995
       },
       "monthly_txn": {
-        "2026-05": 629,
+        "2026-05": 654,
         "2026-04": 1586,
         "2026-03": 1666,
         "2026-02": 1106,
@@ -317,31 +317,31 @@
         127655,
         197493,
         206774,
-        182028,
-        196242,
-        158609,
-        151960,
-        110900,
-        113267,
+        182133,
+        196807,
+        159321,
+        152182,
+        111075,
+        113369,
         47245,
         12014
       ],
       "daily": [
         228954,
-        240533,
+        242415,
         250501,
         342307,
         300350,
         218719,
         212983
       ],
-      "qoq": -13.0,
-      "yoy": -43.3,
+      "qoq": -12.5,
+      "yoy": -42.9,
       "payments": {
-        "Online Paid": 635290,
-        "Mada Card": 497950,
-        "Defaa Cash": 96999,
-        "Visa": 93961,
+        "Online Paid": 636791,
+        "Mada Card": 499596,
+        "Visa": 94073,
+        "Defaa Cash": 97025,
         "Master Card": 16200,
         "Amex Card": 105,
         "Taker Wallet": 314
@@ -349,15 +349,15 @@
     },
     {
       "name": "Jed- Al-Wazeeriyah (FR)",
-      "total": 1148929,
-      "cogs_real": 255706,
-      "gross_profit_real": 743350,
+      "total": 1150677,
+      "cogs_real": 256021,
+      "gross_profit_real": 744555,
       "gross_margin_real": 64.7,
-      "total_txn": 15378,
+      "total_txn": 15400,
       "avg_ticket": 74.7,
       "discount_rate": 0.0,
       "monthly": {
-        "2026-05": 38265.55000000001,
+        "2026-05": 40014.15000000001,
         "2026-04": 82749.40999999999,
         "2026-03": 84537.73000000001,
         "2026-02": 59872.94000000001,
@@ -372,7 +372,7 @@
         "2025-05": 100995.15
       },
       "monthly_txn": {
-        "2026-05": 516,
+        "2026-05": 538,
         "2026-04": 1180,
         "2026-03": 1064,
         "2026-02": 906,
@@ -403,52 +403,52 @@
         78115,
         118195,
         111298,
-        108286,
-        119531,
-        105930,
-        100403,
-        84085,
-        59848,
+        108467,
+        120032,
+        106592,
+        100671,
+        84183,
+        59887,
         43872,
         7714
       ],
       "daily": [
         137924,
-        151196,
+        152945,
         160054,
         230468,
         194578,
         136025,
         138683
       ],
-      "qoq": -20.7,
-      "yoy": -39.1,
+      "qoq": -20.0,
+      "yoy": -38.5,
       "payments": {
-        "Online Paid": 473404,
-        "Mada Card": 256788,
-        "Waziriyah Cash": 120741,
-        "Visa": 33788,
+        "Mada Card": 257344,
+        "Online Paid": 474054,
+        "Visa": 34255,
+        "Waziriyah Cash": 121225,
         "Master Card": 9208,
         "Taker Wallet": 0
       }
     },
     {
       "name": "Jed - Al Safa (FR)",
-      "total": 472762,
-      "cogs_real": 98624,
-      "gross_profit_real": 312473,
+      "total": 475102,
+      "cogs_real": 99121,
+      "gross_profit_real": 314010,
       "gross_margin_real": 66.1,
-      "total_txn": 5399,
-      "avg_ticket": 87.6,
+      "total_txn": 5434,
+      "avg_ticket": 87.4,
       "discount_rate": 0.0,
       "monthly": {
-        "2026-05": 63910.80000000002,
+        "2026-05": 66250.70000000001,
         "2026-04": 141448.25999999995,
         "2026-03": 169777.02999999977,
         "2026-02": 97625.67
       },
       "monthly_txn": {
-        "2026-05": 691,
+        "2026-05": 726,
         "2026-04": 1647,
         "2026-03": 1881,
         "2026-02": 1180
@@ -471,17 +471,17 @@
         44431,
         42720,
         44503,
-        44794,
-        45550,
-        37942,
-        38368,
+        45250,
+        46773,
+        38319,
+        38651,
         25438,
         22950,
         17765
       ],
       "daily": [
         55378,
-        61133,
+        63473,
         63123,
         85917,
         90091,
@@ -489,7 +489,7 @@
         57585
       ],
       "qoq": 0,
-      "yoy": -8.2,
+      "yoy": -7.7,
       "payments": {
         "Online Paid": 254128,
         "Safa Cash": 45544,
@@ -504,107 +504,107 @@
   "products": [
     {
       "name": "ردفلفت كيك/ Red Velvet Cake - Medium",
-      "revenue": 712325,
-      "qty": 6539,
-      "margin": 475009,
+      "revenue": 713495,
+      "qty": 6549,
+      "margin": 475807,
       "margin_pct": 66.7,
-      "orders": 6587
+      "orders": 6597
     },
     {
       "name": "كيكة دريم/Dream Cake-  Medium",
-      "revenue": 598640,
-      "qty": 5400,
-      "margin": 406200,
+      "revenue": 599120,
+      "qty": 5404,
+      "margin": 406533,
       "margin_pct": 67.9,
-      "orders": 5441
+      "orders": 5445
     },
     {
       "name": "Occasion/ كيك مناسبات",
-      "revenue": 521894,
-      "qty": 521894,
-      "margin": 453822,
+      "revenue": 522742,
+      "qty": 522742,
+      "margin": 454560,
       "margin_pct": 87.0,
-      "orders": 1321
+      "orders": 1323
     },
     {
       "name": "ردفلفت كيك/Red Velvet Cake - Large",
-      "revenue": 519159,
-      "qty": 3177,
-      "margin": 324114,
+      "revenue": 519334,
+      "qty": 3178,
+      "margin": 324226,
       "margin_pct": 62.4,
-      "orders": 3225
+      "orders": 3226
     },
     {
       "name": "دريم كيك كبير/Dream Cake -  Large",
-      "revenue": 423013,
-      "qty": 2429,
-      "margin": 263396,
+      "revenue": 423351,
+      "qty": 2431,
+      "margin": 263604,
       "margin_pct": 62.3,
-      "orders": 2480
+      "orders": 2482
     },
     {
       "name": "تشوكليت كيك/Chocolate Cake - Medium",
-      "revenue": 409700,
-      "qty": 3584,
-      "margin": 270227,
+      "revenue": 410950,
+      "qty": 3594,
+      "margin": 271074,
       "margin_pct": 66.0,
-      "orders": 3614
+      "orders": 3624
     },
     {
       "name": "تشوكليت كيك /Chocolate Cake - Large",
-      "revenue": 325722,
-      "qty": 1866,
-      "margin": 203003,
+      "revenue": 325907,
+      "qty": 1867,
+      "margin": 203121,
       "margin_pct": 62.3,
-      "orders": 1882
+      "orders": 1883
     },
     {
       "name": "كيكة فانيلا/Vanilla Cake - Medium",
-      "revenue": 267385,
-      "qty": 2475,
-      "margin": 177858,
+      "revenue": 267615,
+      "qty": 2477,
+      "margin": 178014,
       "margin_pct": 66.5,
-      "orders": 2483
+      "orders": 2485
     },
     {
       "name": "ردفلفت ميني كب كيك/Red Velvet Mini Cupcake",
-      "revenue": 258092,
-      "qty": 69344,
-      "margin": 175875,
+      "revenue": 258594,
+      "qty": 69469,
+      "margin": 176224,
       "margin_pct": 68.1,
-      "orders": 29392
+      "orders": 29442
     },
     {
       "name": "ريبون كيك/ Ribbon Character Cake – One person",
-      "revenue": 216043,
-      "qty": 3493,
-      "margin": 140704,
+      "revenue": 216102,
+      "qty": 3494,
+      "margin": 140741,
       "margin_pct": 65.1,
-      "orders": 3489
+      "orders": 3490
     },
     {
       "name": "ميني دريم كيك/Dream Mini Cupcake",
-      "revenue": 204636,
-      "qty": 54898,
-      "margin": 139503,
+      "revenue": 204994,
+      "qty": 54987,
+      "margin": 139752,
       "margin_pct": 68.2,
-      "orders": 25224
+      "orders": 25261
     },
     {
       "name": "بلوفلفت  كب كيك/Blue Velvet Mini Cupcake",
-      "revenue": 202133,
-      "qty": 53852,
-      "margin": 138058,
+      "revenue": 202604,
+      "qty": 53970,
+      "margin": 138384,
       "margin_pct": 68.3,
-      "orders": 24816
+      "orders": 24869
     },
     {
       "name": "بربل فلفت ميني كب كيك/Purple Velvet Mini Cupcake",
-      "revenue": 186458,
-      "qty": 49639,
-      "margin": 127376,
+      "revenue": 186774,
+      "qty": 49715,
+      "margin": 127598,
       "margin_pct": 68.3,
-      "orders": 24402
+      "orders": 24441
     },
     {
       "name": "تشوكليت فلفت/Chocolate Velvet Cake - Medium",
@@ -616,11 +616,11 @@
     },
     {
       "name": "كوميك كيك/ ردفلفتComic Cake Round Red Velvet",
-      "revenue": 167727,
-      "qty": 2679,
-      "margin": 118415,
+      "revenue": 167963,
+      "qty": 2683,
+      "margin": 118580,
       "margin_pct": 70.6,
-      "orders": 2676
+      "orders": 2680
     },
     {
       "name": "كيكة فراولة كبيرة/Strawberry Cake - Large",
@@ -640,19 +640,19 @@
     },
     {
       "name": "ميني كب كيك الجزر/Carrot Mini Cupcake",
-      "revenue": 154804,
-      "qty": 40932,
-      "margin": 105950,
+      "revenue": 155124,
+      "qty": 41009,
+      "margin": 106174,
       "margin_pct": 68.4,
-      "orders": 20202
+      "orders": 20234
     },
     {
       "name": "نوتيلا ميني كب كيك/Nutella Maltesers Mini Cupcake",
-      "revenue": 149754,
-      "qty": 33704,
-      "margin": 100212,
+      "revenue": 149842,
+      "qty": 33729,
+      "margin": 100267,
       "margin_pct": 66.9,
-      "orders": 15917
+      "orders": 15933
     },
     {
       "name": "لنش كيك دريم/Lunch Cake Dream",
@@ -664,11 +664,11 @@
     },
     {
       "name": "سوفل ميني كب كيك/Souffle Mini Cupcake",
-      "revenue": 146544,
-      "qty": 32733,
-      "margin": 97971,
-      "margin_pct": 66.9,
-      "orders": 15067
+      "revenue": 146684,
+      "qty": 32772,
+      "margin": 98058,
+      "margin_pct": 66.8,
+      "orders": 15087
     },
     {
       "name": "كيكة الجزر/Carrot Cake - Large",
@@ -680,11 +680,11 @@
     },
     {
       "name": "منش ميلت/Munch Melt",
-      "revenue": 135282,
-      "qty": 20064,
-      "margin": 81057,
+      "revenue": 135330,
+      "qty": 20071,
+      "margin": 81086,
       "margin_pct": 59.9,
-      "orders": 5675
+      "orders": 5679
     },
     {
       "name": "ردفلفت كيك/Red Velvet Cake - Mega",
@@ -704,11 +704,11 @@
     },
     {
       "name": "كب كيك الفراولة/Strawberry Mini Cupcake",
-      "revenue": 125652,
-      "qty": 33011,
-      "margin": 86140,
+      "revenue": 126074,
+      "qty": 33115,
+      "margin": 86433,
       "margin_pct": 68.6,
-      "orders": 17728
+      "orders": 17769
     },
     {
       "name": "دريم كيك/Dream Cake - Mega",
@@ -720,19 +720,19 @@
     },
     {
       "name": "فانيلا ميني كب كيك/Vanilla Mini Cupcake",
-      "revenue": 121829,
-      "qty": 32018,
-      "margin": 94557,
+      "revenue": 122176,
+      "qty": 32101,
+      "margin": 94831,
       "margin_pct": 77.6,
-      "orders": 16978
+      "orders": 17013
     },
     {
       "name": "بلوفلفت كيك/Blue Velvet Cake - Large",
-      "revenue": 113912,
-      "qty": 696,
-      "margin": 70871,
+      "revenue": 114071,
+      "qty": 697,
+      "margin": 70969,
       "margin_pct": 62.2,
-      "orders": 711
+      "orders": 712
     },
     {
       "name": "نشوكليت كرنش/Chocolate Crunch Cake - Medium",
@@ -744,19 +744,19 @@
     },
     {
       "name": "يونيكورن كيك/Unicorn Red Velvet",
-      "revenue": 105474,
-      "qty": 1710,
-      "margin": 68630,
+      "revenue": 105730,
+      "qty": 1714,
+      "margin": 68799,
       "margin_pct": 65.1,
-      "orders": 1692
+      "orders": 1696
     },
     {
       "name": "كيكة الدبدوب/Teddy Bear Character Cake",
-      "revenue": 104334,
-      "qty": 1654,
-      "margin": 68394,
+      "revenue": 104866,
+      "qty": 1662,
+      "margin": 68749,
       "margin_pct": 65.6,
-      "orders": 1642
+      "orders": 1650
     },
     {
       "name": "Eid Fitter Cake 2026 |كيكة عيد الفطر",
@@ -784,19 +784,19 @@
     },
     {
       "name": "ردفلفت كب كيك/ Red Velvet Cupcake",
-      "revenue": 87762,
-      "qty": 9671,
-      "margin": 57939,
+      "revenue": 87848,
+      "qty": 9680,
+      "margin": 57996,
       "margin_pct": 66.0,
-      "orders": 6712
+      "orders": 6721
     },
     {
       "name": "تشوكليت كيك/Chocolate Cake - Mega",
-      "revenue": 82650,
-      "qty": 346,
-      "margin": 49435,
+      "revenue": 82885,
+      "qty": 347,
+      "margin": 49575,
       "margin_pct": 59.8,
-      "orders": 352
+      "orders": 353
     },
     {
       "name": "Mother's Day Cake 2026 | كيكة يوم الأم",
@@ -832,11 +832,11 @@
     },
     {
       "name": "دريم كب كيك/Dream Cupcake",
-      "revenue": 67362,
-      "qty": 7521,
-      "margin": 44285,
+      "revenue": 67404,
+      "qty": 7526,
+      "margin": 44312,
       "margin_pct": 65.7,
-      "orders": 5060
+      "orders": 5065
     },
     {
       "name": "Graduation day cake 2025 /كيكة التخرج",
@@ -848,11 +848,11 @@
     },
     {
       "name": "سوفل كب كيك/Souffle Cupcake",
-      "revenue": 65808,
-      "qty": 7434,
-      "margin": 42089,
+      "revenue": 65858,
+      "qty": 7440,
+      "margin": 42122,
       "margin_pct": 64.0,
-      "orders": 4825
+      "orders": 4830
     },
     {
       "name": "ميني لوتس كب كيك/Lotus Mini Cupcake",
@@ -896,11 +896,11 @@
     },
     {
       "name": "كب كيك الجزر/Carrot Cupcake",
-      "revenue": 46246,
-      "qty": 5044,
-      "margin": 30631,
+      "revenue": 46346,
+      "qty": 5054,
+      "margin": 30699,
       "margin_pct": 66.2,
-      "orders": 3503
+      "orders": 3513
     },
     {
       "name": "كيكة التوت Berry Cake",
@@ -944,11 +944,11 @@
     },
     {
       "name": "Coffee of the Day | قهوة اليوم",
-      "revenue": 41618,
-      "qty": 3719,
-      "margin": 36194,
+      "revenue": 41768,
+      "qty": 3730,
+      "margin": 36324,
       "margin_pct": 87.0,
-      "orders": 3168
+      "orders": 3177
     },
     {
       "name": "Ribbon Cake - Medium/ كيكة فيونكا وسط",
@@ -992,11 +992,11 @@
     },
     {
       "name": "براوني كوكيز/Brownie With Cookies",
-      "revenue": 39033,
-      "qty": 4990,
-      "margin": 21065,
+      "revenue": 39063,
+      "qty": 4994,
+      "margin": 21081,
       "margin_pct": 54.0,
-      "orders": 3239
+      "orders": 3243
     },
     {
       "name": "Ribbon Cake-Pink-Medium/كيكة فيونكا الوردية وسط",
@@ -1032,19 +1032,19 @@
     },
     {
       "name": "NEW Ribbon Cake  - white - Medium|كيكة الفيونكة - وسط - ابيض",
-      "revenue": 35375,
-      "qty": 218,
-      "margin": 20950,
+      "revenue": 35525,
+      "qty": 219,
+      "margin": 21035,
       "margin_pct": 59.2,
-      "orders": 218
+      "orders": 219
     },
     {
       "name": "Coffee of the Day 1.5 liter | قهوة اليوم 1.5  لتر",
-      "revenue": 35200,
-      "qty": 572,
-      "margin": 30609,
+      "revenue": 35265,
+      "qty": 573,
+      "margin": 30665,
       "margin_pct": 87.0,
-      "orders": 589
+      "orders": 590
     },
     {
       "name": "كرنش ميني كب كيك/Crunch Mini Cupcake",
@@ -1056,19 +1056,19 @@
     },
     {
       "name": "قاعدة صغيرة /Styro Base Small",
-      "revenue": 33570,
-      "qty": 1119,
-      "margin": 29195,
+      "revenue": 33630,
+      "qty": 1121,
+      "margin": 29247,
       "margin_pct": 87.0,
-      "orders": 1133
+      "orders": 1137
     },
     {
       "name": "Dream Mini Pushup Cake /ميني بوش أب دريم كيك",
-      "revenue": 32607,
-      "qty": 4010,
-      "margin": 16324,
+      "revenue": 32680,
+      "qty": 4019,
+      "margin": 16361,
       "margin_pct": 50.1,
-      "orders": 2359
+      "orders": 2366
     },
     {
       "name": "تشوكليت مولتن/Chocolate Molten Cake",
@@ -1080,11 +1080,11 @@
     },
     {
       "name": "طباعة صورة /Print Picture on Cake",
-      "revenue": 30200,
-      "qty": 755,
-      "margin": 26259,
+      "revenue": 30240,
+      "qty": 756,
+      "margin": 26294,
       "margin_pct": 87.0,
-      "orders": 760
+      "orders": 761
     },
     {
       "name": "Father day cake 2025",
@@ -1096,19 +1096,19 @@
     },
     {
       "name": "دريم ميني جار/Dream Mini Jar",
-      "revenue": 29857,
-      "qty": 2462,
-      "margin": 17346,
+      "revenue": 29884,
+      "qty": 2464,
+      "margin": 17363,
       "margin_pct": 58.1,
-      "orders": 1718
+      "orders": 1720
     },
     {
       "name": "New Choco Velvet Cake",
-      "revenue": 28885,
-      "qty": 253,
-      "margin": 18919,
+      "revenue": 29095,
+      "qty": 255,
+      "margin": 19052,
       "margin_pct": 65.5,
-      "orders": 256
+      "orders": 258
     },
     {
       "name": "Gender Reveal - Large - Strawberry (Girl)/كيكة الكشف عن المولود - فراولة",
@@ -1120,11 +1120,11 @@
     },
     {
       "name": "تشوكليت ميني جار/Chocolate Mini Jar",
-      "revenue": 26953,
-      "qty": 2149,
-      "margin": 15917,
+      "revenue": 26992,
+      "qty": 2152,
+      "margin": 15940,
       "margin_pct": 59.1,
-      "orders": 1635
+      "orders": 1638
     },
     {
       "name": "Gender Reveal - Large - Bluevelvet (Boy)/كيكة الكشف عن جنس المولود بلوفلفت",
@@ -1144,16 +1144,16 @@
     }
   ],
   "payment_totals": {
-    "Online Paid": 4975795,
+    "Mada Card": 3771166,
+    "Online Paid": 4984265,
+    "Ajaweed Cash": 184680,
+    "Visa": 641623,
+    "Master Card": 184662,
+    "Waziriyah Cash": 153763,
+    "Defaa Cash": 131770,
+    "Hamdaniyah Cash": 164882,
+    "Marwah Cash": 193161,
     "Safa Cash": 45544,
-    "Mada Card": 3765218,
-    "Marwah Cash": 192882,
-    "Master Card": 184209,
-    "Visa": 640138,
-    "Hamdaniyah Cash": 164612,
-    "Waziriyah Cash": 153235,
-    "Defaa Cash": 131744,
-    "Ajaweed Cash": 184363,
     "Amex Card": 2242,
     "Taker Wallet": 816
   },
@@ -1174,18 +1174,18 @@
     756807,
     1109776,
     1118842,
-    1086234,
-    1109272,
-    952996,
-    851695,
-    695055,
-    547522,
+    1086762,
+    1112684,
+    956757,
+    854670,
+    697145,
+    547706,
     340197,
     99724
   ],
   "daily": [
     1263166,
-    1337421,
+    1350374,
     1415778,
     2001299,
     1883251,
