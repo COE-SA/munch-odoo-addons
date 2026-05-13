@@ -759,8 +759,16 @@ table.dt tfoot td{
 }
 """
 
+# JS data variables (ensure_ascii=True → no Arabic in JS strings)
+CL = json.dumps(COLORS)
+BJ = json.dumps([{k:v for k,v in b.items() if not isinstance(v,dict)} for b in B], ensure_ascii=True)
+YJ = json.dumps(YB, ensure_ascii=True, default=str)
+HJ = json.dumps(HR)
+DJ = json.dumps(DY)
+PJ = json.dumps(PT, ensure_ascii=True)
+
 JS="""
-var C=CL_JS_VAR,B=B_JS_VAR,YB=YB_JS_VAR,H=HR_JS_VAR,D=DY_JS_VAR,P=PT_JS_VAR,CH={};
+var C=CL_VAR,B=BJ_VAR,YB=YJ_VAR,H=HJ_VAR,D=DJ_VAR,P=PJ_VAR,CH={};
 function fmt(v){return Math.abs(v)>=1e6?(v/1e6).toFixed(2)+"M":Math.abs(v)>=1e3?(v/1e3).toFixed(1)+"K":Math.round(v).toLocaleString();}
 /* ── Chart defaults ─────────────────────────────────────────────────── */
 Chart.defaults.font.family="'Cairo','Tajawal',sans-serif";
@@ -929,6 +937,16 @@ function dYT(){
 }
 dOv();
 """
+# Inject JSON data into JS
+JS = (JS
+    .replace('CL_VAR', CL)
+    .replace('BJ_VAR', BJ)
+    .replace('YJ_VAR', YJ)
+    .replace('HJ_VAR', HJ)
+    .replace('DJ_VAR', DJ)
+    .replace('PJ_VAR', PJ)
+)
+
 
 # Replace JS data placeholders
 JS=JS.replace('CL',  CL).replace('BJ', BJ).replace('YJ', YJ).replace('HJ', HJ).replace('DJ', DJ).replace('PJ', PJ)
@@ -1116,7 +1134,7 @@ EX_CHART = json.dumps([
 ], ensure_ascii=True)
 HTML = HTML.replace('EX_JSON_PLACEHOLDER', EX_CHART)
 HTML_ASCII = ensure_ascii_html(HTML)
-with open("index.html","w",encoding='ascii') as f:
+with open('index.html','w',encoding='ascii') as f:
     f.write(HTML_ASCII)
 def kc(lbl,val,sub,clr):
     return '<div class="kc" style="--accent:%s"><div class="kl">%s</div><div class="kv">%s</div><div class="ks">%s</div></div>'%(clr,lbl,val,sub)
