@@ -124,19 +124,51 @@ if exp_note:
     exp_warning = '<div class="rec" style="border-right-color:#f59e0b;margin-bottom:12px"><div class="rt">&#9888;&#65039; %s</div><div class="rb">%s</div></div>'%(e('تحذير: بيانات المصاريف'),e(exp_note))
 EXPHTML = exp_warning + EXPHTML
 
-DELROWS=''
+# Build delivery rows with 3-tier commission structure
+DELROWS = ''
 total_rev_del=0; total_comm_del=0; total_net_del=0; total_cnt_del=0
-for m,v in DA.items():
-    rev=v.get('total',0); cnt=v.get('count',0)
-    pct_v=v.get('commission_pct', DR.get(m,25))
-    comm=v.get('commission', round(rev*pct_v/100))
-    net=v.get('net', rev-comm)
-    total_rev_del+=rev; total_comm_del+=comm; total_net_del+=net; total_cnt_del+=cnt
-    DELROWS+='<tr><td><strong>%s</strong></td><td class="nm">%s %s</td><td class="nm">%s</td><td class="nm" style="color:#64748b">%d%%</td><td class="nm" style="color:#e92c30">%s</td><td class="nm" style="color:#22c55e"><strong>%s</strong></td></tr>'%(
-        e(m),n(cnt),e('طلب'),sar(rev),pct_v,sar(comm),sar(net))
+for m, v in sorted(DA.items(), key=lambda x: -x[1].get('total',0)):
+    rev  = v.get('total', 0)
+    cnt  = v.get('count', 0)
+    comm = v.get('commission', 0)
+    net  = v.get('net', rev - comm)
+    fr   = v.get('fee_rate', 0)
+    pfr  = v.get('payment_fee', 2.5)
+    dfr  = v.get('delivery_fee_sar', 0)
+    eff  = v.get('effective_rate', round(comm/rev*100,1) if rev else 0)
+    total_rev_del  += rev
+    total_comm_del += comm
+    total_net_del  += net
+    total_cnt_del  += cnt
+    if dfr:
+        fee_txt = '%s%%+%s%%+%s' % (fr, pfr, dfr) + e('/') + e('\u0637\u0644\u0628')
+    else:
+        fee_txt = '%s%%+%s%%' % (fr, pfr)
+    eff_tag = '<span class="tag tr">%.1f%%</span>' % eff
+    DELROWS += (
+        '<tr>'
+        '<td><strong>%s</strong></td>'
+        '<td class="nm">%s %s</td>'
+        '<td class="nm">%s</td>'
+        '<td class="nm" style="color:#64748b;font-size:11px">%s</td>'
+        '<td class="nm" style="color:#e92c30">%s</td>'
+        '<td class="nm">%s</td>'
+        '<td class="nm" style="color:#22c55e"><strong>%s</strong></td>'
+        '</tr>'
+    ) % (e(m), n(cnt), e('\u0637\u0644\u0628'), sar(rev), fee_txt, sar(comm), eff_tag, sar(net))
 if DELROWS:
-    DELROWS+='<tr style="background:#f0f9ff;font-weight:700"><td colspan="2"><strong>%s — %s %s</strong></td><td class="nm">%s</td><td></td><td class="nm" style="color:#e92c30">%s</td><td class="nm" style="color:#22c55e">%s</td></tr>'%(
-        e('الإجمالي'),n(total_cnt_del),e('طلب'),sar(total_rev_del),sar(total_comm_del),sar(total_net_del))
+    eff_tot = round(total_comm_del/total_rev_del*100,1) if total_rev_del else 0
+    DELROWS += (
+        '<tr style="background:#f0f9ff;font-weight:700">'
+        '<td colspan="2"><strong>%s</strong></td>'
+        '<td class="nm">%s</td>'
+        '<td class="nm" style="font-size:11px;color:#64748b">%.1f%% %s</td>'
+        '<td class="nm" style="color:#e92c30">%s</td>'
+        '<td class="nm"><span class="tag tr">%.1f%%</span></td>'
+        '<td class="nm" style="color:#22c55e">%s</td>'
+        '</tr>'
+    ) % (e('\u0627\u0644\u0625\u062c\u0645\u0627\u0644\u064a'), sar(total_rev_del),
+         eff_tot, e('\u0641\u0639\u0644\u064a'), sar(total_comm_del), eff_tot, sar(total_net_del))
 DLT=total_rev_del; DLC=total_comm_del; DLN=total_net_del
 
 # Missing delivery apps warning
@@ -377,7 +409,7 @@ HTML="""<!DOCTYPE html>
     <div class="dc"><div class="dl">"""+e('عدد الطلبات')+"""</div><div class="dv">"""+n(sum(v.get('count',0) for v in DA.values()))+"""</div></div>
   </div>
   <div class="card" style="overflow-x:auto"><table class="dt">
-  <thead><tr>"""+ths('التطبيق','عدد الطلبات','إجمالي الدخل','نسبة العمولة','مبلغ العمولة','المستحق لك')+"""</tr></thead>
+  <thead><tr>"""+ths('التطبيق','عدد الطلبات','إجمالي الدخل','هيكل الرسوم','إجمالي الرسوم','نسبة فعلية','الصافي لك')+"""</tr></thead>
   <tbody>"""+DELROWS+"""</tbody></table></div>
 """+DEL_MISSING+"""
 </div>

@@ -135,22 +135,23 @@ def fetch_payments(df, dt):
     return {k: round(v) for k, v in sorted(totals.items(), key=lambda x: -x[1])}
 
 # ── Delivery apps — each separately ──────────────────────────────────────
-# Commission rates per delivery app
+# Commission structure per delivery app: (fee_rate%, payment_fee%, delivery_fee_sar_per_order)
+# Source: رسوم_التطبيقات.xlsx (provided by operator)
 APP_COMMISSION = {
-    'Hunger Station': 25,
-    'Keeta':          25,
-    'Ninja':          20,
-    'Taker Website':  20,
-    'JAHEZ':          15,
-    'Marsool':        18,
-    'Mr.Mandoob':     25,
-    'Tamara':         25,
-    'COE Marketing':  10,
-    'Careem':         25,
-    'Noon':           25,
-    'ToYou':          22,
-    'The Chefz':      25,
-    'Occasion Website':20,
+    'Hunger Station':  (0.16, 0.025, 12),
+    'Keeta':           (0.18, 0.025,  9),
+    'Ninja':           (0.16, 0.025, 12),
+    'Taker Website':   (0.06, 0.025,  0),
+    'JAHEZ':           (0.13, 0.025,  0),
+    'Marsool':         (0.12, 0.025, 11),
+    'ToYou':           (0.17, 0.025, 10),
+    'The Chefz':       (0.16, 0.025,  0),
+    'Mr.Mandoob':      (0.13, 0.025, 10),
+    'COE Marketing':   (0.10, 0.025,  0),
+    'Tamara':          (0.10, 0.025,  0),
+    'Careem':          (0.18, 0.025, 10),
+    'Noon':            (0.18, 0.025, 10),
+    'Occasion Website':(0.20, 0.025,  0),
 }
 
 def fetch_delivery(df, dt):
@@ -178,12 +179,22 @@ def fetch_delivery(df, dt):
                  {'fields':['amount_total'],'limit':10000})
         total = round(sum(r['amount_total'] for r in (rows or [])))
         cnt   = len(rows or [])
-        rate  = APP_COMMISSION.get(pname, 25)
-        comm  = round(total * rate / 100)
-        net   = total - comm
+        fee_r, pay_r, del_sar = APP_COMMISSION.get(pname, (0.20, 0.025, 0))
+        comm_rev  = round(total * (fee_r + pay_r))
+        comm_del  = round(cnt * del_sar)
+        comm_tot  = comm_rev + comm_del
+        net       = total - comm_tot
+        eff       = round(comm_tot / total * 100, 1) if total else 0
         result[pname] = {
             'total': total, 'count': cnt,
-            'commission_pct': rate, 'commission': comm, 'net': net,
+            'fee_rate': round(fee_r * 100, 1),
+            'payment_fee': round(pay_r * 100, 1),
+            'delivery_fee_sar': del_sar,
+            'commission_revenue': comm_rev,
+            'commission_delivery': comm_del,
+            'commission': comm_tot,
+            'net': net,
+            'effective_rate': eff,
         }
     # Sort by revenue
     return dict(sorted(result.items(), key=lambda x: -x[1]['total']))

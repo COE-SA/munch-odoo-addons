@@ -1223,144 +1223,244 @@
     "Hunger Station": {
       "total": 197086,
       "count": 2219,
-      "commission_pct": 25,
-      "commission": 49272,
-      "net": 147814
+      "fee_rate": 16.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 12,
+      "commission_revenue": 36461,
+      "commission_delivery": 26628,
+      "commission": 63089,
+      "net": 133997,
+      "effective_rate": 32.0
     },
     "Keeta": {
       "total": 97359,
       "count": 1040,
-      "commission_pct": 25,
-      "commission": 24340,
-      "net": 73019
+      "fee_rate": 18.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 9,
+      "commission_revenue": 19959,
+      "commission_delivery": 9360,
+      "commission": 29319,
+      "net": 68040,
+      "effective_rate": 30.1
     },
     "Ninja": {
       "total": 55117,
       "count": 639,
-      "commission_pct": 20,
-      "commission": 11023,
-      "net": 44094
+      "fee_rate": 16.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 12,
+      "commission_revenue": 10197,
+      "commission_delivery": 7668,
+      "commission": 17865,
+      "net": 37252,
+      "effective_rate": 32.4
     },
     "Taker Website": {
       "total": 29344,
       "count": 224,
-      "commission_pct": 20,
-      "commission": 5869,
-      "net": 23475
+      "fee_rate": 6.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 0,
+      "commission_revenue": 2494,
+      "commission_delivery": 0,
+      "commission": 2494,
+      "net": 26850,
+      "effective_rate": 8.5
     },
     "JAHEZ": {
       "total": 12684,
       "count": 147,
-      "commission_pct": 15,
-      "commission": 1903,
-      "net": 10781
+      "fee_rate": 13.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 0,
+      "commission_revenue": 1966,
+      "commission_delivery": 0,
+      "commission": 1966,
+      "net": 10718,
+      "effective_rate": 15.5
     },
     "Marsool": {
       "total": 7279,
       "count": 67,
-      "commission_pct": 18,
-      "commission": 1310,
-      "net": 5969
+      "fee_rate": 12.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 11,
+      "commission_revenue": 1055,
+      "commission_delivery": 737,
+      "commission": 1792,
+      "net": 5487,
+      "effective_rate": 24.6
     },
     "Mr.Mandoob": {
       "total": 1047,
       "count": 9,
-      "commission_pct": 25,
-      "commission": 262,
-      "net": 785
+      "fee_rate": 13.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 10,
+      "commission_revenue": 162,
+      "commission_delivery": 90,
+      "commission": 252,
+      "net": 795,
+      "effective_rate": 24.1
     },
     "Tamara": {
       "total": 915,
       "count": 3,
-      "commission_pct": 25,
-      "commission": 229,
-      "net": 686
+      "fee_rate": 10.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 0,
+      "commission_revenue": 114,
+      "commission_delivery": 0,
+      "commission": 114,
+      "net": 801,
+      "effective_rate": 12.5
     },
     "COE Marketing": {
       "total": 647,
       "count": 10,
-      "commission_pct": 10,
-      "commission": 65,
-      "net": 582
+      "fee_rate": 10.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 0,
+      "commission_revenue": 81,
+      "commission_delivery": 0,
+      "commission": 81,
+      "net": 566,
+      "effective_rate": 12.5
     }
   },
   "delivery_ytd": {
     "Hunger Station": {
       "total": 826859,
       "count": 8745,
-      "commission_pct": 25,
-      "commission": 206715,
-      "net": 620144
+      "fee_rate": 16.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 12,
+      "commission_revenue": 152969,
+      "commission_delivery": 104940,
+      "commission": 257909,
+      "net": 568950,
+      "effective_rate": 31.2
     },
     "Keeta": {
       "total": 407065,
       "count": 4534,
-      "commission_pct": 25,
-      "commission": 101766,
-      "net": 305299
+      "fee_rate": 18.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 9,
+      "commission_revenue": 83448,
+      "commission_delivery": 40806,
+      "commission": 124254,
+      "net": 282811,
+      "effective_rate": 30.5
     },
     "Taker Website": {
       "total": 185832,
       "count": 1409,
-      "commission_pct": 20,
-      "commission": 37166,
-      "net": 148666
+      "fee_rate": 6.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 0,
+      "commission_revenue": 15796,
+      "commission_delivery": 0,
+      "commission": 15796,
+      "net": 170036,
+      "effective_rate": 8.5
     },
     "Ninja": {
       "total": 175884,
       "count": 2030,
-      "commission_pct": 20,
-      "commission": 35177,
-      "net": 140707
+      "fee_rate": 16.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 12,
+      "commission_revenue": 32539,
+      "commission_delivery": 24360,
+      "commission": 56899,
+      "net": 118985,
+      "effective_rate": 32.4
     },
     "JAHEZ": {
       "total": 69667,
       "count": 716,
-      "commission_pct": 15,
-      "commission": 10450,
-      "net": 59217
+      "fee_rate": 13.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 0,
+      "commission_revenue": 10798,
+      "commission_delivery": 0,
+      "commission": 10798,
+      "net": 58869,
+      "effective_rate": 15.5
     },
     "Marsool": {
       "total": 53439,
       "count": 476,
-      "commission_pct": 18,
-      "commission": 9619,
-      "net": 43820
+      "fee_rate": 12.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 11,
+      "commission_revenue": 7749,
+      "commission_delivery": 5236,
+      "commission": 12985,
+      "net": 40454,
+      "effective_rate": 24.3
     },
     "ToYou": {
       "total": 24386,
       "count": 253,
-      "commission_pct": 22,
-      "commission": 5365,
-      "net": 19021
+      "fee_rate": 17.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 10,
+      "commission_revenue": 4755,
+      "commission_delivery": 2530,
+      "commission": 7285,
+      "net": 17101,
+      "effective_rate": 29.9
     },
     "The Chefz": {
       "total": 14452,
       "count": 126,
-      "commission_pct": 25,
-      "commission": 3613,
-      "net": 10839
+      "fee_rate": 16.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 0,
+      "commission_revenue": 2674,
+      "commission_delivery": 0,
+      "commission": 2674,
+      "net": 11778,
+      "effective_rate": 18.5
     },
     "COE Marketing": {
       "total": 6101,
       "count": 51,
-      "commission_pct": 10,
-      "commission": 610,
-      "net": 5491
+      "fee_rate": 10.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 0,
+      "commission_revenue": 763,
+      "commission_delivery": 0,
+      "commission": 763,
+      "net": 5338,
+      "effective_rate": 12.5
     },
     "Tamara": {
       "total": 2119,
       "count": 8,
-      "commission_pct": 25,
-      "commission": 530,
-      "net": 1589
+      "fee_rate": 10.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 0,
+      "commission_revenue": 265,
+      "commission_delivery": 0,
+      "commission": 265,
+      "net": 1854,
+      "effective_rate": 12.5
     },
     "Mr.Mandoob": {
       "total": 1488,
       "count": 12,
-      "commission_pct": 25,
-      "commission": 372,
-      "net": 1116
+      "fee_rate": 13.0,
+      "payment_fee": 2.5,
+      "delivery_fee_sar": 10,
+      "commission_revenue": 231,
+      "commission_delivery": 120,
+      "commission": 351,
+      "net": 1137,
+      "effective_rate": 23.6
     }
   },
   "expenses": {
@@ -1817,8 +1917,13 @@
   },
   "delivery_apps_total": {
     "total": 401478,
-    "count": 4358,
-    "commission": 94273,
-    "net": 307205
+    "commission": 116972,
+    "net": 284506,
+    "count": 4358
+  },
+  "delivery_ytd_totals": {
+    "total": 1767292,
+    "commission": 489979,
+    "net": 1277313
   }
 }
