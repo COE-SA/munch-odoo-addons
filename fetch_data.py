@@ -280,6 +280,27 @@ for b in monthly_b:
     for i in range(24): agg_h[i] += b['hourly'][i]
     for i in range(7):  agg_d[i] += b['daily'][i]
 
+# Fetch POS returns
+pos_ret = q('pos.order','search_read',
+    [[['state','in',['done','invoiced']],['amount_total','<',0],
+      ['date_order','>=',pm_start],['date_order','<=',pm_end+' 23:59:59']]],
+    {'fields':['amount_total'],'limit':1000})
+ret_total = round(sum(r['amount_total'] for r in pos_ret))
+print(f'POS Returns: {len(pos_ret)} orders, total={ret_total}')
+
+# Fixed list of delivery apps NOT in Odoo
+DELIVERY_APPS_MISSING = [
+    'HungerStation (\u0647\u0646\u0642\u0631\u0633\u062a\u064a\u0634\u0646)',
+    'Ninja (\u0646\u064a\u0646\u062c\u0627)',
+    'Keeta (\u0643\u064a\u062a\u0627)',
+    'Jahez (\u062c\u0627\u0647\u0632)',
+    'Marsool (\u0645\u0631\u0633\u0648\u0644)',
+    'Careem Food (\u0643\u0631\u064a\u0645 \u0641\u0648\u062f)',
+    'Toters (\u062a\u0648\u062a\u0631\u0632)',
+    'Wssel (\u0648\u0635\u0644)',
+    'Snoonu (\u0633\u0646\u0648\u0646\u0648)'
+]
+
 data = {
     'report_month':  report_month,
     'updated':       now.strftime('%Y-%m-%d %H:%M') + ' (توقيت الرياض)',
@@ -295,6 +316,9 @@ data = {
     'delivery_ytd':    delivery_ytd,
     'expenses':        expenses,
     'expenses_ytd':    expenses_ytd,
+    'expenses_note':   '\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0645\u0635\u0627\u0631\u064a\u0641 \u0627\u0644\u0645\u0633\u062c\u0644\u0629 \u0641\u064a Odoo \u0642\u062f \u0644\u0627 \u062a\u0639\u0643\u0633 \u0627\u0644\u0645\u0635\u0627\u0631\u064a\u0641 \u0627\u0644\u0641\u0639\u0644\u064a\u0629.',
+    'delivery_apps_missing': DELIVERY_APPS_MISSING,
+    'pos_returns':     {'count': len(pos_ret), 'total': ret_total},
     'expenses_note':   'تنبيه: بيانات المصاريف المسجلة في النظام قد لا تعكس المصاريف الفعلية الكاملة.',
     'hourly': [round(v) for v in agg_h],
     'daily':  [round(v) for v in agg_d],
