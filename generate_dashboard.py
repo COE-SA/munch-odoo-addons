@@ -25,7 +25,7 @@ def kc(lbl,val,sub,clr):
     return '<div class="kc" style="border-top:3px solid %s"><div class="kl">%s</div><div class="kv">%s</div><div class="ks">%s</div></div>'%(clr,lbl,val,sub)
 
 # ── Fetch data from GitHub ─────────────────────────────────────────────────
-import json as _j
+import urllib.request, json as _j
 try:
     with open('data.json','r',encoding='utf-8') as f:
         D = _j.load(f)
@@ -117,17 +117,27 @@ for bn,ed in sorted(EX.items()):
     EXPHTML+='<div class="card" style="margin-bottom:12px"><div class="st" style="color:#e92c30">%s &mdash; %s: <strong>%s</strong></div><table class="dt"><thead><tr><th>%s</th><th>%s</th></tr></thead><tbody>%s</tbody></table></div>'%(e(bn),e('الإجمالي'),sar(tot),e('بند المصروف'),e('المبلغ'),rows)
 if not EXPHTML:
     EXPHTML='<div class="card" style="text-align:center;padding:30px;color:#64748b">%s</div>'%e('لا توجد بيانات مصاريف')
+# Add expenses warning at top
+exp_note = D.get('expenses_note','')
+exp_warning = ''
+if exp_note:
+    exp_warning = '<div class="rec" style="border-right-color:#f59e0b;margin-bottom:12px"><div class="rt">&#9888;&#65039; %s</div><div class="rb">%s</div></div>'%(e('تحذير: بيانات المصاريف'),e(exp_note))
+EXPHTML = exp_warning + EXPHTML
 
-DELROWS=''.join(
-    '<tr><td><strong>%s</strong></td><td class="nm">%s %s</td><td class="nm">%s</td>'
-    '<td class="nm" style="color:#64748b">%d%%</td><td class="nm" style="color:#e92c30">%s</td>'
-    '<td class="nm" style="color:#22c55e"><strong>%s</strong></td></tr>'%(
-    e(m),n(v.get('count',0)),e('طلب'),sar(v.get('total',0)),DR.get(m,25),
-    sar(round(v.get('total',0)*DR.get(m,25)/100)),
-    sar(v.get('total',0)-round(v.get('total',0)*DR.get(m,25)/100)))
-    for m,v in DA.items())
+DELROWS=''
+total_rev_del=0; total_comm_del=0; total_net_del=0; total_cnt_del=0
+for m,v in DA.items():
+    rev=v.get('total',0); cnt=v.get('count',0)
+    pct_v=v.get('commission_pct', DR.get(m,25))
+    comm=v.get('commission', round(rev*pct_v/100))
+    net=v.get('net', rev-comm)
+    total_rev_del+=rev; total_comm_del+=comm; total_net_del+=net; total_cnt_del+=cnt
+    DELROWS+='<tr><td><strong>%s</strong></td><td class="nm">%s %s</td><td class="nm">%s</td><td class="nm" style="color:#64748b">%d%%</td><td class="nm" style="color:#e92c30">%s</td><td class="nm" style="color:#22c55e"><strong>%s</strong></td></tr>'%(
+        e(m),n(cnt),e('طلب'),sar(rev),pct_v,sar(comm),sar(net))
 if DELROWS:
-    DELROWS+='<tr style="background:#f0f9ff;font-weight:700"><td colspan="2"><strong>%s</strong></td><td class="nm">%s</td><td></td><td class="nm" style="color:#e92c30">%s</td><td class="nm" style="color:#22c55e">%s</td></tr>'%(e('الإجمالي'),sar(DLT),sar(DLC),sar(DLN))
+    DELROWS+='<tr style="background:#f0f9ff;font-weight:700"><td colspan="2"><strong>%s — %s %s</strong></td><td class="nm">%s</td><td></td><td class="nm" style="color:#e92c30">%s</td><td class="nm" style="color:#22c55e">%s</td></tr>'%(
+        e('الإجمالي'),n(total_cnt_del),e('طلب'),sar(total_rev_del),sar(total_comm_del),sar(total_net_del))
+DLT=total_rev_del; DLC=total_comm_del; DLN=total_net_del
 
 # Menu engineering
 MENU=''
@@ -371,8 +381,20 @@ HTML="""<!DOCTYPE html>
 </body>
 </html>"""
 
-print(f'Done: HTML size {len(HTML):,} chars')
+# Verify ASCII
+is_ascii = all(ord(c)<128 for c in HTML)
+print(f'HTML size: {len(HTML):,} chars')
+print(f'100% ASCII: {is_ascii}')
+print(f'Has sw(): {"function sw(" in HTML}')
+chk0="id=\"p0\" style=\"display:block\"" in HTML
+chk1="id=\"p1\" style=\"display:none\"" in HTML
+print(f'Tabs count: {HTML.count("onclick=\"sw(")}')
 
+# Final safety: convert any remaining non-ASCII to HTML entities
+def ensure_ascii_html(s):
+    return ''.join('&#%d;'%ord(c) if ord(c)>127 else c for c in s)
+HTML_ASCII = ensure_ascii_html(HTML)
 with open('index.html','w',encoding='ascii') as f:
-    f.write(HTML)
-print('Written to /tmp/index_final.html')
+    f.write(HTML_ASCII)
+print(f'HTML size: {len(HTML_ASCII):,} chars')
+print('Done: index.html written')
