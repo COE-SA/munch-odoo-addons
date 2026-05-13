@@ -1,26 +1,26 @@
 import json
 
-LOGO_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" height="44"><g transform="translate(5,5)"><polygon points="25,25 5,45 25,5" fill="#2ba9ed"/><polygon points="25,25 45,5 45,25" fill="#e92c30"/><polygon points="25,25 5,45 25,45" fill="#2d2d2d"/><polygon points="25,25 45,25 45,45" fill="#888888"/></g><text x="60" y="22" font-family="Arial Black,sans-serif" font-size="13" font-weight="900" fill="#1e293b" letter-spacing="0.5">COMPASS OF</text><text x="60" y="42" font-family="Arial,sans-serif" font-size="10" fill="#64748b" letter-spacing="2">— EXCELLENCE —</text></svg>'
+LOGO_SVG = '<img src="data:image/jpeg;base64,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" alt="Compass of Excellence" style="height:44px;width:auto;filter:brightness(0)" onerror="this.style.display=\'none\'">'
 
 def num(n):
     if abs(n)>=1e6: return f"{n/1e6:.2f}M"
     if abs(n)>=1e3: return f"{n/1e3:.1f}K"
     return f"{round(n):,}"
-def sar(n): return "ر.س " + num(n)
+def sar(n): return "Ø±.Ø³ " + num(n)
 def pct(n): return f"{float(n):.1f}%"
 def dt_tag(v):
     arr = "&#9650;" if v>=0 else "&#9660;"
     cls = "tg" if v>=0 else "tr"
     return f'<span class="tag {cls}">{arr} {abs(float(v)):.1f}%</span>'
 
-# ─────────────────────────────────────────────────────────────
-# HTML template uses __PLACEHOLDER__ — no f-string escaping issues
-# ─────────────────────────────────────────────────────────────
+# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+# HTML template uses __PLACEHOLDER__ â no f-string escaping issues
+# âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 HTML_TMPL = """<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>لوحة التحليل المالي - شركة بوصلة التميز التجارية</title>
+<title>ÙÙØ­Ø© Ø§ÙØªØ­ÙÙÙ Ø§ÙÙØ§ÙÙ - Ø´Ø±ÙØ© Ø¨ÙØµÙØ© Ø§ÙØªÙÙØ² Ø§ÙØªØ¬Ø§Ø±ÙØ©</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
@@ -50,7 +50,7 @@ body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--bg);color:va
 .tab{padding:8px 16px;background:none;border:none;cursor:pointer;font-size:12px;color:var(--text2);border-radius:8px;font-family:inherit;transition:all .2s;white-space:nowrap;font-weight:500}
 .tab.on{background:#eff8ff;color:var(--blue);font-weight:700}
 .tab:hover:not(.on){background:var(--bg3)}
-.pane{display:none}.pane.on{display:block;animation:fi .2s ease}
+.pane{display:none!important}.pane.on{display:block!important}
 @keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 .card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 .st{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
@@ -100,132 +100,132 @@ table.dt tfoot td{background:var(--bg3);font-weight:700;border-top:2px solid var
 <div class="bar">
   <div class="logo-wrap">__LOGO_SVG__
     <div class="title-area">
-      <h1>لوحة التحليل المالي - شركة بوصلة التميز التجارية (شهري)</h1>
-      <p>تقرير شهر __REPORT_MONTH__ | __BRANCH_COUNT__ فروع | Odoo POS</p>
+      <h1>ÙÙØ­Ø© Ø§ÙØªØ­ÙÙÙ Ø§ÙÙØ§ÙÙ - Ø´Ø±ÙØ© Ø¨ÙØµÙØ© Ø§ÙØªÙÙØ² Ø§ÙØªØ¬Ø§Ø±ÙØ© (Ø´ÙØ±Ù)</h1>
+      <p>ØªÙØ±ÙØ± Ø´ÙØ± __REPORT_MONTH__ | __BRANCH_COUNT__ ÙØ±ÙØ¹ | Odoo POS</p>
     </div>
   </div>
   <div style="display:flex;align-items:center;gap:14px">
     <div class="badge">&#128197; __REPORT_MONTH__</div>
-    <div class="upd">تحديث: __UPDATED__</div>
+    <div class="upd">ØªØ­Ø¯ÙØ«: __UPDATED__</div>
   </div>
 </div>
 <div class="main">
 <div class="page-hdr">
-  <div><h2>التحليل المالي الشهري — __REPORT_MONTH__</h2>
-  <p>__BRANCH_COUNT__ فروع | __DATE_FROM__ إلى __DATE_TO__</p></div>
-  <span class="per">&#128197; __DATE_FROM__ إلى __DATE_TO__</span>
+  <div><h2>Ø§ÙØªØ­ÙÙÙ Ø§ÙÙØ§ÙÙ Ø§ÙØ´ÙØ±Ù â __REPORT_MONTH__</h2>
+  <p>__BRANCH_COUNT__ ÙØ±ÙØ¹ | __DATE_FROM__ Ø¥ÙÙ __DATE_TO__</p></div>
+  <span class="per">&#128197; __DATE_FROM__ Ø¥ÙÙ __DATE_TO__</span>
 </div>
 <div class="kgrid">__KPIS__</div>
 <div class="tabs">
-  <button class="tab on" onclick="sw(0)">&#128202; النظرة العامة</button>
-  <button class="tab" onclick="sw(1)">&#128200; الأداء والنمو</button>
-  <button class="tab" onclick="sw(2)">&#128176; الربحية والمصاريف</button>
-  <button class="tab" onclick="sw(3)">&#128661; تطبيقات التوصيل</button>
-  <button class="tab" onclick="sw(4)">&#129409; هندسة القائمة</button>
-  <button class="tab" onclick="sw(5)">&#8987; التوقيت والسلوك</button>
-  <button class="tab" onclick="sw(6)">&#128179; طرق الدفع</button>
-  <button class="tab" onclick="sw(7)">&#128197; تحليل YTD</button>
-  <button class="tab" onclick="sw(8)">&#127942; التقرير النهائي</button>
+  <button class="tab on" onclick="sw(0)">&#128202; Ø§ÙÙØ¸Ø±Ø© Ø§ÙØ¹Ø§ÙØ©</button>
+  <button class="tab" onclick="sw(1)">&#128200; Ø§ÙØ£Ø¯Ø§Ø¡ ÙØ§ÙÙÙÙ</button>
+  <button class="tab" onclick="sw(2)">&#128176; Ø§ÙØ±Ø¨Ø­ÙØ© ÙØ§ÙÙØµØ§Ø±ÙÙ</button>
+  <button class="tab" onclick="sw(3)">&#128661; ØªØ·Ø¨ÙÙØ§Øª Ø§ÙØªÙØµÙÙ</button>
+  <button class="tab" onclick="sw(4)">&#129409; ÙÙØ¯Ø³Ø© Ø§ÙÙØ§Ø¦ÙØ©</button>
+  <button class="tab" onclick="sw(5)">&#8987; Ø§ÙØªÙÙÙØª ÙØ§ÙØ³ÙÙÙ</button>
+  <button class="tab" onclick="sw(6)">&#128179; Ø·Ø±Ù Ø§ÙØ¯ÙØ¹</button>
+  <button class="tab" onclick="sw(7)">&#128197; ØªØ­ÙÙÙ YTD</button>
+  <button class="tab" onclick="sw(8)">&#127942; Ø§ÙØªÙØ±ÙØ± Ø§ÙÙÙØ§Ø¦Ù</button>
 </div>
 <div id="panes">
 <div class="pane on" id="p0">
-  <div class="st">ملخص أداء الفروع — __REPORT_MONTH__</div>
+  <div class="st">ÙÙØ®Øµ Ø£Ø¯Ø§Ø¡ Ø§ÙÙØ±ÙØ¹ â __REPORT_MONTH__</div>
   <div class="card" style="overflow-x:auto">
-    <table class="dt"><thead><tr><th>الفرع</th><th>الإيرادات</th><th>المعاملات</th><th>م. الفاتورة</th><th>إجمالي الربح</th><th>هامش%</th><th>تكلفة البضاعة</th></tr></thead>
+    <table class="dt"><thead><tr><th>Ø§ÙÙØ±Ø¹</th><th>Ø§ÙØ¥ÙØ±Ø§Ø¯Ø§Øª</th><th>Ø§ÙÙØ¹Ø§ÙÙØ§Øª</th><th>Ù. Ø§ÙÙØ§ØªÙØ±Ø©</th><th>Ø¥Ø¬ÙØ§ÙÙ Ø§ÙØ±Ø¨Ø­</th><th>ÙØ§ÙØ´%</th><th>ØªÙÙÙØ© Ø§ÙØ¨Ø¶Ø§Ø¹Ø©</th></tr></thead>
     <tbody>__BRANCH_ROWS__</tbody>
-    <tfoot><tr><td><strong>الإجمالي</strong></td><td class="num"><strong>__TOT_REV__</strong></td><td class="num"><strong>__TOT_TXN__</strong></td><td class="num"><strong>__AVG_TICKET__</strong></td><td class="num" style="color:var(--green)"><strong>__TOT_GP__</strong></td><td><strong>__TOT_MARGIN__</strong></td><td></td></tr></tfoot>
+    <tfoot><tr><td><strong>Ø§ÙØ¥Ø¬ÙØ§ÙÙ</strong></td><td class="num"><strong>__TOT_REV__</strong></td><td class="num"><strong>__TOT_TXN__</strong></td><td class="num"><strong>__AVG_TICKET__</strong></td><td class="num" style="color:var(--green)"><strong>__TOT_GP__</strong></td><td><strong>__TOT_MARGIN__</strong></td><td></td></tr></tfoot>
     </table>
   </div>
   <div class="g2">
-    <div class="card"><div class="st">مقارنة الإيرادات</div><div class="cw"><canvas id="ch_rev" style="height:260px"></canvas></div></div>
-    <div class="card"><div class="st">توزيع الإيرادات</div><div class="cw"><canvas id="ch_pie" style="height:260px"></canvas></div></div>
+    <div class="card"><div class="st">ÙÙØ§Ø±ÙØ© Ø§ÙØ¥ÙØ±Ø§Ø¯Ø§Øª</div><div class="cw"><canvas id="ch_rev" style="height:260px"></canvas></div></div>
+    <div class="card"><div class="st">ØªÙØ²ÙØ¹ Ø§ÙØ¥ÙØ±Ø§Ø¯Ø§Øª</div><div class="cw"><canvas id="ch_pie" style="height:260px"></canvas></div></div>
   </div>
 </div>
 <div class="pane" id="p1">
-  <div class="st">الأداء والنمو — __REPORT_MONTH__</div>
+  <div class="st">Ø§ÙØ£Ø¯Ø§Ø¡ ÙØ§ÙÙÙÙ â __REPORT_MONTH__</div>
   <div class="card" style="overflow-x:auto">
-    <table class="dt"><thead><tr><th>الفرع</th><th>الإيرادات</th><th>نمو QoQ</th><th>نمو YoY</th><th>هامش%</th><th>المعاملات</th><th>م. الفاتورة</th></tr></thead>
+    <table class="dt"><thead><tr><th>Ø§ÙÙØ±Ø¹</th><th>Ø§ÙØ¥ÙØ±Ø§Ø¯Ø§Øª</th><th>ÙÙÙ QoQ</th><th>ÙÙÙ YoY</th><th>ÙØ§ÙØ´%</th><th>Ø§ÙÙØ¹Ø§ÙÙØ§Øª</th><th>Ù. Ø§ÙÙØ§ØªÙØ±Ø©</th></tr></thead>
     <tbody>__GROWTH_ROWS__</tbody>
     </table>
   </div>
   <div class="g2">
-    <div class="card"><div class="st">مقارنة نمو QoQ</div><div class="cw"><canvas id="ch_qoq" style="height:260px"></canvas></div></div>
-    <div class="card"><div class="st">الهامش الحقيقي</div><div class="cw"><canvas id="ch_margin" style="height:260px"></canvas></div></div>
+    <div class="card"><div class="st">ÙÙØ§Ø±ÙØ© ÙÙÙ QoQ</div><div class="cw"><canvas id="ch_qoq" style="height:260px"></canvas></div></div>
+    <div class="card"><div class="st">Ø§ÙÙØ§ÙØ´ Ø§ÙØ­ÙÙÙÙ</div><div class="cw"><canvas id="ch_margin" style="height:260px"></canvas></div></div>
   </div>
 </div>
 <div class="pane" id="p2">
   <div class="g3">
-    <div class="kc" style="border-top:3px solid #22c55e"><div class="kl">إجمالي الإيرادات</div><div class="kv">__TOT_REV__</div></div>
-    <div class="kc" style="border-top:3px solid #e92c30"><div class="kl">إجمالي المصاريف</div><div class="kv" style="color:var(--red)">__TOT_EXP__</div></div>
-    <div class="kc" style="border-top:3px solid #2ba9ed"><div class="kl">صافي الربح بعد المصاريف</div><div class="kv" style="color:var(--green)">__NET_PROFIT__</div></div>
+    <div class="kc" style="border-top:3px solid #22c55e"><div class="kl">Ø¥Ø¬ÙØ§ÙÙ Ø§ÙØ¥ÙØ±Ø§Ø¯Ø§Øª</div><div class="kv">__TOT_REV__</div></div>
+    <div class="kc" style="border-top:3px solid #e92c30"><div class="kl">Ø¥Ø¬ÙØ§ÙÙ Ø§ÙÙØµØ§Ø±ÙÙ</div><div class="kv" style="color:var(--red)">__TOT_EXP__</div></div>
+    <div class="kc" style="border-top:3px solid #2ba9ed"><div class="kl">ØµØ§ÙÙ Ø§ÙØ±Ø¨Ø­ Ø¨Ø¹Ø¯ Ø§ÙÙØµØ§Ø±ÙÙ</div><div class="kv" style="color:var(--green)">__NET_PROFIT__</div></div>
   </div>
-  <div class="st">الربحية الحقيقية مع المصاريف</div>
+  <div class="st">Ø§ÙØ±Ø¨Ø­ÙØ© Ø§ÙØ­ÙÙÙÙØ© ÙØ¹ Ø§ÙÙØµØ§Ø±ÙÙ</div>
   <div class="card" style="overflow-x:auto">
-    <table class="dt"><thead><tr><th>الفرع</th><th>الإيرادات</th><th>تكلفة البضاعة</th><th>إجمالي الربح</th><th>هامش%</th><th>المصاريف</th><th>صافي الربح</th></tr></thead>
+    <table class="dt"><thead><tr><th>Ø§ÙÙØ±Ø¹</th><th>Ø§ÙØ¥ÙØ±Ø§Ø¯Ø§Øª</th><th>ØªÙÙÙØ© Ø§ÙØ¨Ø¶Ø§Ø¹Ø©</th><th>Ø¥Ø¬ÙØ§ÙÙ Ø§ÙØ±Ø¨Ø­</th><th>ÙØ§ÙØ´%</th><th>Ø§ÙÙØµØ§Ø±ÙÙ</th><th>ØµØ§ÙÙ Ø§ÙØ±Ø¨Ø­</th></tr></thead>
     <tbody>__PROFIT_ROWS__</tbody>
-    <tfoot><tr><td><strong>الإجمالي</strong></td><td class="num"><strong>__TOT_REV__</strong></td><td></td><td class="num" style="color:var(--green)"><strong>__TOT_GP__</strong></td><td><strong>__TOT_MARGIN__</strong></td><td class="num" style="color:var(--red)"><strong>__TOT_EXP__</strong></td><td class="num" style="color:var(--green)"><strong>__NET_PROFIT__</strong></td></tr></tfoot>
+    <tfoot><tr><td><strong>Ø§ÙØ¥Ø¬ÙØ§ÙÙ</strong></td><td class="num"><strong>__TOT_REV__</strong></td><td></td><td class="num" style="color:var(--green)"><strong>__TOT_GP__</strong></td><td><strong>__TOT_MARGIN__</strong></td><td class="num" style="color:var(--red)"><strong>__TOT_EXP__</strong></td><td class="num" style="color:var(--green)"><strong>__NET_PROFIT__</strong></td></tr></tfoot>
     </table>
   </div>
-  <div class="st">تفاصيل المصاريف حسب الفرع</div>
+  <div class="st">ØªÙØ§ØµÙÙ Ø§ÙÙØµØ§Ø±ÙÙ Ø­Ø³Ø¨ Ø§ÙÙØ±Ø¹</div>
   __EXP_HTML__
 </div>
 <div class="pane" id="p3">
   <div class="del-box">
-    <div class="del-card"><div class="dlbl">إجمالي دخل التوصيل</div><div class="dval" style="color:var(--blue)">__DEL_TOTAL__</div></div>
-    <div class="del-card"><div class="dlbl">العمولات المستقطعة</div><div class="dval" style="color:var(--red)">__DEL_COMM__</div></div>
-    <div class="del-card"><div class="dlbl">المبالغ المستحقة لك</div><div class="dval" style="color:var(--green)">__DEL_NET__</div></div>
-    <div class="del-card"><div class="dlbl">إجمالي الطلبات</div><div class="dval">__DEL_CNT__</div></div>
+    <div class="del-card"><div class="dlbl">Ø¥Ø¬ÙØ§ÙÙ Ø¯Ø®Ù Ø§ÙØªÙØµÙÙ</div><div class="dval" style="color:var(--blue)">__DEL_TOTAL__</div></div>
+    <div class="del-card"><div class="dlbl">Ø§ÙØ¹ÙÙÙØ§Øª Ø§ÙÙØ³ØªÙØ·Ø¹Ø©</div><div class="dval" style="color:var(--red)">__DEL_COMM__</div></div>
+    <div class="del-card"><div class="dlbl">Ø§ÙÙØ¨Ø§ÙØº Ø§ÙÙØ³ØªØ­ÙØ© ÙÙ</div><div class="dval" style="color:var(--green)">__DEL_NET__</div></div>
+    <div class="del-card"><div class="dlbl">Ø¥Ø¬ÙØ§ÙÙ Ø§ÙØ·ÙØ¨Ø§Øª</div><div class="dval">__DEL_CNT__</div></div>
   </div>
-  <div class="st">تحليل تطبيقات التوصيل — __REPORT_MONTH__</div>
+  <div class="st">ØªØ­ÙÙÙ ØªØ·Ø¨ÙÙØ§Øª Ø§ÙØªÙØµÙÙ â __REPORT_MONTH__</div>
   <div class="card" style="overflow-x:auto">
-    <table class="dt"><thead><tr><th>التطبيق</th><th>عدد الطلبات</th><th>إجمالي الدخل</th><th>نسبة العمولة</th><th>المبلغ المستقطع</th><th>المستحق لك</th></tr></thead>
+    <table class="dt"><thead><tr><th>Ø§ÙØªØ·Ø¨ÙÙ</th><th>Ø¹Ø¯Ø¯ Ø§ÙØ·ÙØ¨Ø§Øª</th><th>Ø¥Ø¬ÙØ§ÙÙ Ø§ÙØ¯Ø®Ù</th><th>ÙØ³Ø¨Ø© Ø§ÙØ¹ÙÙÙØ©</th><th>Ø§ÙÙØ¨ÙØº Ø§ÙÙØ³ØªÙØ·Ø¹</th><th>Ø§ÙÙØ³ØªØ­Ù ÙÙ</th></tr></thead>
     <tbody>__DEL_ROWS__</tbody>
     </table>
   </div>
   <div class="rec" style="background:#fffbeb;border-color:#fde68a;border-right-color:var(--gold)">
-    <div class="rec-t">&#128276; ملاحظة حول نسب العمولة</div>
-    <div class="rec-b">نسبة "Online Paid" محسوبة بـ 25% (متوسط تطبيقات التوصيل — جاهز، هنقرستيشن، إلخ). "Taker Wallet" بنسبة 20%. يُنصح بمراجعة العقود الفعلية لتحديث هذه النسب.</div>
+    <div class="rec-t">&#128276; ÙÙØ§Ø­Ø¸Ø© Ø­ÙÙ ÙØ³Ø¨ Ø§ÙØ¹ÙÙÙØ©</div>
+    <div class="rec-b">ÙØ³Ø¨Ø© "Online Paid" ÙØ­Ø³ÙØ¨Ø© Ø¨Ù 25% (ÙØªÙØ³Ø· ØªØ·Ø¨ÙÙØ§Øª Ø§ÙØªÙØµÙÙ â Ø¬Ø§ÙØ²Ø ÙÙÙØ±Ø³ØªÙØ´ÙØ Ø¥ÙØ®). "Taker Wallet" Ø¨ÙØ³Ø¨Ø© 20%. ÙÙÙØµØ­ Ø¨ÙØ±Ø§Ø¬Ø¹Ø© Ø§ÙØ¹ÙÙØ¯ Ø§ÙÙØ¹ÙÙØ© ÙØªØ­Ø¯ÙØ« ÙØ°Ù Ø§ÙÙØ³Ø¨.</div>
   </div>
 </div>
 <div class="pane" id="p4">
-  <div class="st">مصفوفة هندسة القائمة</div>
+  <div class="st">ÙØµÙÙÙØ© ÙÙØ¯Ø³Ø© Ø§ÙÙØ§Ø¦ÙØ©</div>
   __MENU_ENG__
 </div>
 <div class="pane" id="p5">
-  <div class="card"><div class="st">خريطة حرارة الإيرادات — التوزيع الساعي</div>
+  <div class="card"><div class="st">Ø®Ø±ÙØ·Ø© Ø­Ø±Ø§Ø±Ø© Ø§ÙØ¥ÙØ±Ø§Ø¯Ø§Øª â Ø§ÙØªÙØ²ÙØ¹ Ø§ÙØ³Ø§Ø¹Ù</div>
     <div class="hlabel">__HLBLS__</div>
     <div class="hmap">__HCELLS__</div>
-    <div style="margin-top:10px;font-size:11px;color:var(--text2)">&#128313; أعلى ساعة: <strong style="color:var(--blue)">__PEAK_HOUR__</strong> | __PEAK_VAL__</div>
+    <div style="margin-top:10px;font-size:11px;color:var(--text2)">&#128313; Ø£Ø¹ÙÙ Ø³Ø§Ø¹Ø©: <strong style="color:var(--blue)">__PEAK_HOUR__</strong> | __PEAK_VAL__</div>
   </div>
   <div class="g2">
-    <div class="card"><div class="st">أداء أيام الأسبوع</div><div class="dmap">__DCELLS__</div></div>
-    <div class="card"><div class="st">التوزيع الساعي</div><div class="cw"><canvas id="ch_hourly" style="height:230px"></canvas></div></div>
+    <div class="card"><div class="st">Ø£Ø¯Ø§Ø¡ Ø£ÙØ§Ù Ø§ÙØ£Ø³Ø¨ÙØ¹</div><div class="dmap">__DCELLS__</div></div>
+    <div class="card"><div class="st">Ø§ÙØªÙØ²ÙØ¹ Ø§ÙØ³Ø§Ø¹Ù</div><div class="cw"><canvas id="ch_hourly" style="height:230px"></canvas></div></div>
   </div>
 </div>
 <div class="pane" id="p6">
   <div class="g2">
-    <div class="card"><div class="st">توزيع طرق الدفع</div><div class="cw"><canvas id="ch_pay" style="height:280px"></canvas></div></div>
-    <div class="card"><div class="st">مبالغ طرق الدفع</div>
-      <table class="dt"><thead><tr><th>طريقة الدفع</th><th>المبلغ</th><th>النسبة</th></tr></thead>
+    <div class="card"><div class="st">ØªÙØ²ÙØ¹ Ø·Ø±Ù Ø§ÙØ¯ÙØ¹</div><div class="cw"><canvas id="ch_pay" style="height:280px"></canvas></div></div>
+    <div class="card"><div class="st">ÙØ¨Ø§ÙØº Ø·Ø±Ù Ø§ÙØ¯ÙØ¹</div>
+      <table class="dt"><thead><tr><th>Ø·Ø±ÙÙØ© Ø§ÙØ¯ÙØ¹</th><th>Ø§ÙÙØ¨ÙØº</th><th>Ø§ÙÙØ³Ø¨Ø©</th></tr></thead>
       <tbody>__PAY_ROWS__</tbody>
-      <tfoot><tr><td><strong>الإجمالي</strong></td><td class="num"><strong>__PAY_TOTAL__</strong></td><td class="num"><strong>100%</strong></td></tr></tfoot>
+      <tfoot><tr><td><strong>Ø§ÙØ¥Ø¬ÙØ§ÙÙ</strong></td><td class="num"><strong>__PAY_TOTAL__</strong></td><td class="num"><strong>100%</strong></td></tr></tfoot>
       </table>
     </div>
   </div>
 </div>
 <div class="pane" id="p7">
-  <div class="st">مؤشرات YTD — من __YTD_FROM__ إلى __YTD_TO__</div>
+  <div class="st">ÙØ¤Ø´Ø±Ø§Øª YTD â ÙÙ __YTD_FROM__ Ø¥ÙÙ __YTD_TO__</div>
   <div class="kgrid4">__YTD_KPIS__</div>
   <div class="card" style="overflow-x:auto">
-    <table class="dt"><thead><tr><th>الفرع</th><th>الإيرادات YTD</th><th>المعاملات</th><th>م. الفاتورة</th><th>إجمالي الربح</th><th>هامش%</th></tr></thead>
+    <table class="dt"><thead><tr><th>Ø§ÙÙØ±Ø¹</th><th>Ø§ÙØ¥ÙØ±Ø§Ø¯Ø§Øª YTD</th><th>Ø§ÙÙØ¹Ø§ÙÙØ§Øª</th><th>Ù. Ø§ÙÙØ§ØªÙØ±Ø©</th><th>Ø¥Ø¬ÙØ§ÙÙ Ø§ÙØ±Ø¨Ø­</th><th>ÙØ§ÙØ´%</th></tr></thead>
     <tbody>__YTD_ROWS__</tbody>
-    <tfoot><tr><td><strong>الإجمالي</strong></td><td class="num"><strong>__YTD_REV__</strong></td><td class="num"><strong>__YTD_TXN__</strong></td><td class="num"><strong>__YTD_AVG__</strong></td><td class="num" style="color:var(--green)"><strong>__YTD_GP__</strong></td><td><strong>__YTD_MARGIN__</strong></td></tr></tfoot>
+    <tfoot><tr><td><strong>Ø§ÙØ¥Ø¬ÙØ§ÙÙ</strong></td><td class="num"><strong>__YTD_REV__</strong></td><td class="num"><strong>__YTD_TXN__</strong></td><td class="num"><strong>__YTD_AVG__</strong></td><td class="num" style="color:var(--green)"><strong>__YTD_GP__</strong></td><td><strong>__YTD_MARGIN__</strong></td></tr></tfoot>
     </table>
   </div>
   <div class="g2">
-    <div class="card"><div class="st">تطور الإيرادات YTD</div><div class="cw"><canvas id="ch_ytd" style="height:260px"></canvas></div></div>
-    <div class="card"><div class="st">مقارنة الشهري vs YTD</div>
-      <table class="dt"><thead><tr><th>الفرع</th><th>هذا الشهر</th><th>YTD</th><th>نسبة</th></tr></thead>
+    <div class="card"><div class="st">ØªØ·ÙØ± Ø§ÙØ¥ÙØ±Ø§Ø¯Ø§Øª YTD</div><div class="cw"><canvas id="ch_ytd" style="height:260px"></canvas></div></div>
+    <div class="card"><div class="st">ÙÙØ§Ø±ÙØ© Ø§ÙØ´ÙØ±Ù vs YTD</div>
+      <table class="dt"><thead><tr><th>Ø§ÙÙØ±Ø¹</th><th>ÙØ°Ø§ Ø§ÙØ´ÙØ±</th><th>YTD</th><th>ÙØ³Ø¨Ø©</th></tr></thead>
       <tbody>__VS_ROWS__</tbody>
       </table>
     </div>
@@ -233,21 +233,21 @@ table.dt tfoot td{background:var(--bg3);font-weight:700;border-top:2px solid var
 </div>
 <div class="pane" id="p8">
   <div class="g2">
-    <div><div class="st">&#127942; التصنيف المركّب</div><div class="card">__RANK_ROWS__</div></div>
+    <div><div class="st">&#127942; Ø§ÙØªØµÙÙÙ Ø§ÙÙØ±ÙÙØ¨</div><div class="card">__RANK_ROWS__</div></div>
     <div>
-      <div class="st">&#129351; أعلى الفروع</div>__TOP3__
-      <div class="st" style="margin-top:12px">&#128161; التوصيات</div>
-      <div class="rec gn"><div class="rec-t">&#127919; هندسة القائمة — فرصة فورية</div><div class="rec-b">تعزيز منتجات "علامات الاستفهام" يرفع الإيراد بدون زيادة التكلفة.</div></div>
-      <div class="rec bl"><div class="rec-t">&#8987; التوظيف الذكي حسب الذروة</div><div class="rec-b">خريطة الحرارة تكشف ساعات الذروة — جدولة الموظفين وفقاً لها.</div></div>
-      <div class="rec rd"><div class="rec-t">&#128661; مراجعة عقود التوصيل</div><div class="rec-b">مقارنة نسب العمولة والتفاوض للحصول على شروط أفضل.</div></div>
+      <div class="st">&#129351; Ø£Ø¹ÙÙ Ø§ÙÙØ±ÙØ¹</div>__TOP3__
+      <div class="st" style="margin-top:12px">&#128161; Ø§ÙØªÙØµÙØ§Øª</div>
+      <div class="rec gn"><div class="rec-t">&#127919; ÙÙØ¯Ø³Ø© Ø§ÙÙØ§Ø¦ÙØ© â ÙØ±ØµØ© ÙÙØ±ÙØ©</div><div class="rec-b">ØªØ¹Ø²ÙØ² ÙÙØªØ¬Ø§Øª "Ø¹ÙØ§ÙØ§Øª Ø§ÙØ§Ø³ØªÙÙØ§Ù" ÙØ±ÙØ¹ Ø§ÙØ¥ÙØ±Ø§Ø¯ Ø¨Ø¯ÙÙ Ø²ÙØ§Ø¯Ø© Ø§ÙØªÙÙÙØ©.</div></div>
+      <div class="rec bl"><div class="rec-t">&#8987; Ø§ÙØªÙØ¸ÙÙ Ø§ÙØ°ÙÙ Ø­Ø³Ø¨ Ø§ÙØ°Ø±ÙØ©</div><div class="rec-b">Ø®Ø±ÙØ·Ø© Ø§ÙØ­Ø±Ø§Ø±Ø© ØªÙØ´Ù Ø³Ø§Ø¹Ø§Øª Ø§ÙØ°Ø±ÙØ© â Ø¬Ø¯ÙÙØ© Ø§ÙÙÙØ¸ÙÙÙ ÙÙÙØ§Ù ÙÙØ§.</div></div>
+      <div class="rec rd"><div class="rec-t">&#128661; ÙØ±Ø§Ø¬Ø¹Ø© Ø¹ÙÙØ¯ Ø§ÙØªÙØµÙÙ</div><div class="rec-b">ÙÙØ§Ø±ÙØ© ÙØ³Ø¨ Ø§ÙØ¹ÙÙÙØ© ÙØ§ÙØªÙØ§ÙØ¶ ÙÙØ­ØµÙÙ Ø¹ÙÙ Ø´Ø±ÙØ· Ø£ÙØ¶Ù.</div></div>
     </div>
   </div>
   <div class="exec">
-    <strong>&#128203; الملخص التنفيذي — __REPORT_MONTH__</strong><br><br>
-    حققت الشركة إيرادات <strong>__TOT_REV__</strong> عبر __BRANCH_COUNT__ فروع
-    بإجمالي ربح <strong>__TOT_GP__</strong> وهامش <strong>__TOT_MARGIN__</strong>.
-    نُفّذت <strong>__TOT_TXN__</strong> معاملة بمتوسط فاتورة <strong>__AVG_TICKET__</strong>.<br>
-    إيرادات YTD: <strong>__YTD_REV__</strong> | دخل التوصيل: <strong>__DEL_TOTAL__</strong> (مستحق: <strong>__DEL_NET__</strong>) | إجمالي المصاريف: <strong>__TOT_EXP__</strong>.
+    <strong>&#128203; Ø§ÙÙÙØ®Øµ Ø§ÙØªÙÙÙØ°Ù â __REPORT_MONTH__</strong><br><br>
+    Ø­ÙÙØª Ø§ÙØ´Ø±ÙØ© Ø¥ÙØ±Ø§Ø¯Ø§Øª <strong>__TOT_REV__</strong> Ø¹Ø¨Ø± __BRANCH_COUNT__ ÙØ±ÙØ¹
+    Ø¨Ø¥Ø¬ÙØ§ÙÙ Ø±Ø¨Ø­ <strong>__TOT_GP__</strong> ÙÙØ§ÙØ´ <strong>__TOT_MARGIN__</strong>.
+    ÙÙÙÙØ°Øª <strong>__TOT_TXN__</strong> ÙØ¹Ø§ÙÙØ© Ø¨ÙØªÙØ³Ø· ÙØ§ØªÙØ±Ø© <strong>__AVG_TICKET__</strong>.<br>
+    Ø¥ÙØ±Ø§Ø¯Ø§Øª YTD: <strong>__YTD_REV__</strong> | Ø¯Ø®Ù Ø§ÙØªÙØµÙÙ: <strong>__DEL_TOTAL__</strong> (ÙØ³ØªØ­Ù: <strong>__DEL_NET__</strong>) | Ø¥Ø¬ÙØ§ÙÙ Ø§ÙÙØµØ§Ø±ÙÙ: <strong>__TOT_EXP__</strong>.
   </div>
 </div>
 </div>
@@ -264,36 +264,46 @@ var CH = {};
 function mk(id,cfg){var c=document.getElementById(id);if(!c)return;if(CH[id])CH[id].destroy();CH[id]=new Chart(c,cfg);}
 function fmt(n){return Math.abs(n)>=1e6?(n/1e6).toFixed(2)+'M':Math.abs(n)>=1e3?(n/1e3).toFixed(1)+'K':Math.round(n).toLocaleString();}
 function sw(i){
-  document.querySelectorAll('.tab').forEach(function(b,j){b.classList.toggle('on',i===j);});
-  document.querySelectorAll('.pane').forEach(function(p,j){p.classList.toggle('on',i===j);});
-  if(i===0)drawOv(); else if(i===1)drawGr(); else if(i===5)drawTm(); else if(i===6)drawPay(); else if(i===7)drawYTD();
+  try {
+    document.querySelectorAll('.tab').forEach(function(b,j){b.className='tab'+(j===i?' on':'');});
+    for(var j=0;j<=8;j++){var p=document.getElementById('p'+j);if(p)p.style.display=(j===i)?'block':'none';}
+    if(i===0){setTimeout(drawOv,30);}
+    else if(i===1){setTimeout(drawGr,30);}
+    else if(i===5){setTimeout(drawTm,30);}
+    else if(i===6){setTimeout(drawPay,30);}
+    else if(i===7){setTimeout(drawYTD,30);}
+  } catch(err){console.error('sw:',err);}
 }
 function drawOv(){
+  try { var p0=document.getElementById("p0"); if(p0)p0.style.display="block"; } catch(e){}
+  
   if(CH['ch_rev'])return;
-  mk('ch_rev',{type:'bar',data:{labels:B.map(function(b){return b.name;}),datasets:[{data:B.map(function(b){return b.total;}),backgroundColor:C,borderRadius:6,borderSkipped:false}]},options:{...BASE,scales:{x:{ticks:{color:'#64748b',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#64748b',callback:function(v){return fmt(v);},font:{size:10}},grid:{color:'rgba(226,232,240,.8)'}}}}});
-  mk('ch_pie',{type:'doughnut',data:{labels:B.map(function(b){return b.name;}),datasets:[{data:B.map(function(b){return b.total;}),backgroundColor:C,borderWidth:2,borderColor:'#fff'}]},options:{...BASE,cutout:'62%',plugins:{legend:{display:true,position:'bottom',labels:{color:'#64748b',font:{size:10},boxWidth:10,padding:6}},tooltip:{callbacks:{label:function(ctx){return ctx.label+': '+fmt(ctx.raw);}}}}}});
+  mk('ch_rev',{type:'bar',data:{labels:B.map(function(b){return b.name;}),datasets:[{data:B.map(function(b){return b.total;}),backgroundColor:C,borderRadius:6,borderSkipped:false}]},options:options_tmpscales:{x:{ticks:{color:'#64748b',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#64748b',callback:function(v){return fmt(v);},font:{size:10}},grid:{color:'rgba(226,232,240,.8)'}}}}});
+  mk('ch_pie',{type:'doughnut',data:{labels:B.map(function(b){return b.name;}),datasets:[{data:B.map(function(b){return b.total;}),backgroundColor:C,borderWidth:2,borderColor:'#fff'}]},options:options_tmpcutout:'62%',plugins:{legend:{display:true,position:'bottom',labels:{color:'#64748b',font:{size:10},boxWidth:10,padding:6}},tooltip:{callbacks:{label:function(ctx){return ctx.label+': '+fmt(ctx.raw);}}}}}});
 }
 function drawGr(){
   if(CH['ch_qoq'])return;
-  mk('ch_qoq',{type:'bar',data:{labels:B.map(function(b){return b.name;}),datasets:[{data:B.map(function(b){return b.qoq||0;}),backgroundColor:B.map(function(b){return (b.qoq||0)>=0?'rgba(34,197,94,.8)':'rgba(233,44,48,.8)';}),borderRadius:5}]},options:{...BASE,scales:{x:{ticks:{color:'#64748b',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#64748b',callback:function(v){return v+'%';},font:{size:10}},grid:{color:'rgba(226,232,240,.8)'},afterDataLimits:function(s){s.min=Math.min(s.min,-10);s.max=Math.max(s.max,15);}}}}});
-  mk('ch_margin',{type:'bar',data:{labels:B.map(function(b){return b.name;}),datasets:[{data:B.map(function(b){return b.gross_margin_real||0;}),backgroundColor:B.map(function(b){var rm=b.gross_margin_real||0;return rm>=75?'rgba(34,197,94,.8)':rm>=65?'rgba(245,158,11,.8)':'rgba(233,44,48,.8)';}),borderRadius:5,indexAxis:'y'}]},options:{...BASE,indexAxis:'y',scales:{x:{ticks:{color:'#64748b',callback:function(v){return v+'%';},font:{size:10}},grid:{color:'rgba(226,232,240,.8)'},min:50},y:{ticks:{color:'#64748b',font:{size:10}},grid:{display:false}}}}});
+  mk('ch_qoq',{type:'bar',data:{labels:B.map(function(b){return b.name;}),datasets:[{data:B.map(function(b){return b.qoq||0;}),backgroundColor:B.map(function(b){return (b.qoq||0)>=0?'rgba(34,197,94,.8)':'rgba(233,44,48,.8)';}),borderRadius:5}]},options:options_tmpscales:{x:{ticks:{color:'#64748b',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#64748b',callback:function(v){return v+'%';},font:{size:10}},grid:{color:'rgba(226,232,240,.8)'},afterDataLimits:function(s){s.min=Math.min(s.min,-10);s.max=Math.max(s.max,15);}}}}});
+  mk('ch_margin',{type:'bar',data:{labels:B.map(function(b){return b.name;}),datasets:[{data:B.map(function(b){return b.gross_margin_real||0;}),backgroundColor:B.map(function(b){var rm=b.gross_margin_real||0;return rm>=75?'rgba(34,197,94,.8)':rm>=65?'rgba(245,158,11,.8)':'rgba(233,44,48,.8)';}),borderRadius:5,indexAxis:'y'}]},options:options_tmpindexAxis:'y',scales:{x:{ticks:{color:'#64748b',callback:function(v){return v+'%';},font:{size:10}},grid:{color:'rgba(226,232,240,.8)'},min:50},y:{ticks:{color:'#64748b',font:{size:10}},grid:{display:false}}}}});
 }
 function drawTm(){
   if(CH['ch_hourly'])return;
-  mk('ch_hourly',{type:'line',data:{labels:Array.from({length:24},function(_,h){return (h<10?'0'+h:h)+':00';}),datasets:[{data:HOURLY,borderColor:'#2ba9ed',backgroundColor:'rgba(43,169,237,.1)',borderWidth:2,fill:true,tension:.4,pointRadius:2}]},options:{...BASE,scales:{x:{ticks:{color:'#64748b',font:{size:9}},grid:{color:'rgba(226,232,240,.8)'}},y:{ticks:{color:'#64748b',callback:function(v){return fmt(v);},font:{size:10}},grid:{color:'rgba(226,232,240,.8)'}}}}}});
+  mk('ch_hourly',{type:'line',data:{labels:Array.from({length:24},function(_,h){return (h<10?'0'+h:h)+':00';}),datasets:[{data:HOURLY,borderColor:'#2ba9ed',backgroundColor:'rgba(43,169,237,.1)',borderWidth:2,fill:true,tension:.4,pointRadius:2}]},options:options_tmpscales:{x:{ticks:{color:'#64748b',font:{size:9}},grid:{color:'rgba(226,232,240,.8)'}},y:{ticks:{color:'#64748b',callback:function(v){return fmt(v);},font:{size:10}},grid:{color:'rgba(226,232,240,.8)'}}}}}});
 }
 function drawPay(){
   if(CH['ch_pay'])return;
   var keys=Object.keys(PAYMENTS),vals=keys.map(function(k){return PAYMENTS[k];});
-  mk('ch_pay',{type:'doughnut',data:{labels:keys,datasets:[{data:vals,backgroundColor:C.slice(0,keys.length),borderWidth:2,borderColor:'#fff'}]},options:{...BASE,cutout:'55%',plugins:{legend:{display:true,position:'right',labels:{color:'#64748b',font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:function(ctx){var tot=vals.reduce(function(a,b){return a+b;},0);return ctx.label+': '+fmt(ctx.raw)+' ('+((ctx.raw/tot*100).toFixed(1))+'%)';}}}}}}}); 
+  mk('ch_pay',{type:'doughnut',data:{labels:keys,datasets:[{data:vals,backgroundColor:C.slice(0,keys.length),borderWidth:2,borderColor:'#fff'}]},options:options_tmpcutout:'55%',plugins:{legend:{display:true,position:'right',labels:{color:'#64748b',font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:function(ctx){var tot=vals.reduce(function(a,b){return a+b;},0);return ctx.label+': '+fmt(ctx.raw)+' ('+((ctx.raw/tot*100).toFixed(1))+'%)';}}}}}}}); 
 }
 function drawYTD(){
   if(CH['ch_ytd'])return;
   var months={};
   YB.forEach(function(b){if(b.monthly){Object.entries(b.monthly).forEach(function(e){months[e[0]]=(months[e[0]]||0)+e[1];});}});
   var keys=Object.keys(months).sort();
-  mk('ch_ytd',{type:'bar',data:{labels:keys,datasets:[{data:keys.map(function(k){return Math.round(months[k]);}),backgroundColor:'rgba(43,169,237,.7)',borderRadius:5}]},options:{...BASE,scales:{x:{ticks:{color:'#64748b',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#64748b',callback:function(v){return fmt(v);},font:{size:10}},grid:{color:'rgba(226,232,240,.8)'}}}}}}); 
+  mk('ch_ytd',{type:'bar',data:{labels:keys,datasets:[{data:keys.map(function(k){return Math.round(months[k]);}),backgroundColor:'rgba(43,169,237,.7)',borderRadius:5}]},options:options_tmpscales:{x:{ticks:{color:'#64748b',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#64748b',callback:function(v){return fmt(v);},font:{size:10}},grid:{color:'rgba(226,232,240,.8)'}}}}}}); 
 }
+// Init: show first pane
+(function(){for(var j=0;j<=8;j++){var p=document.getElementById('p'+j);if(p)p.style.display=(j===0)?'block':'none';}})();
 drawOv();
 </script>
 </body>
@@ -310,7 +320,7 @@ def build_html(data):
     expenses = data.get('expenses', {})
 
     COLORS = ['#2ba9ed','#e92c30','#22c55e','#f59e0b','#8b5cf6','#06b6d4','#ec4899','#10b981']
-    DAYS = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت']
+    DAYS = ['Ø§ÙØ£Ø­Ø¯','Ø§ÙØ§Ø«ÙÙÙ','Ø§ÙØ«ÙØ§Ø«Ø§Ø¡','Ø§ÙØ£Ø±Ø¨Ø¹Ø§Ø¡','Ø§ÙØ®ÙÙØ³','Ø§ÙØ¬ÙØ¹Ø©','Ø§ÙØ³Ø¨Øª']
     DELIVERY_RATES = {'Online Paid': 25, 'Taker Wallet': 20}
 
     total_rev = sum(b['total'] for b in B)
@@ -331,16 +341,16 @@ def build_html(data):
     total_net  = total_del - total_comm
     del_cnt    = sum(v.get('count',0) for v in delivery.values())
 
-    # ── KPI Cards ─────────────────────────────────────────
+    # ââ KPI Cards âââââââââââââââââââââââââââââââââââââââââ
     kpis = ''.join([
-        f'<div class="kc" style="border-top:3px solid #2ba9ed"><div class="kl">إجمالي الإيرادات</div><div class="kv">{sar(total_rev)}</div><div class="ks">{len(B)} فروع</div></div>',
-        f'<div class="kc" style="border-top:3px solid #22c55e"><div class="kl">إجمالي الأرباح</div><div class="kv">{sar(total_gp)}</div><div class="ks">{pct(total_gp/total_rev*100) if total_rev else "0%"} هامش</div></div>',
-        f'<div class="kc" style="border-top:3px solid #f59e0b"><div class="kl">إجمالي المعاملات</div><div class="kv">{num(total_txn)}</div><div class="ks">طلب</div></div>',
-        f'<div class="kc" style="border-top:3px solid #8b5cf6"><div class="kl">متوسط الفاتورة</div><div class="kv">{sar(avg_tick)}</div><div class="ks">لكل طلب</div></div>',
-        f'<div class="kc" style="border-top:3px solid #e92c30"><div class="kl">أفضل فرع</div><div class="kv" style="font-size:15px;line-height:1.5">{B[0]["name"] if B else "-"}</div><div class="ks">{sar(B[0]["total"]) if B else "-"}</div></div>',
+        f'<div class="kc" style="border-top:3px solid #2ba9ed"><div class="kl">Ø¥Ø¬ÙØ§ÙÙ Ø§ÙØ¥ÙØ±Ø§Ø¯Ø§Øª</div><div class="kv">{sar(total_rev)}</div><div class="ks">{len(B)} ÙØ±ÙØ¹</div></div>',
+        f'<div class="kc" style="border-top:3px solid #22c55e"><div class="kl">Ø¥Ø¬ÙØ§ÙÙ Ø§ÙØ£Ø±Ø¨Ø§Ø­</div><div class="kv">{sar(total_gp)}</div><div class="ks">{pct(total_gp/total_rev*100) if total_rev else "0%"} ÙØ§ÙØ´</div></div>',
+        f'<div class="kc" style="border-top:3px solid #f59e0b"><div class="kl">Ø¥Ø¬ÙØ§ÙÙ Ø§ÙÙØ¹Ø§ÙÙØ§Øª</div><div class="kv">{num(total_txn)}</div><div class="ks">Ø·ÙØ¨</div></div>',
+        f'<div class="kc" style="border-top:3px solid #8b5cf6"><div class="kl">ÙØªÙØ³Ø· Ø§ÙÙØ§ØªÙØ±Ø©</div><div class="kv">{sar(avg_tick)}</div><div class="ks">ÙÙÙ Ø·ÙØ¨</div></div>',
+        f'<div class="kc" style="border-top:3px solid #e92c30"><div class="kl">Ø£ÙØ¶Ù ÙØ±Ø¹</div><div class="kv" style="font-size:15px;line-height:1.5">{B[0]["name"] if B else "-"}</div><div class="ks">{sar(B[0]["total"]) if B else "-"}</div></div>',
     ])
 
-    # ── Branch rows ───────────────────────────────────────
+    # ââ Branch rows âââââââââââââââââââââââââââââââââââââââ
     branch_rows = ''.join([
         f'<tr><td><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:{COLORS[i%8]};margin-left:8px"></span><strong>{b["name"]}</strong></td>'
         f'<td class="num">{sar(b["total"])}</td><td class="num">{num(b.get("total_txn",0))}</td>'
@@ -351,18 +361,18 @@ def build_html(data):
         for i,b in enumerate(B)
     ])
 
-    # ── Growth rows ───────────────────────────────────────
+    # ââ Growth rows âââââââââââââââââââââââââââââââââââââââ
     growth_rows = ''.join([
         f'<tr><td><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:{COLORS[i%8]};margin-left:8px"></span><strong>{b["name"]}</strong></td>'
         f'<td class="num">{sar(b["total"])}</td>'
         f'<td>{dt_tag(b.get("qoq",0))}</td>'
-        f'<td>{"<span class=\"tag tn\">جديد</span>" if b.get("yoy",0)==0 else dt_tag(b.get("yoy",0))}</td>'
+        f'<td>{"<span class=\"tag tn\">Ø¬Ø¯ÙØ¯</span>" if b.get("yoy",0)==0 else dt_tag(b.get("yoy",0))}</td>'
         f'<td><strong>{pct(b.get("gross_margin_real",0))}</strong></td>'
         f'<td class="num">{num(b.get("total_txn",0))}</td><td class="num">{sar(b.get("avg_ticket",0))}</td></tr>'
         for i,b in enumerate(B)
     ])
 
-    # ── Profit rows with expenses ─────────────────────────
+    # ââ Profit rows with expenses âââââââââââââââââââââââââ
     def get_branch_exp(bn):
         for k,e in expenses.items():
             if bn.lower() in k.lower() or k.lower() in bn.lower():
@@ -380,20 +390,20 @@ def build_html(data):
         for b in B
     ])
 
-    # ── Expenses detail ───────────────────────────────────
+    # ââ Expenses detail âââââââââââââââââââââââââââââââââââ
     exp_html = ''
     for bn, edata in sorted(expenses.items()):
         total_e = edata.get('total', 0)
         items = edata.get('items', [])[:15]
         if not items: continue
         rows = ''.join([f'<tr><td style="color:#64748b">{it["account"]}</td><td class="num">{sar(it["amount"])}</td></tr>' for it in items])
-        exp_html += f'<div class="card" style="margin-bottom:12px"><div class="st" style="color:#e92c30">{bn} — إجمالي: {sar(total_e)}</div><table class="dt"><thead><tr><th>بند المصروف</th><th>المبلغ</th></tr></thead><tbody>{rows}</tbody><tfoot><tr style="background:#fef2f2"><td><strong>إجمالي المصاريف</strong></td><td class="num" style="color:#e92c30"><strong>{sar(total_e)}</strong></td></tr></tfoot></table></div>'
+        exp_html += f'<div class="card" style="margin-bottom:12px"><div class="st" style="color:#e92c30">{bn} â Ø¥Ø¬ÙØ§ÙÙ: {sar(total_e)}</div><table class="dt"><thead><tr><th>Ø¨ÙØ¯ Ø§ÙÙØµØ±ÙÙ</th><th>Ø§ÙÙØ¨ÙØº</th></tr></thead><tbody>{rows}</tbody><tfoot><tr style="background:#fef2f2"><td><strong>Ø¥Ø¬ÙØ§ÙÙ Ø§ÙÙØµØ§Ø±ÙÙ</strong></td><td class="num" style="color:#e92c30"><strong>{sar(total_e)}</strong></td></tr></tfoot></table></div>'
     if not exp_html:
-        exp_html = '<div class="card" style="text-align:center;color:#64748b;padding:30px">لا توجد بيانات مصاريف للفترة المحددة</div>'
+        exp_html = '<div class="card" style="text-align:center;color:#64748b;padding:30px">ÙØ§ ØªÙØ¬Ø¯ Ø¨ÙØ§ÙØ§Øª ÙØµØ§Ø±ÙÙ ÙÙÙØªØ±Ø© Ø§ÙÙØ­Ø¯Ø¯Ø©</div>'
 
-    # ── Delivery rows ─────────────────────────────────────
+    # ââ Delivery rows âââââââââââââââââââââââââââââââââââââ
     del_rows = ''.join([
-        f'<tr><td><strong>{m}</strong></td><td class="num">{num(v.get("count",0))} طلب</td>'
+        f'<tr><td><strong>{m}</strong></td><td class="num">{num(v.get("count",0))} Ø·ÙØ¨</td>'
         f'<td class="num">{sar(v.get("total",0))}</td>'
         f'<td class="num" style="color:#64748b">{DELIVERY_RATES.get(m,25)}%</td>'
         f'<td class="num" style="color:#e92c30">{sar(round(v.get("total",0)*DELIVERY_RATES.get(m,25)/100))}</td>'
@@ -401,11 +411,11 @@ def build_html(data):
         for m,v in delivery.items()
     ])
     if del_rows:
-        del_rows += f'<tr style="background:#f0f9ff;font-weight:700"><td colspan="2"><strong>الإجمالي</strong></td><td class="num">{sar(total_del)}</td><td></td><td class="num" style="color:#e92c30">{sar(total_comm)}</td><td class="num" style="color:#22c55e">{sar(total_net)}</td></tr>'
+        del_rows += f'<tr style="background:#f0f9ff;font-weight:700"><td colspan="2"><strong>Ø§ÙØ¥Ø¬ÙØ§ÙÙ</strong></td><td class="num">{sar(total_del)}</td><td></td><td class="num" style="color:#e92c30">{sar(total_comm)}</td><td class="num" style="color:#22c55e">{sar(total_net)}</td></tr>'
     if not del_rows:
-        del_rows = '<tr><td colspan="6" style="text-align:center;color:#64748b;padding:20px">لا توجد بيانات تطبيقات التوصيل للفترة</td></tr>'
+        del_rows = '<tr><td colspan="6" style="text-align:center;color:#64748b;padding:20px">ÙØ§ ØªÙØ¬Ø¯ Ø¨ÙØ§ÙØ§Øª ØªØ·Ø¨ÙÙØ§Øª Ø§ÙØªÙØµÙÙ ÙÙÙØªØ±Ø©</td></tr>'
 
-    # ── Menu Engineering ──────────────────────────────────
+    # ââ Menu Engineering ââââââââââââââââââââââââââââââââââ
     if prods:
         avg_r = sum(p['revenue'] for p in prods) / len(prods)
         avg_m = sum(p.get('margin_pct',0) for p in prods) / len(prods)
@@ -416,32 +426,32 @@ def build_html(data):
         dogs   = sorted([p for p in prods if p['revenue']<avg_r  and p.get('margin_pct',0)<avg_m],  key=lambda x:x.get('margin_pct',0))[:8]
         def ptbl(items, tc):
             rows = ''.join([f'<tr><td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="{p["name"]}">{nm(p)}</td><td class="num">{sar(p["revenue"])}</td><td class="num">{num(p.get("qty",0))}</td><td><span class="tag {tc}">{pct(p.get("margin_pct",0))}</span></td></tr>' for p in items])
-            return f'<div style="overflow-x:auto"><table class="dt" style="font-size:12px"><thead><tr><th>المنتج</th><th>الإيرادات</th><th>الكمية</th><th>الهامش</th></tr></thead><tbody>{rows}</tbody></table></div>'
+            return f'<div style="overflow-x:auto"><table class="dt" style="font-size:12px"><thead><tr><th>Ø§ÙÙÙØªØ¬</th><th>Ø§ÙØ¥ÙØ±Ø§Ø¯Ø§Øª</th><th>Ø§ÙÙÙÙØ©</th><th>Ø§ÙÙØ§ÙØ´</th></tr></thead><tbody>{rows}</tbody></table></div>'
         menu_eng = f"""<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
 <div class="card" style="border-top:4px solid #22c55e">
   <div style="background:#f0fdf4;border-radius:8px;padding:10px;margin-bottom:12px">
-    <div style="font-size:13px;font-weight:700;color:#166534">&#11088; نجوم — هامش عالٍ + مبيعات عالية</div>
-    <div style="font-size:11px;color:#166534;margin-top:2px">حافظ عليها وعززها في القائمة</div>
+    <div style="font-size:13px;font-weight:700;color:#166534">&#11088; ÙØ¬ÙÙ â ÙØ§ÙØ´ Ø¹Ø§ÙÙ + ÙØ¨ÙØ¹Ø§Øª Ø¹Ø§ÙÙØ©</div>
+    <div style="font-size:11px;color:#166534;margin-top:2px">Ø­Ø§ÙØ¸ Ø¹ÙÙÙØ§ ÙØ¹Ø²Ø²ÙØ§ ÙÙ Ø§ÙÙØ§Ø¦ÙØ©</div>
   </div>{ptbl(stars,"tg")}</div>
 <div class="card" style="border-top:4px solid #2ba9ed">
   <div style="background:#eff8ff;border-radius:8px;padding:10px;margin-bottom:12px">
-    <div style="font-size:13px;font-weight:700;color:#1e40af">&#10067; علامات استفهام — هامش عالٍ + مبيعات منخفضة</div>
-    <div style="font-size:11px;color:#1e40af;margin-top:2px">سوّق أكثر واعرضها بشكل بارز</div>
+    <div style="font-size:13px;font-weight:700;color:#1e40af">&#10067; Ø¹ÙØ§ÙØ§Øª Ø§Ø³ØªÙÙØ§Ù â ÙØ§ÙØ´ Ø¹Ø§ÙÙ + ÙØ¨ÙØ¹Ø§Øª ÙÙØ®ÙØ¶Ø©</div>
+    <div style="font-size:11px;color:#1e40af;margin-top:2px">Ø³ÙÙÙ Ø£ÙØ«Ø± ÙØ§Ø¹Ø±Ø¶ÙØ§ Ø¨Ø´ÙÙ Ø¨Ø§Ø±Ø²</div>
   </div>{ptbl(quest,"tbl")}</div>
 <div class="card" style="border-top:4px solid #f59e0b">
   <div style="background:#fffbeb;border-radius:8px;padding:10px;margin-bottom:12px">
-    <div style="font-size:13px;font-weight:700;color:#92400e">&#128004; أبقار حلوب — هامش منخفض + مبيعات عالية</div>
-    <div style="font-size:11px;color:#92400e;margin-top:2px">راجع التسعير وخفض تكلفة الإنتاج</div>
+    <div style="font-size:13px;font-weight:700;color:#92400e">&#128004; Ø£Ø¨ÙØ§Ø± Ø­ÙÙØ¨ â ÙØ§ÙØ´ ÙÙØ®ÙØ¶ + ÙØ¨ÙØ¹Ø§Øª Ø¹Ø§ÙÙØ©</div>
+    <div style="font-size:11px;color:#92400e;margin-top:2px">Ø±Ø§Ø¬Ø¹ Ø§ÙØªØ³Ø¹ÙØ± ÙØ®ÙØ¶ ØªÙÙÙØ© Ø§ÙØ¥ÙØªØ§Ø¬</div>
   </div>{ptbl(plow,"tn")}</div>
 <div class="card" style="border-top:4px solid #e92c30">
   <div style="background:#fef2f2;border-radius:8px;padding:10px;margin-bottom:12px">
-    <div style="font-size:13px;font-weight:700;color:#991b1b">&#128021; خسائر — هامش منخفض + مبيعات منخفضة</div>
-    <div style="font-size:11px;color:#991b1b;margin-top:2px">تحقق من إلغائها أو تطوير وصفتها</div>
+    <div style="font-size:13px;font-weight:700;color:#991b1b">&#128021; Ø®Ø³Ø§Ø¦Ø± â ÙØ§ÙØ´ ÙÙØ®ÙØ¶ + ÙØ¨ÙØ¹Ø§Øª ÙÙØ®ÙØ¶Ø©</div>
+    <div style="font-size:11px;color:#991b1b;margin-top:2px">ØªØ­ÙÙ ÙÙ Ø¥ÙØºØ§Ø¦ÙØ§ Ø£Ù ØªØ·ÙÙØ± ÙØµÙØªÙØ§</div>
   </div>{ptbl(dogs,"tr")}</div></div>"""
     else:
-        menu_eng = '<div class="card" style="text-align:center;padding:40px;color:#64748b">لا توجد بيانات منتجات</div>'
+        menu_eng = '<div class="card" style="text-align:center;padding:40px;color:#64748b">ÙØ§ ØªÙØ¬Ø¯ Ø¨ÙØ§ÙØ§Øª ÙÙØªØ¬Ø§Øª</div>'
 
-    # ── Timing ────────────────────────────────────────────
+    # ââ Timing ââââââââââââââââââââââââââââââââââââââââââââ
     mH = max(hourly) if max(hourly)>0 else 1
     mD = max(daily)  if max(daily)>0  else 1
     hcells = ''.join([f'<div class="hcell" style="background:rgba(43,169,237,{0.05+v/mH*0.85:.2f})" title="{h:02d}:00 - {sar(v)}">{num(v) if v>mH*0.3 else ""}</div>' for h,v in enumerate(hourly)])
@@ -450,16 +460,16 @@ def build_html(data):
     peak_h = hourly.index(max(hourly))
     peak_v = max(hourly)
 
-    # ── Payments ──────────────────────────────────────────
+    # ââ Payments ââââââââââââââââââââââââââââââââââââââââââ
     pay_sum = sum(pay_totals.values()) or 1
     pay_rows = ''.join([f'<tr><td>{m}</td><td class="num">{sar(v)}</td><td class="num">{pct(v/pay_sum*100)}</td></tr>' for m,v in sorted(pay_totals.items(), key=lambda x:-x[1])])
 
-    # ── YTD ───────────────────────────────────────────────
+    # ââ YTD âââââââââââââââââââââââââââââââââââââââââââââââ
     ytd_kpis = ''.join([
-        f'<div class="kc" style="border-top:3px solid #2ba9ed"><div class="kl">إيرادات YTD</div><div class="kv">{sar(ytd_rev)}</div><div class="ks">{data.get("ytd_from","")} - {data.get("ytd_to","")}</div></div>',
-        f'<div class="kc" style="border-top:3px solid #22c55e"><div class="kl">أرباح YTD</div><div class="kv">{sar(ytd_gp)}</div><div class="ks">{pct(ytd_gp/ytd_rev*100) if ytd_rev else "0%"} هامش</div></div>',
-        f'<div class="kc" style="border-top:3px solid #f59e0b"><div class="kl">معاملات YTD</div><div class="kv">{num(ytd_txn)}</div><div class="ks">طلب</div></div>',
-        f'<div class="kc" style="border-top:3px solid #8b5cf6"><div class="kl">متوسط الفاتورة YTD</div><div class="kv">{sar(ytd_avg)}</div><div class="ks">لكل طلب</div></div>',
+        f'<div class="kc" style="border-top:3px solid #2ba9ed"><div class="kl">Ø¥ÙØ±Ø§Ø¯Ø§Øª YTD</div><div class="kv">{sar(ytd_rev)}</div><div class="ks">{data.get("ytd_from","")} - {data.get("ytd_to","")}</div></div>',
+        f'<div class="kc" style="border-top:3px solid #22c55e"><div class="kl">Ø£Ø±Ø¨Ø§Ø­ YTD</div><div class="kv">{sar(ytd_gp)}</div><div class="ks">{pct(ytd_gp/ytd_rev*100) if ytd_rev else "0%"} ÙØ§ÙØ´</div></div>',
+        f'<div class="kc" style="border-top:3px solid #f59e0b"><div class="kl">ÙØ¹Ø§ÙÙØ§Øª YTD</div><div class="kv">{num(ytd_txn)}</div><div class="ks">Ø·ÙØ¨</div></div>',
+        f'<div class="kc" style="border-top:3px solid #8b5cf6"><div class="kl">ÙØªÙØ³Ø· Ø§ÙÙØ§ØªÙØ±Ø© YTD</div><div class="kv">{sar(ytd_avg)}</div><div class="ks">ÙÙÙ Ø·ÙØ¨</div></div>',
     ])
 
     ytd_map = {b['name']:b for b in YB}
@@ -480,7 +490,7 @@ def build_html(data):
         for b in B
     ])
 
-    # ── Rankings ──────────────────────────────────────────
+    # ââ Rankings ââââââââââââââââââââââââââââââââââââââââââ
     max_t = B[0]['total'] if B else 1
     rank_rows = ''.join([
         f'<div class="rrow"><div class="rn">{i+1}</div><div class="rnm">{b["name"]}</div>'
@@ -492,15 +502,15 @@ def build_html(data):
     ])
     MEDALS = ['&#127941;','&#129352;','&#127942;','4.']
     top3 = ''.join([
-        f'<div class="card" style="margin-bottom:8px;border-right:4px solid {COLORS[i%8]}"><div style="display:flex;justify-content:space-between"><span style="font-weight:700">{MEDALS[i] if i<4 else ""} {b["name"]}</span><span class="tag tg">{sar(b["total"])}</span></div><div style="font-size:11px;color:#64748b;margin-top:6px">هامش: {pct(b.get("gross_margin_real",0))} | الطلبات: {num(b.get("total_txn",0))} | م.الفاتورة: {sar(b.get("avg_ticket",0))}</div></div>'
+        f'<div class="card" style="margin-bottom:8px;border-right:4px solid {COLORS[i%8]}"><div style="display:flex;justify-content:space-between"><span style="font-weight:700">{MEDALS[i] if i<4 else ""} {b["name"]}</span><span class="tag tg">{sar(b["total"])}</span></div><div style="font-size:11px;color:#64748b;margin-top:6px">ÙØ§ÙØ´: {pct(b.get("gross_margin_real",0))} | Ø§ÙØ·ÙØ¨Ø§Øª: {num(b.get("total_txn",0))} | Ù.Ø§ÙÙØ§ØªÙØ±Ø©: {sar(b.get("avg_ticket",0))}</div></div>'
         for i,b in enumerate(sorted(B, key=lambda x:-x['total'])[:4])
     ])
 
-    # ── Replace all placeholders ──────────────────────────
+    # ââ Replace all placeholders ââââââââââââââââââââââââââ
     html = HTML_TMPL
     replacements = {
         '__LOGO_SVG__':     LOGO_SVG,
-        '__REPORT_MONTH__': data.get('report_month','—'),
+        '__REPORT_MONTH__': data.get('report_month','â'),
         '__BRANCH_COUNT__': str(len(B)),
         '__UPDATED__':      data.get('updated',''),
         '__DATE_FROM__':    data.get('date_from',''),
@@ -553,7 +563,7 @@ def build_html(data):
         html = html.replace(k, v)
     return html
 
-# ── Main ──────────────────────────────────────────────────
+# ââ Main ââââââââââââââââââââââââââââââââââââââââââââââââââ
 try:
     with open('data.json','r',encoding='utf-8') as f:
         data = json.load(f)
@@ -561,7 +571,7 @@ try:
 except Exception as e:
     print(f'Warning: {e}')
     data = {'branches':[],'ytd_branches':[],'products':[],'hourly':[0]*24,'daily':[0]*7,
-            'payment_totals':{},'delivery_apps':{},'expenses':{},'report_month':'—',
+            'payment_totals':{},'delivery_apps':{},'expenses':{},'report_month':'â',
             'updated':'','date_from':'','date_to':'','ytd_from':'','ytd_to':''}
 
 html = build_html(data)
