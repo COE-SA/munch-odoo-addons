@@ -57,12 +57,47 @@ DLN  = DLT-DLC
 Bsrt = sorted(B, key=lambda x:-x['total'])
 
 # ── KPIs ──────────────────────────────────────────────────────────────────
+
+XL_PNL = D.get('excel_pnl', {})
+XL_EXP = XL_PNL.get('expenses', {})
+XL_NS  = float(XL_PNL.get('net_sales',    0) or 0)
+XL_GP  = float(XL_PNL.get('gross_profit', 0) or 0)
+XL_GM  = float(XL_PNL.get('gross_margin', 0) or 0)
+XL_OP  = float(XL_PNL.get('op_expenses',  0) or 0)
+XL_NET = float(XL_PNL.get('net_profit',   0) or 0)
+XL_NM  = float(XL_PNL.get('net_margin',   0) or 0)
+XL_SAL = float(XL_EXP.get('salaries',     0) or 0)
+XL_RNT = float(XL_EXP.get('rent',         0) or 0)
+XL_DLF = float(XL_EXP.get('delivery_fee', 0) or 0)
+_Bxl2  = sorted([b for b in B if b.get('xl_revenue',0)>0], key=lambda x:-x.get('xl_net_profit',0))
+_best  = _Bxl2[0] if _Bxl2 else {}
+
+KPIS2 = (
+    kc(e('\u0625\u064a\u0631\u0627\u062f\u0627\u062a \u0628\u062f\u0648\u0646 VAT'),
+       sar(XL_NS), e('\u0645\u0644\u0641 \u0625\u0643\u0633\u0644'), '#06b6d4') +
+    kc(e('\u0627\u0644\u0631\u0648\u0627\u062a\u0628'),
+       sar(XL_SAL), pct(XL_SAL/XL_NS*100) if XL_NS else '0%', '#8b5cf6') +
+    kc(e('\u0627\u0644\u0625\u064a\u062c\u0627\u0631\u0627\u062a'),
+       sar(XL_RNT), pct(XL_RNT/XL_NS*100) if XL_NS else '0%', '#f59e0b') +
+    kc(e('\u0631\u0633\u0648\u0645 \u0627\u0644\u062a\u0648\u0635\u064a\u0644'),
+       sar(XL_DLF), pct(XL_DLF/XL_NS*100) if XL_NS else '0%', '#ec4899') +
+    kc(e('\u0635\u0627\u0641\u064a \u0627\u0644\u0631\u0628\u062d'),
+       sar(XL_NET), pct(XL_NM)+(' \u2705' if XL_NET>=0 else ' \u26a0\ufe0f')+' '+e('\u0635\u0627\u0641\u064a'),
+       '#22c55e' if XL_NET>=0 else '#e92c30')
+)
 KPIS=(
-    kc(e('إجمالي الإيرادات'), sar(TR),  '%d %s'%(len(B),e('فروع')), '#2ba9ed')+
-    kc(e('إجمالي الأرباح'),   sar(TGP), pct(TGP/TR*100) if TR else '0%', '#22c55e')+
-    kc(e('المعاملات'),         n(TXN),   e('طلب'), '#f59e0b')+
-    kc(e('متوسط الفاتورة'),    sar(ATK), e('لكل طلب'), '#8b5cf6')+
-    kc(e('أفضل فرع'), e(Bsrt[0]['name']) if Bsrt else '-', sar(Bsrt[0]['total']) if Bsrt else '-', '#e92c30')
+    kc(e('\u0625\u064a\u0631\u0627\u062f\u0627\u062a (+VAT)'),
+       sar(TR), '%d %s'%(len(B),e('\u0641\u0631\u0648\u0639')), '#2ba9ed')+
+    kc(e('\u0631\u0628\u062d \u062e\u0627\u0645 (\u0628\u062f\u0648\u0646 VAT)'),
+       sar(XL_GP if XL_GP else TGP), pct(XL_GM if XL_GP else TGP/TR*100 if TR else 0), '#22c55e')+
+    kc(e('\u0625\u062c\u0645\u0627\u0644\u064a \u0627\u0644\u0645\u0639\u0627\u0645\u0644\u0627\u062a'),
+       n(TXN), e('\u0637\u0644\u0628'), '#f59e0b')+
+    kc(e('\u0645\u062a\u0648\u0633\u0637 \u0627\u0644\u0641\u0627\u062a\u0648\u0631\u0629'),
+       sar(ATK), e('\u0644\u0643\u0644 \u0637\u0644\u0628'), '#8b5cf6')+
+    kc(e('\u0623\u0641\u0636\u0644 \u0641\u0631\u0639 (\u0635\u0627\u0641\u064a)'),
+       e(_best.get('name','-') if _best else '-'),
+       sar(_best.get('xl_net_profit',0) if _best else 0)+' | '+pct(_best.get('xl_net_margin',0) if _best else 0),
+       '#22c55e')
 )
 YTDK=(
     kc('YTD '+e('إيرادات'), sar(YR), '%s - %s'%(D.get('ytd_from',''),D.get('ytd_to','')), '#2ba9ed')+
@@ -75,12 +110,24 @@ YTDK=(
 def ths(*a): return ''.join('<th>%s</th>'%e(h) for h in a)
 
 BROWS=''.join(
-    '<tr><td>%s<strong>%s</strong></td><td class="nm">%s</td><td class="nm">%s</td><td class="nm">%s</td>'
-    '<td class="nm" style="color:#22c55e"><strong>%s</strong></td><td><strong>%s</strong></td>'
-    '<td class="nm" style="color:#e92c30">%s</td></tr>' %
-    (dot(i),e(b['name']),sar(b['total']),n(b.get('total_txn',0)),sar(b.get('avg_ticket',0)),
-     sar(b.get('gross_profit_real',0)),pct(b.get('gross_margin_real',0)),sar(b.get('cogs_real',0)))
-    for i,b in enumerate(B))
+    ('<tr><td>%s<strong>%s</strong></td><td class="nm">%s</td><td class="nm">%s</td>'
+     '<td class="nm">%s</td>'
+     '<td class="nm" style="color:#22c55e"><strong>%s</strong></td>'
+     '<td><strong>%s</strong></td>'
+     '<td class="nm" style="color:#e92c30">%s</td>'
+     '<td class="nm" style="color:%s"><strong>%s</strong></td>'
+     '<td><span class="tag %s">%s</span></td></tr>') % (
+        dot(i), e(b['name']),
+        sar(b['total']), n(b.get('total_txn',0)), sar(b.get('avg_ticket',0)),
+        sar(b.get('xl_gross_profit') or b.get('gross_profit_real',0)),
+        pct(b.get('xl_gross_margin') or b.get('gross_margin_real',0)),
+        sar(b.get('cogs_real',0)),
+        '#22c55e' if (b.get('xl_net_profit') or 0) >= 0 else '#e92c30',
+        sar(b.get('xl_net_profit') or b.get('gross_profit_real',0)),
+        'tg' if (b.get('xl_net_profit') or 0) >= 0 else 'tr',
+        pct(b.get('xl_net_margin') or b.get('gross_margin_real',0))
+    )
+    for i, b in enumerate(B))
 
 GROWS=''.join(
     '<tr><td>%s<strong>%s</strong></td><td class="nm">%s</td><td>%s</td><td>%s</td>'
@@ -336,22 +383,44 @@ VSROWS=''.join(
 
 # Rankings
 maxT=Bsrt[0]['total'] if Bsrt else 1
+# ── Excel P&L variables (from excel_pnl in data.json) ──────────────────────
+
+
+
 RANK=''.join(
-    '<div class="rrow"><div class="rn">%d</div><div class="rnm">%s</div>'
-    '<div class="rbb"><div class="rbf" style="width:%d%%;background:%s"></div></div>'
-    '<div class="rv">%s</div>%s<span class="tag %s">%s</span></div>'%(
-    i+1,e(b['name']),int(b['total']/maxT*100),COLORS[i%8],sar(b['total']),
-    dtag(b.get('qoq',0)),'tg' if b.get('gross_margin_real',0)>=75 else 'tn',pct(b.get('gross_margin_real',0)))
-    for i,b in enumerate(Bsrt))
+    ('<div class="rrow"><div class="rn">%d</div><div class="rnm">%s</div>'
+     '<div class="rbb"><div class="rbf" style="width:%d%%;background:%s"></div></div>'
+     '<div class="rv" style="color:%s"><strong>%s</strong></div>'
+     '<span class="tag %s" style="font-size:10px">%s %s</span></div>') % (
+        i+1, e(b['name']),
+        max(0, int(abs(b.get('xl_net_profit',0)) / max(abs(_Bxl2[0].get('xl_net_profit',1)) if _Bxl2 else 1, 1) * 100)),
+        COLORS[i%8],
+        '#22c55e' if b.get('xl_net_profit',0)>=0 else '#e92c30',
+        sar(b.get('xl_net_profit',0)),
+        'tg' if b.get('xl_net_profit',0)>=0 else 'tr',
+        pct(b.get('xl_net_margin',0)), e('\u0635\u0627\u0641\u064a')
+    )
+    for i,b in enumerate(_Bxl2))
 
 MEDALS=['&#127947;','&#127948;','&#127949;','4.','5.','6.']
 TOP3=''.join(
-    '<div class="card" style="margin-bottom:8px;border-right:4px solid %s">'
-    '<div style="display:flex;justify-content:space-between"><span style="font-weight:700">%s %s</span><span class="tag tg">%s</span></div>'
-    '<div style="font-size:11px;color:#64748b;margin-top:5px">%s: %s | %s: %s | %s: %s</div></div>'%(
-    COLORS[i%8],MEDALS[i] if i<len(MEDALS) else '',e(b['name']),sar(b['total']),
-    e('هامش'),pct(b.get('gross_margin_real',0)),e('طلبات'),n(b.get('total_txn',0)),e('م.فاتورة'),sar(b.get('avg_ticket',0)))
-    for i,b in enumerate(Bsrt[:4]))
+    ('<div class="card" style="margin-bottom:8px;border-right:4px solid %s">'
+     '<div style="display:flex;justify-content:space-between">'
+     '<span style="font-weight:700">%s %s</span>'
+     '<span class="tag %s">%s</span></div>'
+     '<div style="font-size:11px;color:#64748b;margin-top:5px">'
+     '%s: %s | %s: %s | %s: %s | %s: %s</div></div>') % (
+        COLORS[i%8],
+        ['\U0001f947','\U0001f948','\U0001f949','4.'][i] if i<4 else '',
+        e(b['name']),
+        'tg' if b.get('xl_net_profit',0)>=0 else 'tr',
+        sar(b.get('xl_net_profit',0)),
+        e('\u0635\u0627\u0641\u064a%'), pct(b.get('xl_net_margin',0)),
+        e('\u062e\u0627\u0645%'), pct(b.get('xl_gross_margin',0)),
+        e('\u0631\u0648\u0627\u062a\u0628'), sar(b.get('xl_salaries',0)),
+        e('\u0625\u064a\u062c\u0627\u0631'), sar(b.get('xl_rent',0))
+    )
+    for i, b in enumerate((_Bxl2 or Bsrt)[:4]))
 
 # JS data (ensure_ascii=True → no Arabic in JS)
 CL=json.dumps(COLORS)
@@ -384,7 +453,6 @@ JS=JS.replace('CL',  CL).replace('BJ', BJ).replace('YJ', YJ).replace('HJ', HJ).r
 
 MN=e(D.get('report_month',''))
 TTL=e('لوحة التحليل المالي - شركة بوصلة التميز التجارية')
-
 HTML="""<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -418,6 +486,8 @@ HTML="""<!DOCTYPE html>
   <span class="per">&#128197; """+D.get('date_from','')+' &mdash; '+D.get('date_to','')+"""</span>
 </div>
 <div class="kg5">"""+KPIS+"""</div>
+<div style="margin:-8px 0 12px;padding:7px 14px;background:#fffbeb;border-radius:7px;border:1px solid #fde68a;font-size:11px;color:#92400e;font-weight:600">&#128196; &#1576;&#1610;&#1575;&#1606;&#1575;&#1578; &#1575;&#1604;&#1605;&#1589;&#1575;&#1585;&#1610;&#1601; &#1605;&#1606; &#1605;&#1604;&#1601; &#1573;&#1603;&#1587;&#1604; &#8212; &#1575;&#1604;&#1571;&#1585;&#1602;&#1575;&#1605; &#1576;&#1583;&#1608;&#1606; &#1590;&#1585;&#1610;&#1576;&#1577; &#1575;&#1604;&#1602;&#1610;&#1605;&#1577; &#1575;&#1604;&#1605;&#1590;&#1575;&#1601;&#1577; 15%</div>
+<div class="kg5">"""+KPIS2+"""</div>
 <div class="tabs">
   <button id="t0" class="tab on" onclick="sw(0)">&#128202; """+e('النظرة العامة')+"""</button>
   <button id="t1" class="tab" onclick="sw(1)">&#128200; """+e('الأداء والنمو')+"""</button>
@@ -432,9 +502,9 @@ HTML="""<!DOCTYPE html>
 <div id="p0" style="display:block">
   <div class="st">"""+e('ملخص أداء الفروع')+' &mdash; '+MN+"""</div>
   <div class="card" style="overflow-x:auto"><table class="dt">
-  <thead><tr>"""+ths('الفرع','الإيرادات','المعاملات','م.الفاتورة','إجمالي الربح','هامش%','تكلفة البضاعة')+"""</tr></thead>
+  <thead><tr>"""+ths('الفرع','إيرادات+VAT','معاملات','م.فاتورة','ربح خام','هامش خام','تكلفة','صافي الربح','هامش صافي')+"""</tr></thead>
   <tbody>"""+BROWS+"""</tbody>
-  <tfoot><tr><td><strong>"""+e('الإجمالي')+"""</strong></td><td class="nm"><strong>"""+sar(TR)+"""</strong></td><td class="nm"><strong>"""+n(TXN)+"""</strong></td><td class="nm"><strong>"""+sar(ATK)+"""</strong></td><td class="nm" style="color:#22c55e"><strong>"""+sar(TGP)+"""</strong></td><td><strong>"""+pct(TGP/TR*100 if TR else 0)+"""</strong></td><td></td></tr></tfoot>
+  <tfoot><tr><td><strong>"""+e('\u0627\u0644\u0625\u062c\u0645\u0627\u0644\u064a')+"""</strong></td><td class="nm"><strong>"""+sar(TR)+"""</strong></td><td class="nm"><strong>"""+n(TXN)+"""</strong></td><td class="nm"><strong>"""+sar(ATK)+"""</strong></td><td class="nm" style="color:#22c55e"><strong>"""+sar(XL_GP if XL_GP else TGP)+"""</strong></td><td><strong>"""+pct(XL_GM if XL_GP else TGP/TR*100 if TR else 0)+"""</strong></td><td></td><td class="nm" style="color:""" + ("#22c55e" if True else "#e92c30") + """"><strong>"""+sar(XL_NET)+"""</strong></td><td><span class="tag tg">"""+pct(XL_NM)+"""</span></td></tr></tfoot>
   </table></div>
   <div class="g2">
     <div class="card"><div class="st">"""+e('مقارنة الإيرادات')+"""</div><div class="cw"><canvas id="ch_rev" style="height:260px"></canvas></div></div>
@@ -530,7 +600,7 @@ HTML="""<!DOCTYPE html>
       <div class="st">&#129351; """+e('أعلى الفروع')+"""</div>"""+TOP3+"""
       <div class="exec" style="background:#eff8ff;border:1px solid #bae6fd;border-radius:9px;padding:14px;font-size:12px;color:#64748b;line-height:2;margin-top:14px">
         <strong>&#128203; """+e('الملخص التنفيذي')+' &mdash; '+MN+"""</strong><br><br>
-        """+e('حققت الشركة إيرادات')+' <strong>'+sar(TR)+'</strong> '+e('عبر')+' '+str(len(B))+' '+e('فروع بإجمالي ربح')+' <strong>'+sar(TGP)+'</strong> '+e('وهامش')+' <strong>'+pct(TGP/TR*100 if TR else 0)+'</strong>.<br>'+e('نُفّذت')+' <strong>'+n(TXN)+'</strong> '+e('معاملة بمتوسط')+' <strong>'+sar(ATK)+'</strong>.<br>'+e('إيرادات YTD:')+' <strong>'+sar(YR)+'</strong> | '+e('صافي التوصيل:')+' <strong>'+sar(DLN)+'</strong> | '+e('مصاريف:')+' <strong>'+sar(TEX)+'</strong>.'+"""
+        """+e('\u062d\u0642\u0642\u062a \u0627\u0644\u0634\u0631\u0643\u0629 \u0625\u064a\u0631\u0627\u062f\u0627\u062a')+' <strong>'+sar(TR)+'</strong> | '+e('\u0628\u062f\u0648\u0646 VAT:')+' <strong>'+sar(XL_NS)+'</strong><br>'+e('\u0631\u0628\u062d \u062e\u0627\u0645:')+' <strong>'+sar(XL_GP)+'</strong> ('+pct(XL_GM)+') | '+e('\u0625\u062c\u0645\u0627\u0644\u064a \u0627\u0644\u0645\u0635\u0627\u0631\u064a\u0641:')+' <strong>'+sar(XL_OP)+'</strong><br>'+e('\u0631\u0648\u0627\u062a\u0628:')+' <strong>'+sar(XL_SAL)+'</strong> | '+e('\u0625\u064a\u062c\u0627\u0631:')+' <strong>'+sar(XL_RNT)+'</strong> | '+e('\u062a\u0648\u0635\u064a\u0644:')+' <strong>'+sar(XL_DLF)+'</strong><br>'+'<strong style="font-size:13px;color:'+('#22c55e' if XL_NET>=0 else '#e92c30')+'">'+e('\u0635\u0627\u0641\u064a \u0627\u0644\u0631\u0628\u062d \u0627\u0644\u0641\u0639\u0644\u064a:')+' '+sar(XL_NET)+' ('+pct(XL_NM)+')</strong><br>'+e('\u0645\u0639\u0627\u0645\u0644\u0627\u062a:')+' <strong>'+n(TXN)+'</strong> | '+e('\u0645\u062a\u0648\u0633\u0637:')+' <strong>'+sar(ATK)+'</strong> | YTD: <strong>'+sar(YR)+'</strong>.'+"""
       </div>
     </div>
   </div>
@@ -564,6 +634,6 @@ EX_CHART = json.dumps([
 ], ensure_ascii=True)
 HTML = HTML.replace('EX_JSON_PLACEHOLDER', EX_CHART)
 HTML_ASCII = ensure_ascii_html(HTML)
-with open('index.html','w',encoding='ascii') as f:
+with open("index.html","w",encoding='ascii') as f:
     f.write(HTML_ASCII)
 
