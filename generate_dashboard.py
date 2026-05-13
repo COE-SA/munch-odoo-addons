@@ -171,7 +171,66 @@ if DELROWS:
          eff_tot, e('\u0641\u0639\u0644\u064a'), sar(total_comm_del), eff_tot, sar(total_net_del))
 DLT=total_rev_del; DLC=total_comm_del; DLN=total_net_del
 
+# ── Excel P&L section ───────────────────────────────────────────────────
+XL = D.get('excel_pnl', {})
+xl_exp = XL.get('expenses', {})
+xl_ns  = float(XL.get('net_sales', 0) or 0)
+xl_gp  = float(XL.get('gross_profit', 0) or 0)
+xl_gm  = float(XL.get('gross_margin', 0) or 0)
+xl_op  = float(XL.get('op_expenses', 0) or 0)
+xl_net = float(XL.get('net_profit', 0) or 0)
+xl_nm  = float(XL.get('net_margin', 0) or 0)
+
+# Per-branch P&L rows
+XL_BR = ''
+xl_tot = [0]*6  # rev, gp, sal, rent, del, net
+for b in B:
+    rev  = float(b.get('xl_revenue',     0) or 0)
+    gp   = float(b.get('xl_gross_profit',0) or 0)
+    gm   = float(b.get('xl_gross_margin',0) or 0)
+    sal  = float(b.get('xl_salaries',    0) or 0)
+    rnt  = float(b.get('xl_rent',        0) or 0)
+    dlf  = float(b.get('xl_delivery_fee',0) or 0)
+    opx  = float(b.get('xl_op_expenses', 0) or 0)
+    netp = float(b.get('xl_net_profit',  0) or 0)
+    netm = float(b.get('xl_net_margin',  0) or 0)
+    if not rev: continue
+    for i,v2 in enumerate([rev,gp,sal,rnt,dlf,netp]): xl_tot[i]+=v2
+    nc = '#22c55e' if netp>=0 else '#e92c30'
+    XL_BR += ('<tr><td><strong>%s</strong></td><td class="nm">%s</td><td class="nm" style="color:#22c55e">%s</td><td><strong>%s</strong></td><td class="nm" style="color:#e92c30">%s</td><td class="nm" style="color:#e92c30">%s</td><td class="nm" style="color:#f59e0b">%s</td><td class="nm" style="color:%s"><strong>%s</strong></td><td><span class="tag %s">%s</span></td></tr>') % (
+        e(b['name']), sar(rev), sar(gp), pct(gm),
+        sar(sal), sar(rnt), sar(dlf), nc, sar(netp),
+        'tg' if netp>=0 else 'tr', pct(netm))
+if xl_tot[0]:
+    nc2='#22c55e' if xl_tot[5]>=0 else '#e92c30'
+    xgm=round(xl_tot[1]/xl_tot[0]*100,1)
+    xnm=round(xl_tot[5]/xl_tot[0]*100,1)
+    XL_BR += ('<tr style="background:#f0f4f9;font-weight:700"><td><strong>%s</strong></td><td class="nm"><strong>%s</strong></td><td class="nm" style="color:#22c55e"><strong>%s</strong></td><td><strong>%s</strong></td><td class="nm" style="color:#e92c30"><strong>%s</strong></td><td class="nm" style="color:#e92c30"><strong>%s</strong></td><td class="nm" style="color:#f59e0b"><strong>%s</strong></td><td class="nm" style="color:%s"><strong>%s</strong></td><td><span class="tag %s">%s</span></td></tr>') % (
+        e('\u0627\u0644\u0625\u062c\u0645\u0627\u0644\u064a'), sar(xl_tot[0]), sar(xl_tot[1]), pct(xgm),
+        sar(xl_tot[2]), sar(xl_tot[3]), sar(xl_tot[4]), nc2, sar(xl_tot[5]),
+        'tg' if xl_tot[5]>=0 else 'tr', pct(xnm))
+
+# Expense breakdown rows
+exp_items = [
+    (e('\u0631\u0648\u0627\u062a\u0628'),          xl_exp.get('salaries',0)),
+    (e('\u0625\u064a\u062c\u0627\u0631\u0627\u062a'),  xl_exp.get('rent',0)),
+    (e('\u0631\u0633\u0648\u0645 \u062a\u0648\u0635\u064a\u0644'), xl_exp.get('delivery_fee',0)),
+    (e('\u0631\u0633\u0648\u0645 \u0627\u0645\u062a\u064a\u0627\u0632'), xl_exp.get('royalty_fee',0)),
+    (e('\u062a\u0633\u0648\u064a\u0642'),           xl_exp.get('marketing',0)),
+    (e('\u0643\u0647\u0631\u0628\u0627\u0621'),    xl_exp.get('electricity',0)),
+    (e('\u0625\u0646\u062a\u0631\u0646\u062a + \u0627\u062a\u0635\u0627\u0644\u0627\u062a'),  xl_exp.get('internet',0)),
+    (e('\u0623\u062e\u0631\u0649'),                 xl_exp.get('occ',0)),
+]
+EXP_TABLE = ''.join(
+    '<tr><td>%s</td><td class="nm" style="color:#e92c30">%s</td><td class="nm" style="color:#64748b">%s</td></tr>' % (
+        lbl, sar(amt), pct(amt/xl_ns*100) if xl_ns else '0%'
+    ) for lbl, amt in exp_items if amt
+)
+EXP_TABLE += '<tr style="background:#f0f4f9;font-weight:700"><td><strong>%s</strong></td><td class="nm" style="color:#e92c30"><strong>%s</strong></td><td class="nm"><strong>%s</strong></td></tr>' % (
+    e('\u0625\u062c\u0645\u0627\u0644\u064a \u0627\u0644\u0645\u0635\u0627\u0631\u064a\u0641'), sar(xl_op), pct(xl_op/xl_ns*100) if xl_ns else '0%')
+
 # Missing delivery apps warning
+
 missing_apps = D.get('delivery_apps_missing', [])
 DEL_MISSING = ''
 if missing_apps:
@@ -306,12 +365,17 @@ CSS="""*{margin:0;padding:0;box-sizing:border-box}body{font-family:"IBM Plex San
 
 JS="""var C=CL,B=BJ,YB=YJ,H=HJ,D=DJ,P=PJ,CH={};
 function fmt(v){return Math.abs(v)>=1e6?(v/1e6).toFixed(2)+"M":Math.abs(v)>=1e3?(v/1e3).toFixed(1)+"K":Math.round(v).toLocaleString();}
-function sw(n){var i,t,p;for(i=0;i<9;i++){t=document.getElementById("t"+i);p=document.getElementById("p"+i);if(t)t.className="tab"+(i===n?" on":"");if(p)p.style.display=(i===n)?"block":"none";}if(n===0)setTimeout(dOv,50);else if(n===1)setTimeout(dGr,50);else if(n===5)setTimeout(dTm,50);else if(n===6)setTimeout(dPy,50);else if(n===7)setTimeout(dYT,50);}
+function sw(n){var i,t,p;for(i=0;i<9;i++){t=document.getElementById("t"+i);p=document.getElementById("p"+i);if(t)t.className="tab"+(i===n?" on":"");if(p)p.style.display=(i===n)?"block":"none";}if(n===0)setTimeout(dOv,50);else if(n===1)setTimeout(dGr,50);else if(n===2)setTimeout(dExp,50);else if(n===5)setTimeout(dTm,50);else if(n===6)setTimeout(dPy,50);else if(n===7)setTimeout(dYT,50);}
 function mk(id,cfg){var el=document.getElementById(id);if(!el)return;if(CH[id])CH[id].destroy();try{CH[id]=new Chart(el,cfg);}catch(e){console.error(id,e);}}
 function dOv(){if(CH.ch_rev)return;mk("ch_rev",{type:"bar",data:{labels:B.map(function(b){return b.name;}),datasets:[{data:B.map(function(b){return b.total;}),backgroundColor:C,borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:"#64748b",font:{size:10}},grid:{display:false}},y:{ticks:{color:"#64748b",font:{size:10},callback:function(v){return fmt(v);}},grid:{color:"rgba(226,232,240,.7)"}}}}});mk("ch_pie",{type:"doughnut",data:{labels:B.map(function(b){return b.name;}),datasets:[{data:B.map(function(b){return b.total;}),backgroundColor:C,borderWidth:2,borderColor:"#fff"}]},options:{responsive:true,maintainAspectRatio:false,cutout:"62%",plugins:{legend:{display:true,position:"bottom",labels:{color:"#64748b",font:{size:10},boxWidth:10,padding:5}},tooltip:{callbacks:{label:function(c){return c.label+": "+fmt(c.raw);}}}}}});}
 function dGr(){if(CH.ch_qoq)return;mk("ch_qoq",{type:"bar",data:{labels:B.map(function(b){return b.name;}),datasets:[{data:B.map(function(b){return b.qoq||0;}),backgroundColor:B.map(function(b){return(b.qoq||0)>=0?"rgba(34,197,94,.8)":"rgba(233,44,48,.8)";}),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:"#64748b",font:{size:10}},grid:{display:false}},y:{ticks:{color:"#64748b",font:{size:10},callback:function(v){return v+"%";}},grid:{color:"rgba(226,232,240,.7)"}}}}});mk("ch_margin",{type:"bar",data:{labels:B.map(function(b){return b.name;}),datasets:[{data:B.map(function(b){return b.gross_margin_real||0;}),backgroundColor:B.map(function(b){var r=b.gross_margin_real||0;return r>=75?"rgba(34,197,94,.8)":r>=65?"rgba(245,158,11,.8)":"rgba(233,44,48,.8)";}),borderRadius:5,indexAxis:"y"}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:"#64748b",font:{size:10},callback:function(v){return v+"%";}},min:50,grid:{color:"rgba(226,232,240,.7)"}},y:{ticks:{color:"#64748b",font:{size:10}},grid:{display:false}}}}});}
 function dTm(){if(CH.ch_hr)return;mk("ch_hr",{type:"line",data:{labels:Array.from({length:24},function(_,h){return(h<10?"0"+h:h)+":00";}),datasets:[{data:H,borderColor:"#2ba9ed",backgroundColor:"rgba(43,169,237,.1)",borderWidth:2,fill:true,tension:.4,pointRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:"#64748b",font:{size:9}},grid:{color:"rgba(226,232,240,.7)"}},y:{ticks:{color:"#64748b",font:{size:10},callback:function(v){return fmt(v);}},grid:{color:"rgba(226,232,240,.7)"}}}}});}
 function dPy(){if(CH.ch_pay)return;var ks=Object.keys(P),vs=ks.map(function(k){return P[k];});mk("ch_pay",{type:"doughnut",data:{labels:ks,datasets:[{data:vs,backgroundColor:C.slice(0,ks.length),borderWidth:2,borderColor:"#fff"}]},options:{responsive:true,maintainAspectRatio:false,cutout:"55%",plugins:{legend:{display:true,position:"right",labels:{color:"#64748b",font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:function(c){var t=vs.reduce(function(a,b){return a+b;},0);return c.label+": "+fmt(c.raw)+" ("+(c.raw/t*100).toFixed(1)+"%)";}}}}}});}
+function dExp(){
+  if(CH.ch_exp)return;
+  var EX=EX_JSON_PLACEHOLDER;
+  mk("ch_exp",{type:"bar",data:{labels:EX.map(function(e){return e.label;}),datasets:[{data:EX.map(function(e){return e.amount;}),backgroundColor:["#e92c30","#f59e0b","#2ba9ed","#8b5cf6","#06b6d4","#22c55e","#ec4899","#10b981"],borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",plugins:{legend:{display:false}},scales:{x:{ticks:{color:"#64748b",font:{size:10},callback:function(v){return fmt(v);}},grid:{color:"rgba(226,232,240,.7)"}},y:{ticks:{color:"#64748b",font:{size:11}},grid:{display:false}}}}});
+}
 function dYT(){if(CH.ch_ytd)return;var mo={};YB.forEach(function(b){if(b.monthly)Object.keys(b.monthly).forEach(function(k){mo[k]=(mo[k]||0)+b.monthly[k];});});var ks=Object.keys(mo).sort();mk("ch_ytd",{type:"bar",data:{labels:ks,datasets:[{data:ks.map(function(k){return Math.round(mo[k]);}),backgroundColor:"rgba(43,169,237,.7)",borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:"#64748b",font:{size:10}},grid:{display:false}},y:{ticks:{color:"#64748b",font:{size:10},callback:function(v){return fmt(v);}},grid:{color:"rgba(226,232,240,.7)"}}}}});}
 dOv();"""
 
@@ -388,18 +452,27 @@ HTML="""<!DOCTYPE html>
   </div>
 </div>
 <div id="p2" style="display:none">
-  <div class="g3">
-    <div class="kc" style="border-top:3px solid #22c55e"><div class="kl">"""+e('إجمالي الإيرادات')+"""</div><div class="kv">"""+sar(TR)+"""</div></div>
-    <div class="kc" style="border-top:3px solid #e92c30"><div class="kl">"""+e('إجمالي المصاريف')+"""</div><div class="kv" style="color:#e92c30">"""+sar(TEX)+"""</div></div>
-    <div class="kc" style="border-top:3px solid #2ba9ed"><div class="kl">"""+e('صافي الربح')+"""</div><div class="kv" style="color:#22c55e">"""+sar(TGP-TEX)+"""</div></div>
+  <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:9px;padding:11px 14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+    <div><strong style="color:#92400e">&#128196; &#1576;&#1610;&#1575;&#1606;&#1575;&#1578; &#1605;&#1575;&#1604;&#1610;&#1577; &#1605;&#1606; &#1605;&#1604;&#1601; &#1573;&#1603;&#1587;&#1604; (&#1605;&#1572;&#1602;&#1578;)</strong><div style="font-size:11px;color:#78350f;margin-top:3px">&#1575;&#1604;&#1571;&#1585;&#1602;&#1575;&#1605; &#1576;&#1583;&#1608;&#1606; &#1590;&#1585;&#1610;&#1576;&#1577; &#1575;&#1604;&#1602;&#1610;&#1605;&#1577; &#1575;&#1604;&#1605;&#1590;&#1575;&#1601;&#1577; 15% &#8212; &#1575;&#1604;&#1588;&#1607;&#1585; &#1575;&#1604;&#1602;&#1575;&#1583;&#1605; &#1578;&#1615;&#1587;&#1581;&#1576; &#1605;&#1606; Odoo &#1578;&#1604;&#1602;&#1575;&#1574;&#1610;&#1575;&#1611;</div></div>
+    <span class="badge">&#128197; &#1571;&#1576;&#1585;&#1610;&#1604; 2026</span>
   </div>
-  <div class="st">"""+e('الربحية الحقيقية مع المصاريف')+"""</div>
+  <div class="g3">
+    <div class="kc" style="border-top:3px solid #2ba9ed"><div class="kl">&#1589;&#1575;&#1601;&#1610; &#1575;&#1604;&#1573;&#1610;&#1585;&#1575;&#1583;&#1575;&#1578; (&#1576;&#1583;&#1608;&#1606; VAT)</div><div class="kv">"""+sar(xl_ns)+"""</div></div>
+    <div class="kc" style="border-top:3px solid #22c55e"><div class="kl">&#1573;&#1580;&#1605;&#1575;&#1604;&#1610; &#1575;&#1604;&#1585;&#1576;&#1581; &#1575;&#1604;&#1582;&#1575;&#1605;</div><div class="kv" style="color:#22c55e">"""+sar(xl_gp)+"""</div><div class="ks">"""+pct(xl_gm)+"""</div></div>
+    <div class="kc" style="border-top:3px solid " + ("#2ba9ed" if xl_net>=0 else "#e92c30") + ""><div class="kl">&#1589;&#1575;&#1601;&#1610; &#1575;&#1604;&#1585;&#1576;&#1581; &#1576;&#1593;&#1583; &#1575;&#1604;&#1605;&#1589;&#1575;&#1585;&#1610;&#1601;</div><div class="kv" style="color:""" + ("#22c55e" if True else "#e92c30") + """">"""+sar(xl_net)+"""</div><div class="ks">"""+pct(xl_nm)+"""</div></div>
+  </div>
+  <div class="st">P&L &#1578;&#1601;&#1589;&#1610;&#1604;&#1610; &#1604;&#1603;&#1604; &#1601;&#1585;&#1593;</div>
   <div class="card" style="overflow-x:auto"><table class="dt">
-  <thead><tr>"""+ths('الفرع','الإيرادات','تكلفة البضاعة','إجمالي الربح','هامش%','المصاريف','صافي الربح')+"""</tr></thead>
-  <tbody>"""+PROWS+"""</tbody>
-  <tfoot><tr><td><strong>"""+e('الإجمالي')+"""</strong></td><td class="nm"><strong>"""+sar(TR)+"""</strong></td><td></td><td class="nm" style="color:#22c55e"><strong>"""+sar(TGP)+"""</strong></td><td><strong>"""+pct(TGP/TR*100 if TR else 0)+"""</strong></td><td class="nm" style="color:#e92c30"><strong>"""+sar(TEX)+"""</strong></td><td class="nm" style="color:#22c55e"><strong>"""+sar(TGP-TEX)+"""</strong></td></tr></tfoot>
-  </table></div>
-  <div class="st">"""+e('تفاصيل المصاريف')+"""</div>"""+EXP_GAP+EXPHTML+"""
+  <thead><tr>"""+ths('&#1575;&#1604;&#1601;&#1585;&#1593;','&#1575;&#1604;&#1573;&#1610;&#1585;&#1575;&#1583;&#1575;&#1578;','&#1573;&#1580;&#1605;&#1575;&#1604;&#1610; &#1575;&#1604;&#1585;&#1576;&#1581;','&#1607;&#1575;&#1605;&#1588;%','&#1575;&#1604;&#1585;&#1608;&#1575;&#1578;&#1576;','&#1575;&#1604;&#1573;&#1610;&#1580;&#1575;&#1585;','&#1585;&#1587;&#1608;&#1605; &#1575;&#1604;&#1578;&#1608;&#1589;&#1610;&#1604;','&#1589;&#1575;&#1601;&#1610; &#1575;&#1604;&#1585;&#1576;&#1581;','&#1607;&#1575;&#1605;&#1588; &#1589;&#1575;&#1601;&#1610;')+"""</tr></thead>
+  <tbody>"""+XL_BR+"""</tbody></table></div>
+  <div class="st">&#1578;&#1601;&#1589;&#1610;&#1604; &#1575;&#1604;&#1605;&#1589;&#1575;&#1585;&#1610;&#1601; &#1575;&#1604;&#1578;&#1588;&#1594;&#1610;&#1604;&#1610;&#1577;</div>
+  <div class="g2">
+    <div class="card"><div class="st">&#1578;&#1608;&#1586;&#1610;&#1593; &#1575;&#1604;&#1605;&#1589;&#1575;&#1585;&#1610;&#1601;</div><div class="cw"><canvas id="ch_exp" style="height:260px"></canvas></div></div>
+    <div class="card"><div class="st">&#1580;&#1583;&#1608;&#1604; &#1575;&#1604;&#1605;&#1589;&#1575;&#1585;&#1610;&#1601;</div>
+      <table class="dt"><thead><tr>"""+ths('&#1575;&#1604;&#1576;&#1606;&#1583;','&#1575;&#1604;&#1605;&#1576;&#1604;&#1594;','% &#1605;&#1606; &#1575;&#1604;&#1573;&#1610;&#1585;&#1575;&#1583;&#1575;&#1578;')+"""</tr></thead>
+      <tbody>"""+EXP_TABLE+"""</tbody></table>
+    </div>
+  </div>
 </div>
 <div id="p3" style="display:none">
   <div class="del-box">
@@ -479,6 +552,17 @@ print(f'Tabs count: {HTML.count("onclick=\"sw(")}')
 # Final safety: convert any remaining non-ASCII to HTML entities
 def ensure_ascii_html(s):
     return ''.join('&#%d;'%ord(c) if ord(c)>127 else c for c in s)
+# Build expense chart JSON
+EX_CHART = json.dumps([
+    {'label': '\u0631\u0648\u0627\u062a\u0628', 'amount': xl_exp.get('salaries',0)},
+    {'label': '\u0625\u064a\u062c\u0627\u0631\u0627\u062a', 'amount': xl_exp.get('rent',0)},
+    {'label': '\u062a\u0648\u0635\u064a\u0644', 'amount': xl_exp.get('delivery_fee',0)},
+    {'label': '\u0627\u0645\u062a\u064a\u0627\u0632', 'amount': xl_exp.get('royalty_fee',0)},
+    {'label': '\u062a\u0633\u0648\u064a\u0642', 'amount': xl_exp.get('marketing',0)},
+    {'label': '\u0643\u0647\u0631\u0628\u0627\u0621', 'amount': xl_exp.get('electricity',0)},
+    {'label': '\u0625\u0646\u062a\u0631\u0646\u062a', 'amount': xl_exp.get('internet',0)},
+], ensure_ascii=True)
+HTML = HTML.replace('EX_JSON_PLACEHOLDER', EX_CHART)
 HTML_ASCII = ensure_ascii_html(HTML)
 with open('index.html','w',encoding='ascii') as f:
     f.write(HTML_ASCII)
