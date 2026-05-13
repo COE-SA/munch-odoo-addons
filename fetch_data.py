@@ -34,11 +34,7 @@ report_month = f'{MONTHS_AR[pm-1]} {py}'
 print(f'Riyadh now: {now.strftime("%Y-%m-%d %H:%M")}')
 print(f'Report month: {report_month}  |  {pm_start} to {pm_end}  |  YTD: {ytd_start} to {ytd_end}')
 
-# ── Delivery apps config (name → commission %) ──────────────────────────
-DELIVERY_APPS = {
-    'Online Paid':   25,
-    'Taker Wallet':  20,
-}
+# Delivery apps now fetched from POSZ partners (see fetch_delivery function)
 
 # ── POS Configs ──────────────────────────────────────────────────────────
 cfgs = q('pos.config','search_read',[[['active','=',True]]],
@@ -139,38 +135,58 @@ def fetch_payments(df, dt):
     return {k: round(v) for k, v in sorted(totals.items(), key=lambda x: -x[1])}
 
 # ── Delivery apps — each separately ──────────────────────────────────────
+# Commission rates per delivery app
+APP_COMMISSION = {
+    'Hunger Station': 25,
+    'Keeta':          25,
+    'Ninja':          20,
+    'Taker Website':  20,
+    'JAHEZ':          15,
+    'Marsool':        18,
+    'Mr.Mandoob':     25,
+    'Tamara':         25,
+    'COE Marketing':  10,
+    'Careem':         25,
+    'Noon':           25,
+    'ToYou':          22,
+    'The Chefz':      25,
+    'Occasion Website':20,
+}
+
 def fetch_delivery(df, dt):
+    """Fetch delivery app revenue from POS orders filtered by partner (POSZ customers)."""
     df_utc = (datetime.strptime(df, '%Y-%m-%d').replace(tzinfo=RIYADH)
               .astimezone(timezone.utc).strftime('%Y-%m-%d %H:%M:%S'))
     dt_utc = (datetime.strptime(dt + ' 23:59:59', '%Y-%m-%d %H:%M:%S')
               .replace(tzinfo=RIYADH)
               .astimezone(timezone.utc).strftime('%Y-%m-%d %H:%M:%S'))
+
+    # Get all POSZ delivery app partners
+    partners = q('res.partner','search_read',
+                 [[['name','ilike','POSZ'],['active','=',True]]],
+                 {'fields':['id','name'],'limit':50})
+    # Exclude generic "POS Customer"
+    del_partners = [(p['id'], p['name'].replace(' (POSZ) ***','').replace('(POSZ) ***','').strip())
+                    for p in partners
+                    if 'POS Customer' not in p['name']]
+
     result = {}
-    for app_name, commission_pct in DELIVERY_APPS.items():
-        ms = q('pos.payment.method','search_read',
-               [[['name','=',app_name]]],{'fields':['id'],'limit':1})
-        if not ms:
-            result[app_name] = {'total':0,'count':0,'commission_pct':commission_pct,
-                                'commission':0,'net':0}
-            continue
-        mid = ms[0]['id']
-        ps  = q('pos.payment','search_read',
-                [[['payment_method_id','=',mid],
-                  ['session_id.stop_at','>=',df_utc],
-                  ['session_id.stop_at','<=',dt_utc]]],
-                {'fields':['amount'],'limit':10000})
-        total      = round(sum(p['amount'] for p in (ps or [])))
-        cnt        = len(ps or [])
-        commission = round(total * commission_pct / 100)
-        net        = total - commission
-        result[app_name] = {
-            'total': total,
-            'count': cnt,
-            'commission_pct': commission_pct,
-            'commission': commission,
-            'net': net,
+    for pid, pname in del_partners:
+        rows = q('pos.order','search_read',
+                 [[['partner_id','=',pid],['state','in',['done','invoiced']],
+                   ['date_order','>=',df_utc],['date_order','<=',dt_utc]]],
+                 {'fields':['amount_total'],'limit':10000})
+        total = round(sum(r['amount_total'] for r in (rows or [])))
+        cnt   = len(rows or [])
+        rate  = APP_COMMISSION.get(pname, 25)
+        comm  = round(total * rate / 100)
+        net   = total - comm
+        result[pname] = {
+            'total': total, 'count': cnt,
+            'commission_pct': rate, 'commission': comm, 'net': net,
         }
-    return result
+    # Sort by revenue
+    return dict(sorted(result.items(), key=lambda x: -x[1]['total']))
 
 # ── Expenses ─────────────────────────────────────────────────────────────
 def fetch_expenses(df, dt):

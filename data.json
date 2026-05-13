@@ -1220,31 +1220,147 @@
     "Taker Wallet": 0
   },
   "delivery_apps": {
-    "Online Paid": {
-      "total": 400984,
-      "count": 4374,
+    "Hunger Station": {
+      "total": 197086,
+      "count": 2219,
       "commission_pct": 25,
-      "commission": 100246,
-      "net": 300738,
-      "note": "يشمل كل طلبات التطبيقات المجمّعة عبر هذه الوسيلة"
+      "commission": 49272,
+      "net": 147814
     },
-    "Taker Wallet": {
-      "total": 0,
-      "count": 0,
+    "Keeta": {
+      "total": 97359,
+      "count": 1040,
+      "commission_pct": 25,
+      "commission": 24340,
+      "net": 73019
+    },
+    "Ninja": {
+      "total": 55117,
+      "count": 639,
       "commission_pct": 20,
-      "commission": 0,
-      "net": 0,
-      "note": "لم تُسجّل طلبات في أبريل 2026"
+      "commission": 11023,
+      "net": 44094
+    },
+    "Taker Website": {
+      "total": 29344,
+      "count": 224,
+      "commission_pct": 20,
+      "commission": 5869,
+      "net": 23475
+    },
+    "JAHEZ": {
+      "total": 12684,
+      "count": 147,
+      "commission_pct": 15,
+      "commission": 1903,
+      "net": 10781
+    },
+    "Marsool": {
+      "total": 7279,
+      "count": 67,
+      "commission_pct": 18,
+      "commission": 1310,
+      "net": 5969
+    },
+    "Mr.Mandoob": {
+      "total": 1047,
+      "count": 9,
+      "commission_pct": 25,
+      "commission": 262,
+      "net": 785
+    },
+    "Tamara": {
+      "total": 915,
+      "count": 3,
+      "commission_pct": 25,
+      "commission": 229,
+      "net": 686
+    },
+    "COE Marketing": {
+      "total": 647,
+      "count": 10,
+      "commission_pct": 10,
+      "commission": 65,
+      "net": 582
     }
   },
   "delivery_ytd": {
-    "Online Paid": {
-      "total": 988276,
-      "count": 10000
+    "Hunger Station": {
+      "total": 826859,
+      "count": 8745,
+      "commission_pct": 25,
+      "commission": 206715,
+      "net": 620144
     },
-    "Taker Wallet": {
-      "total": 561,
-      "count": 3
+    "Keeta": {
+      "total": 407065,
+      "count": 4534,
+      "commission_pct": 25,
+      "commission": 101766,
+      "net": 305299
+    },
+    "Taker Website": {
+      "total": 185832,
+      "count": 1409,
+      "commission_pct": 20,
+      "commission": 37166,
+      "net": 148666
+    },
+    "Ninja": {
+      "total": 175884,
+      "count": 2030,
+      "commission_pct": 20,
+      "commission": 35177,
+      "net": 140707
+    },
+    "JAHEZ": {
+      "total": 69667,
+      "count": 716,
+      "commission_pct": 15,
+      "commission": 10450,
+      "net": 59217
+    },
+    "Marsool": {
+      "total": 53439,
+      "count": 476,
+      "commission_pct": 18,
+      "commission": 9619,
+      "net": 43820
+    },
+    "ToYou": {
+      "total": 24386,
+      "count": 253,
+      "commission_pct": 22,
+      "commission": 5365,
+      "net": 19021
+    },
+    "The Chefz": {
+      "total": 14452,
+      "count": 126,
+      "commission_pct": 25,
+      "commission": 3613,
+      "net": 10839
+    },
+    "COE Marketing": {
+      "total": 6101,
+      "count": 51,
+      "commission_pct": 10,
+      "commission": 610,
+      "net": 5491
+    },
+    "Tamara": {
+      "total": 2119,
+      "count": 8,
+      "commission_pct": 25,
+      "commission": 530,
+      "net": 1589
+    },
+    "Mr.Mandoob": {
+      "total": 1488,
+      "count": 12,
+      "commission_pct": 25,
+      "commission": 372,
+      "net": 1116
     }
   },
   "expenses": {
@@ -1597,17 +1713,6 @@
     94354
   ],
   "expenses_note": "تحذير: مصاريف أبريل 2026 غير مدخلة (رواتب، إيجارات، بدلات). المرجع: يناير 2026 = 501,126 ر.س.",
-  "delivery_apps_missing": [
-    "HungerStation (هنقرستيشن)",
-    "Ninja (نينجا)",
-    "Keeta (كيتا)",
-    "Jahez (جاهز)",
-    "Marsool (مرسول)",
-    "Careem Food (كريم فود)",
-    "Toters (توترز)",
-    "Wssel (وصل)",
-    "Snoonu (سنونو)"
-  ],
   "expenses_jan_reference": {
     "period": "يناير 2026 (آخر شهر مسجّل)",
     "total": 501126,
@@ -1709,5 +1814,11 @@
   "pos_returns": {
     "count": 55,
     "total": -5674
+  },
+  "delivery_apps_total": {
+    "total": 401478,
+    "count": 4358,
+    "commission": 94273,
+    "net": 307205
   }
 }
