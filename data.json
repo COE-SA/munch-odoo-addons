@@ -1209,14 +1209,15 @@
     "Online Paid": 400984,
     "Mada Card": 288721,
     "Visa": 49588,
-    "Marwah Cash": 10540,
-    "Safa Cash": 14783,
     "Master Card": 18719,
+    "Hamdaniyah Cash": 14704,
+    "Safa Cash": 14783,
     "Ajaweed Cash": 14638,
     "Waziriyah Cash": 11561,
-    "Hamdaniyah Cash": 14704,
+    "Marwah Cash": 10540,
     "Defaa Cash": 9967,
-    "Amex Card": 293
+    "Amex Card": 293,
+    "Taker Wallet": 0
   },
   "delivery_apps": {
     "Online Paid": {
@@ -1224,14 +1225,16 @@
       "count": 4374,
       "commission_pct": 25,
       "commission": 100246,
-      "net": 300738
+      "net": 300738,
+      "note": "يشمل كل طلبات التطبيقات المجمّعة عبر هذه الوسيلة"
     },
     "Taker Wallet": {
       "total": 0,
       "count": 0,
       "commission_pct": 20,
       "commission": 0,
-      "net": 0
+      "net": 0,
+      "note": "لم تُسجّل طلبات في أبريل 2026"
     }
   },
   "delivery_ytd": {
@@ -1593,5 +1596,118 @@
     92063,
     94354
   ],
-  "expenses_note": "بيانات المصاريف المسجلة في النظام قد لا تعكس المصاريف الفعلية الكاملة."
+  "expenses_note": "تحذير: مصاريف أبريل 2026 غير مدخلة (رواتب، إيجارات، بدلات). المرجع: يناير 2026 = 501,126 ر.س.",
+  "delivery_apps_missing": [
+    "HungerStation (هنقرستيشن)",
+    "Ninja (نينجا)",
+    "Keeta (كيتا)",
+    "Jahez (جاهز)",
+    "Marsool (مرسول)",
+    "Careem Food (كريم فود)",
+    "Toters (توترز)",
+    "Wssel (وصل)",
+    "Snoonu (سنونو)"
+  ],
+  "expenses_jan_reference": {
+    "period": "يناير 2026 (آخر شهر مسجّل)",
+    "total": 501126,
+    "breakdown": [
+      {
+        "account": "إيجار الفروع (Sales Expense branch rent)",
+        "amount": 234707,
+        "note": "دفع ربع سنوي / مقدّم"
+      },
+      {
+        "account": "رواتب موظفي الفروع",
+        "amount": 71095
+      },
+      {
+        "account": "رواتب موظفي الإدارة",
+        "amount": 44170
+      },
+      {
+        "account": "رسوم مانش (عمولات توصيل Munch fees)",
+        "amount": 32882
+      },
+      {
+        "account": "بدل سكن إداري",
+        "amount": 21000
+      },
+      {
+        "account": "بدل سكن موظفي الفروع",
+        "amount": 20330
+      },
+      {
+        "account": "خدمات ضيافة (LoPrev)",
+        "amount": 17709
+      },
+      {
+        "account": "مصاريف أخرى للمبيعات",
+        "amount": 15031
+      },
+      {
+        "account": "بدل طبيعة عمل",
+        "amount": 9500
+      },
+      {
+        "account": "بدل انتقال فروع",
+        "amount": 5570
+      },
+      {
+        "account": "تذاكر سفر",
+        "amount": 3611
+      },
+      {
+        "account": "بدل إعاشة",
+        "amount": 3200
+      },
+      {
+        "account": "بدل انتقال إداري",
+        "amount": 3100
+      },
+      {
+        "account": "بدل مكافأة موظفين",
+        "amount": 2606
+      },
+      {
+        "account": "صيانة وتجهيزات",
+        "amount": 2475
+      },
+      {
+        "account": "رسوم إدارية",
+        "amount": 2252
+      },
+      {
+        "account": "رسوم حكومية",
+        "amount": 2125
+      },
+      {
+        "account": "فروق نقدية",
+        "amount": 1809
+      },
+      {
+        "account": "تدريب",
+        "amount": 1794
+      },
+      {
+        "account": "أخرى",
+        "amount": 9170
+      }
+    ]
+  },
+  "expenses_gap": {
+    "recorded_april": 6809,
+    "jan_reference": 501126,
+    "est_monthly_excl_rent": 266419,
+    "months_not_entered": [
+      "فبراير 2026",
+      "مارس 2026",
+      "أبريل 2026"
+    ],
+    "note": "الرواتب والإيجارات وبدلات الفروع غير مدخلة لأبريل. آخر إدخال: يناير 2026."
+  },
+  "pos_returns": {
+    "count": 55,
+    "total": -5674
+  }
 }

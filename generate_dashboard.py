@@ -139,6 +139,59 @@ if DELROWS:
         e('الإجمالي'),n(total_cnt_del),e('طلب'),sar(total_rev_del),sar(total_comm_del),sar(total_net_del))
 DLT=total_rev_del; DLC=total_comm_del; DLN=total_net_del
 
+# Missing delivery apps warning
+missing_apps = D.get('delivery_apps_missing', [])
+DEL_MISSING = ''
+if missing_apps:
+    apps_str = ' &nbsp;|&nbsp; '.join('<strong>%s</strong>' % e(a) for a in missing_apps)
+    DEL_MISSING = (
+        '<div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:9px;padding:14px;margin-top:12px">'
+        '<div style="font-size:13px;font-weight:700;color:#991b1b;margin-bottom:8px">&#128683; %s (%d %s)</div>'
+        '<div style="font-size:12px;color:#64748b;line-height:2">%s</div>'
+        '<div style="font-size:11px;color:#991b1b;margin-top:8px;font-style:italic">%s</div>'
+        '</div>'
+    ) % (
+        e('تطبيقات غير مسجّلة في Odoo'), len(missing_apps), e('تطبيق'),
+        apps_str,
+        e('لإضافتها: Odoo POS ← إعدادات ← طرق الدفع ← إضافة كل تطبيق')
+    )
+
+# Expense gap analysis
+eg = D.get('expenses_gap', {})
+jan_ref = D.get('expenses_jan_reference', {})
+EXP_GAP = ''
+if eg and jan_ref:
+    recorded = eg.get('recorded_april', 0)
+    jan_total = jan_ref.get('total', 0)
+    missing_months = ' | '.join(eg.get('months_not_entered', []))
+    jan_rows = ''.join(
+        '<tr><td style="font-size:11px;color:#1e293b">%s</td><td class="nm" style="color:#e92c30">%s</td></tr>' % (e(item['account']), sar(item['amount']))
+        for item in jan_ref.get('breakdown', [])[:15]
+    )
+    EXP_GAP = (
+        '<div style="background:#fffbeb;border:2px solid #f59e0b;border-radius:10px;margin-bottom:14px;overflow:hidden">'
+        '<div style="background:#fef3c7;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">'
+        '<div><div style="font-size:14px;font-weight:700;color:#92400e">&#9888;&#65039; %s</div>'
+        '<div style="font-size:11px;color:#78350f;margin-top:3px">%s: %s</div></div>'
+        '<div style="display:flex;gap:20px"><div style="text-align:center"><div style="font-size:10px;color:#92400e;font-weight:700">%s</div><div style="font-size:19px;font-weight:700;font-family:monospace;color:#e92c30">%s</div></div>'
+        '<div style="text-align:center"><div style="font-size:10px;color:#92400e;font-weight:700">%s</div><div style="font-size:19px;font-weight:700;font-family:monospace;color:#f59e0b">%s</div></div></div>'
+        '</div>'
+        '<div style="padding:14px"><div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:10px">%s</div>'
+        '<table class="dt" style="font-size:12px"><thead><tr><th>%s</th><th>%s</th></tr></thead>'
+        '<tbody>%s</tbody>'
+        '<tfoot><tr><td><strong>%s</strong></td><td class="nm"><strong style="color:#e92c30">%s</strong></td></tr></tfoot>'
+        '</table></div></div>'
+    ) % (
+        e('مصاريف أبريل غير مدخلة في Odoo'),
+        e('أشهر ناقصة'), e(missing_months),
+        e('مسجّل فعلياً أبريل'), sar(recorded),
+        e('مرجع يناير 2026'), sar(jan_total),
+        e('هيكل مصاريف يناير 2026 (آخر شهر مدخل بالكامل — يشمل دفعة إيجار ربع سنوية)'),
+        e('البند'), e('المبلغ'),
+        jan_rows,
+        e('إجمالي يناير 2026'), sar(jan_total)
+    )
+
 # Menu engineering
 MENU=''
 if PR:
@@ -314,7 +367,7 @@ HTML="""<!DOCTYPE html>
   <tbody>"""+PROWS+"""</tbody>
   <tfoot><tr><td><strong>"""+e('الإجمالي')+"""</strong></td><td class="nm"><strong>"""+sar(TR)+"""</strong></td><td></td><td class="nm" style="color:#22c55e"><strong>"""+sar(TGP)+"""</strong></td><td><strong>"""+pct(TGP/TR*100 if TR else 0)+"""</strong></td><td class="nm" style="color:#e92c30"><strong>"""+sar(TEX)+"""</strong></td><td class="nm" style="color:#22c55e"><strong>"""+sar(TGP-TEX)+"""</strong></td></tr></tfoot>
   </table></div>
-  <div class="st">"""+e('تفاصيل المصاريف')+"""</div>"""+EXPHTML+"""
+  <div class="st">"""+e('تفاصيل المصاريف')+"""</div>"""+EXP_GAP+EXPHTML+"""
 </div>
 <div id="p3" style="display:none">
   <div class="del-box">
@@ -326,6 +379,7 @@ HTML="""<!DOCTYPE html>
   <div class="card" style="overflow-x:auto"><table class="dt">
   <thead><tr>"""+ths('التطبيق','عدد الطلبات','إجمالي الدخل','نسبة العمولة','مبلغ العمولة','المستحق لك')+"""</tr></thead>
   <tbody>"""+DELROWS+"""</tbody></table></div>
+"""+DEL_MISSING+"""
 </div>
 <div id="p4" style="display:none">
   <div class="st">"""+e('مصفوفة هندسة القائمة')+"""</div>"""+MENU+"""
@@ -396,5 +450,4 @@ def ensure_ascii_html(s):
 HTML_ASCII = ensure_ascii_html(HTML)
 with open('index.html','w',encoding='ascii') as f:
     f.write(HTML_ASCII)
-print(f'HTML size: {len(HTML_ASCII):,} chars')
-print('Done: index.html written')
+
