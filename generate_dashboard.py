@@ -747,15 +747,129 @@ table.dt tfoot td{
   padding:10px 16px;margin-bottom:16px;flex-wrap:wrap;gap:8px;
 }
 .xl-banner span{font-size:12px;color:#92400e;font-weight:700}
-/* ── Responsive ─────────────────────────────────────────────────────────── */
-@media(max-width:920px){
-  .kg5,.kg4{grid-template-columns:1fr 1fr}
-  .g2,.g3{grid-template-columns:1fr}
-  .bar{padding:0 14px}
-  .wrap{padding:14px}
+/* ── Responsive ─────────────────────────────────────────────────────────────
+   Breakpoints:
+     Tablet  : ≤ 1024px
+     Mobile  : ≤ 768px
+     Small   : ≤ 480px
+─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Tablet (≤1024px) ─────────────────────────────────────────────────── */
+@media(max-width:1024px){
+  .wrap{padding:16px}
+  .kg5{grid-template-columns:repeat(3,1fr)}
+  .kg4{grid-template-columns:repeat(2,1fr)}
+  .kv{font-size:20px}
+  table.dt th,table.dt td{padding:9px 10px;font-size:12px}
 }
-@media(max-width:520px){
-  .kg5,.kg4{grid-template-columns:1fr}
+
+/* ── Mobile (≤768px) ──────────────────────────────────────────────────── */
+@media(max-width:768px){
+  /* Navbar */
+  .bar{height:56px;padding:0 12px}
+  .logo-badge img{height:28px}
+  .logo-badge{padding:4px 8px}
+  .t1{font-size:12px}
+  .t2{display:none}
+  .upd{display:none}
+  .badge{font-size:10px;padding:3px 10px}
+
+  /* Layout */
+  .wrap{padding:12px 10px}
+  .phdr{flex-direction:column;gap:8px}
+  .phdr h2{font-size:17px}
+  .per{font-size:10px}
+
+  /* KPI grids */
+  .kg5{grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+  .kg4{grid-template-columns:1fr 1fr;gap:10px}
+  .g2{grid-template-columns:1fr}
+  .g3{grid-template-columns:1fr}
+  .kc{padding:14px 16px}
+  .kv{font-size:19px}
+  .kl{font-size:9px}
+  .ks{font-size:10px}
+
+  /* Tabs */
+  .tabs{
+    gap:3px;padding:4px;margin-bottom:14px;
+    display:grid;grid-template-columns:repeat(3,1fr);
+  }
+  .tab{padding:8px 6px;font-size:10px;text-align:center;border-radius:6px}
+
+  /* Cards */
+  .card{padding:14px 12px;margin-bottom:10px}
+  .st{font-size:10px;margin-bottom:10px}
+
+  /* Tables — horizontal scroll */
+  .card:has(table.dt){overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table.dt{min-width:480px}
+  table.dt th,table.dt td{padding:8px 9px;font-size:11px;white-space:nowrap}
+
+  /* Fallback for browsers without :has() */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -12px;padding:0 12px}
+
+  /* Charts */
+  .cw canvas{height:200px!important}
+
+  /* Ranking */
+  .rrow{gap:8px}
+  .rnm{min-width:90px;font-size:11px}
+  .rv{min-width:70px;font-size:11px}
+  .rn{width:22px;font-size:14px}
+
+  /* Delivery boxes */
+  .del-box{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .dc{min-width:0;padding:12px 10px}
+  .dv{font-size:16px}
+
+  /* Heatmap */
+  .hmap,.hlabel{grid-template-columns:repeat(12,1fr)}
+  .hcell{height:32px;font-size:8px}
+  .hlbl{font-size:8px}
+  .hcell:nth-child(n+13){display:none}
+  .hlabel span:nth-child(n+13){display:none}
+
+  /* Day map */
+  .dmap{grid-template-columns:repeat(4,1fr);gap:6px}
+  .dcell{padding:10px 4px}
+  .dcell-val{font-size:12px}
+
+  /* Executive summary */
+  .exec{font-size:12px;padding:14px 14px;line-height:1.9}
+
+  /* Recommendation cards */
+  .rec{padding:11px 12px}
+  .rt{font-size:12px}
+  .rb{font-size:11px}
+
+  /* XL banner */
+  .xl-banner{flex-direction:column;gap:6px}
+
+  /* Header in panes */
+  .phdr p{display:none}
+}
+
+/* ── Small phones (≤480px) ────────────────────────────────────────────── */
+@media(max-width:480px){
+  .kg5,.kg4{grid-template-columns:1fr 1fr}
+  .wrap{padding:10px 8px}
+  .kv{font-size:17px}
+  .tabs{grid-template-columns:repeat(3,1fr)}
+  .tab{font-size:9px;padding:7px 4px}
+  .bar{height:50px}
+  .logo-badge img{height:24px}
+  .t1{font-size:11px}
+  .badge{display:none}
+  .del-box{grid-template-columns:1fr 1fr}
+  .dmap{grid-template-columns:repeat(3,1fr)}
+  table.dt{min-width:380px}
+  table.dt th,table.dt td{padding:6px 7px;font-size:10px}
+  .rrow{flex-wrap:wrap}
+  .rbb{width:100%;order:3}
+  .rnm{order:1}
+  .rv{order:2}
+  .rn{order:0}
 }
 """
 
