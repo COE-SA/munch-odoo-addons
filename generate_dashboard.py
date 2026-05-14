@@ -461,6 +461,7 @@ CSS="""
   --radius-sm:8px;
   --radius-lg:16px;
 }
+html{overflow-x:hidden}
 body{
   font-family:'Tajawal',sans-serif;
   background:var(--bg);
@@ -765,8 +766,11 @@ table.dt tfoot td{
 
 /* ── Mobile (≤768px) ──────────────────────────────────────────────────── */
 @media(max-width:768px){
+  /* Critical overflow fixes */
+  html,body{overflow-x:hidden;width:100%}
+  *{max-width:100%;box-sizing:border-box}
   /* Navbar */
-  .bar{height:56px;padding:0 12px}
+  .bar{height:56px;padding:0 12px;overflow:hidden}
   .logo-badge img{height:28px}
   .logo-badge{padding:4px 8px}
   .t1{font-size:12px}
@@ -775,24 +779,24 @@ table.dt tfoot td{
   .badge{font-size:10px;padding:3px 10px}
 
   /* Layout */
-  .wrap{padding:12px 10px}
+  .wrap{padding:12px 10px;width:100%;max-width:100%}
   .phdr{flex-direction:column;gap:8px}
   .phdr h2{font-size:17px}
   .per{font-size:10px}
 
   /* KPI grids */
-  .kg5{grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+  .kg5{grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
   .kg4{grid-template-columns:1fr 1fr;gap:10px}
   .g2{grid-template-columns:1fr}
   .g3{grid-template-columns:1fr}
   .kc{padding:14px 16px}
-  .kv{font-size:19px}
+  .kv{font-size:15px;line-height:1.1;word-break:break-word}
   .kl{font-size:9px}
   .ks{font-size:10px}
 
   /* Tabs */
   .tabs{
-    gap:3px;padding:4px;margin-bottom:14px;
+    gap:4px;padding:6px;margin-bottom:14px;
     display:grid;grid-template-columns:repeat(3,1fr);
   }
   .tab{padding:8px 6px;font-size:10px;text-align:center;border-radius:6px}
@@ -803,7 +807,7 @@ table.dt tfoot td{
 
   /* Tables — horizontal scroll */
   .card:has(table.dt){overflow-x:auto;-webkit-overflow-scrolling:touch}
-  table.dt{min-width:480px}
+  table.dt{min-width:420px;width:max-content}
   table.dt th,table.dt td{padding:8px 9px;font-size:11px;white-space:nowrap}
 
   /* Fallback for browsers without :has() */
@@ -853,6 +857,7 @@ table.dt tfoot td{
 /* ── Small phones (≤480px) ────────────────────────────────────────────── */
 @media(max-width:480px){
   .kg5,.kg4{grid-template-columns:1fr 1fr}
+  .kv{font-size:17px}
   .wrap{padding:10px 8px}
   .kv{font-size:17px}
   .tabs{grid-template-columns:repeat(3,1fr)}
