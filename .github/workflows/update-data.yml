@@ -10,8 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: pip install requests -q
       - name: Fetch Odoo data
-        run: pip install requests -q && python3 fetch_data.py
+        run: python3 fetch_data.py
+        continue-on-error: true
       - name: Generate dashboard
         run: python3 generate_dashboard.py
       - name: Push updates
