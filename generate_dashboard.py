@@ -356,7 +356,7 @@ else:
 
 # Heatmap / timing
 mH=max(HR) if max(HR)>0 else 1
-mD=max(DY) if max(DY)>0 else 1
+mD=max(DY) if DY and max(DY)>0 else 1
 HCELLS=''.join('<div class="hcell" style="background:rgba(43,169,237,%.2f)" title="%02d:00 | SAR %s">%s</div>'%(0.06+v/mH*0.84,h,n(v),n(v) if v>mH*.3 else '') for h,v in enumerate(HR))
 HLBLS =''.join('<div class="hlbl">%02d</div>'%h for h in range(24))
 DCELLS=''.join('<div class="dcell" style="background:rgba(43,169,237,%.2f)"><div class="dcell-lbl">%s</div><div class="dcell-val">%s</div></div>'%(0.08+v/mD*.3,e(DAYS7[d]),n(v)) for d,v in enumerate(DY))
