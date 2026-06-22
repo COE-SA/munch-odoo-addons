@@ -301,10 +301,10 @@ function dPnl(){
   var meArr =months.map(function(m){return ME[m]?ME[m].total:0;});
   var npArr =months.map(function(m,i){return gpArr[i]-meArr[i];});
   mk('ch_pnl',{type:'bar',data:{labels:labels,datasets:[
-    {label:'&#1589;&#1575;&#1601;&#1610; &#1575;&#1604;&#1573;&#1610;&#1585;&#1575;&#1583;&#1575;&#1578;',data:revArr,backgroundColor:'rgba(43,169,237,.55)',borderRadius:6,borderSkipped:false},
-    {label:'&#1575;&#1604;&#1585;&#1576;&#1581; &#1575;&#1604;&#1582;&#1575;&#1605;',data:gpArr,backgroundColor:'rgba(22,163,74,.6)',borderRadius:6,borderSkipped:false},
-    {label:'&#1575;&#1604;&#1605;&#1589;&#1575;&#1585;&#1610;&#1601; (Odoo)',data:meArr,backgroundColor:'rgba(220,38,38,.55)',borderRadius:6,borderSkipped:false},
-    {label:'&#1589;&#1575;&#1601;&#1610; &#1575;&#1604;&#1585;&#1576;&#1581;',data:npArr,type:'line',fill:false,borderColor:'#0f172a',borderWidth:2.5,pointRadius:6,pointBackgroundColor:npArr.map(function(v){return v>=0?'#16a34a':'#dc2626';}),pointBorderColor:'#fff',pointBorderWidth:2}
+    {label:'Net Revenue',data:revArr,backgroundColor:'rgba(43,169,237,.55)',borderRadius:6,borderSkipped:false},
+    {label:'Gross Profit',data:gpArr,backgroundColor:'rgba(22,163,74,.6)',borderRadius:6,borderSkipped:false},
+    {label:'Expenses',data:meArr,backgroundColor:'rgba(220,38,38,.55)',borderRadius:6,borderSkipped:false},
+    {label:'Net Profit',data:npArr,type:'line',fill:false,borderColor:'#0f172a',borderWidth:2.5,pointRadius:6,pointBackgroundColor:npArr.map(function(v){return v>=0?'#16a34a':'#dc2626';}),pointBorderColor:'#fff',pointBorderWidth:2}
   ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{color:'#475569',font:{size:10},padding:10}}},scales:{x:{ticks:{color:'#64748b'},grid:{display:false}},y:{ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'}}}}});
 }
 
@@ -314,9 +314,9 @@ function dBr(){
   var Bsort=B.slice().sort(function(a,b){return b.q1_net_profit-a.q1_net_profit;});
   var labels=Bsort.map(function(b){return b.name_ar||b.name;});
   mk('ch_br',{type:'bar',data:{labels:labels,datasets:[
-    {label:'&#1575;&#1604;&#1585;&#1576;&#1581; &#1575;&#1604;&#1582;&#1575;&#1605;',data:Bsort.map(function(b){return b.q1_gross_profit;}),backgroundColor:'rgba(43,169,237,.55)',borderRadius:5,borderSkipped:false},
-    {label:'&#1575;&#1604;&#1605;&#1589;&#1575;&#1585;&#1610;&#1601; &#1575;&#1604;&#1578;&#1588;&#1594;&#1610;&#1604;&#1610;&#1577;',data:Bsort.map(function(b){return b.q1_opex;}),backgroundColor:'rgba(220,38,38,.5)',borderRadius:5,borderSkipped:false},
-    {label:'&#1589;&#1575;&#1601;&#1610; &#1575;&#1604;&#1585;&#1576;&#1581;',data:Bsort.map(function(b){return b.q1_net_profit;}),type:'line',fill:false,borderColor:'#0f172a',borderWidth:2,pointRadius:7,pointBackgroundColor:Bsort.map(function(b){return b.q1_net_profit>=0?'#16a34a':'#dc2626';}),pointBorderColor:'#fff',pointBorderWidth:2}
+    {label:'Gross Profit',data:Bsort.map(function(b){return b.q1_gross_profit;}),backgroundColor:'rgba(43,169,237,.55)',borderRadius:5,borderSkipped:false},
+    {label:'OpEx',data:Bsort.map(function(b){return b.q1_opex;}),backgroundColor:'rgba(220,38,38,.5)',borderRadius:5,borderSkipped:false},
+    {label:'Net Profit',data:Bsort.map(function(b){return b.q1_net_profit;}),type:'line',fill:false,borderColor:'#0f172a',borderWidth:2,pointRadius:7,pointBackgroundColor:Bsort.map(function(b){return b.q1_net_profit>=0?'#16a34a':'#dc2626';}),pointBorderColor:'#fff',pointBorderWidth:2}
   ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{color:'#475569',font:{size:10},padding:10}}},scales:{x:{ticks:{color:'#64748b'},grid:{display:false}},y:{ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'}}}}});
   mk('ch_br_share',{type:'doughnut',data:{labels:B.map(function(b){return b.name_ar||b.name;}),datasets:[{data:B.map(function(b){return b.q1_revenue;}),backgroundColor:B.map(function(b){return b.color;}),borderWidth:3,borderColor:'#fff',hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{color:'#475569',font:{size:10},boxWidth:10,padding:8}},tooltip:{callbacks:{label:function(c){var t=B.reduce(function(s,b){return s+b.q1_revenue;},0);return ' '+fmt(c.raw)+' ('+((c.raw/t)*100).toFixed(1)+'%)';}}}}}});
   /* Expense composition per branch &#8212; stacked bar */
@@ -342,7 +342,7 @@ function dTrend(){
 /* Expenses */
 function dExp(){
   if(CH.ch_exp)return;
-  var lbs=['&#1585;&#1608;&#1575;&#1578;&#1576;','&#1573;&#1610;&#1580;&#1575;&#1585;','&#1604;&#1608;&#1576;&#1585;&#1610;&#1601;','&#1575;&#1605;&#1578;&#1610;&#1575;&#1586;','&#1581;&#1603;&#1608;&#1605;&#1610;&#1577;','&#1578;&#1571;&#1605;&#1610;&#1606;','&#1603;&#1607;&#1585;&#1576;&#1575;&#1569;','&#1576;&#1606;&#1603;&#1610;&#1577;','&#1571;&#1582;&#1585;&#1609;'];
+  var lbs=['Salaries','Rent','Catering','Royalty','Govt','Insurance','Electricity','Bank','Other'];
   var vals=[230985,520182,233936,93873,56375,41461,14785,12612,418003];
   var clrs=['#8b5cf6','#f59e0b','#2ba9ed','#06b6d4','#ec4899','#e92c30','#22c55e','#94a3b8','#64748b'];
   mk('ch_exp',{type:'doughnut',data:{labels:lbs,datasets:[{data:vals,backgroundColor:clrs,borderWidth:3,borderColor:'#fff',hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{position:'right',labels:{color:'#475569',font:{size:10},boxWidth:10,padding:8}},tooltip:{callbacks:{label:function(c){return ' '+fmt(c.raw)+' ('+((c.raw/1622212)*100).toFixed(1)+'%)';}}}}}});
@@ -355,9 +355,9 @@ function dDel(){
   var clrs=['#2ba9ed','#e92c30','#22c55e','#f59e0b','#8b5cf6','#06b6d4','#ec4899','#10b981','#94a3b8','#0ea5e9','#f97316'];
   mk('ch_del',{type:'doughnut',data:{labels:keys,datasets:[{data:totals,backgroundColor:clrs,borderWidth:3,borderColor:'#fff',hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{position:'right',labels:{color:'#475569',font:{size:10},boxWidth:10,padding:8}},tooltip:{callbacks:{label:function(c){return ' '+fmt(c.raw);}}}}}});
   mk('ch_del_net',{type:'bar',data:{labels:keys,datasets:[
-    {label:'&#1575;&#1604;&#1573;&#1610;&#1585;&#1575;&#1583;&#1575;&#1578;',data:totals,backgroundColor:'rgba(43,169,237,.55)',borderRadius:5,borderSkipped:false},
-    {label:'&#1575;&#1604;&#1593;&#1605;&#1608;&#1604;&#1577;',data:keys.map(function(k){return DA[k].commission;}),backgroundColor:'rgba(220,38,38,.6)',borderRadius:5,borderSkipped:false},
-    {label:'&#1575;&#1604;&#1589;&#1575;&#1601;&#1610;',data:keys.map(function(k){return DA[k].net;}),backgroundColor:'rgba(22,163,74,.7)',borderRadius:5,borderSkipped:false}
+    {label:'Revenue',data:totals,backgroundColor:'rgba(43,169,237,.55)',borderRadius:5,borderSkipped:false},
+    {label:'Commission',data:keys.map(function(k){return DA[k].commission;}),backgroundColor:'rgba(220,38,38,.6)',borderRadius:5,borderSkipped:false},
+    {label:'Net',data:keys.map(function(k){return DA[k].net;}),backgroundColor:'rgba(22,163,74,.7)',borderRadius:5,borderSkipped:false}
   ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{color:'#475569',font:{size:10},padding:10}}},scales:{x:{ticks:{color:'#64748b',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'}}}}});
 }
 
