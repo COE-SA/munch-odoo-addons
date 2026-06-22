@@ -6,12 +6,10 @@
 <title>&#1604;&#1608;&#1581;&#1577; &#1575;&#1604;&#1578;&#1581;&#1604;&#1610;&#1604; &#1575;&#1604;&#1605;&#1575;&#1604;&#1610; - &#1588;&#1585;&#1603;&#1577; &#1576;&#1608;&#1589;&#1604;&#1577; &#1575;&#1604;&#1578;&#1605;&#1610;&#1586; &#1575;&#1604;&#1578;&#1580;&#1575;&#1585;&#1610;&#1577;</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#f0f2f7;--surface:#fff;--surface2:#f8fafc;--nav:#0f172a;--nav2:#1e293b;--blue:#2ba9ed;--blue-lt:#eff8ff;--red:#e92c30;--green:#16a34a;--amber:#d97706;--purple:#7c3aed;--text:#0f172a;--text2:#475569;--text3:#94a3b8;--border:#e2e8f0;--border2:#f1f5f9;--sh:0 1px 3px rgba(0,0,0,.08);--sh-md:0 4px 6px -1px rgba(0,0,0,.08);--r:12px;--rs:8px}
-html,body{overflow-x:hidden;width:100%}
+<style>*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f0f2f7;--surface:#fff;--surface2:#f8fafc;--nav:#0f172a;--nav2:#1e293b;--blue:#2ba9ed;--blue-lt:#eff8ff;--red:#e92c30;--green:#16a34a;--text:#0f172a;--text2:#475569;--text3:#94a3b8;--border:#e2e8f0;--border2:#f1f5f9;--sh:0 1px 3px rgba(0,0,0,.08);--sh-md:0 4px 6px -1px rgba(0,0,0,.1);--r:14px;--rs:8px}
+html,body{overflow-x:hidden;width:100%;-webkit-text-size-adjust:100%}
 body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--text);direction:rtl;font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
-/* NAV */
 .bar{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);padding:0 24px;height:66px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 4px 20px rgba(0,0,0,.3)}
 .lw{display:flex;align-items:center;gap:14px}
 .logo-b{background:#2ba9ed;border-radius:10px;padding:5px 10px;display:flex;align-items:center}
@@ -20,61 +18,50 @@ body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--text);dir
 .t2{font-size:11px;color:rgba(255,255,255,.5);margin-top:2px}
 .badge{font-size:11px;background:rgba(43,169,237,.25);color:#7dd3fc;border:1px solid rgba(43,169,237,.35);padding:4px 14px;border-radius:20px;font-weight:600}
 .upd{font-size:10px;color:rgba(255,255,255,.35)}
-/* LAYOUT */
 .wrap{padding:20px 24px;max-width:1560px;margin:0 auto}
 .phdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;flex-wrap:wrap;gap:8px}
 .phdr h2{font-size:19px;font-weight:800;letter-spacing:-.4px}
 .phdr p{font-size:12px;color:var(--text2);margin-top:2px}
 .per{font-size:11px;color:#2ba9ed;background:#eff8ff;border:1px solid #bae6fd;padding:5px 14px;border-radius:20px;font-weight:700}
-/* GRIDS */
-.kg5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:12px}
+.kg5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:12px}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px}
-/* KPI CARD */
-.kc{background:var(--surface);border-radius:var(--r);padding:18px 20px;box-shadow:var(--sh);border:1px solid var(--border2);position:relative;overflow:hidden;transition:transform .15s}
-.kc::before{content:'';position:absolute;top:0;right:0;left:0;height:3px;background:var(--accent,#2ba9ed)}
+.kc{background:var(--surface);border-radius:var(--r);padding:18px 20px;box-shadow:var(--sh);border:1px solid var(--border2);position:relative;overflow:hidden;transition:transform .15s,box-shadow .15s}
+.kc::before{content:'';position:absolute;top:0;right:0;left:0;height:4px;background:var(--accent,#2ba9ed);border-radius:var(--r) var(--r) 0 0}
 .kc:hover{transform:translateY(-2px);box-shadow:var(--sh-md)}
 .kl{font-size:9px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
 .kv{font-size:22px;font-weight:800;line-height:1;font-family:'Cairo','Tajawal',monospace;letter-spacing:-.5px}
 .ks{font-size:11px;color:var(--text2);margin-top:6px;font-weight:500}
-/* TABS */
-.tabs{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:5px;display:flex;gap:4px;margin-bottom:20px;overflow-x:auto;flex-wrap:wrap;box-shadow:var(--sh)}
-.tab{padding:9px 16px;background:none;border:none;cursor:pointer;font-size:12px;color:var(--text2);border-radius:var(--rs);font-family:'Tajawal',sans-serif;white-space:nowrap;font-weight:600;transition:all .15s}
+.tabs{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:5px;display:flex;gap:4px;margin-bottom:20px;box-shadow:var(--sh);flex-wrap:wrap}
+.tab{padding:9px 14px;background:none;border:none;cursor:pointer;font-size:12px;color:var(--text2);border-radius:var(--rs);font-family:'Tajawal',sans-serif;white-space:nowrap;font-weight:600;transition:all .15s;text-align:center}
 .tab:hover{background:var(--bg);color:var(--text)}
 .tab.on{background:#2ba9ed;color:#fff;box-shadow:0 2px 8px rgba(43,169,237,.4)}
-/* CARD */
-.card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:18px 20px;margin-bottom:14px;box-shadow:var(--sh)}
+.card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:20px 22px;margin-bottom:14px;box-shadow:var(--sh);overflow-x:auto}
 .st{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
 .st::after{content:'';flex:1;height:1px;background:var(--border)}
-.cw{position:relative;width:100%}
-/* TABLE */
-table.dt{width:100%;border-collapse:collapse;font-size:12.5px}
-table.dt th{padding:9px 11px;font-size:9px;font-weight:700;color:var(--text3);border-bottom:2px solid var(--border);text-align:right;background:var(--surface2);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
-table.dt td{padding:9px 11px;border-bottom:1px solid var(--border2);vertical-align:middle}
+.cw{position:relative;width:100%;overflow:hidden}
+table.dt{width:100%;border-collapse:collapse;font-size:12.5px;min-width:560px}
+table.dt th{padding:10px 12px;font-size:9px;font-weight:700;color:var(--text3);border-bottom:2px solid var(--border);text-align:right;background:var(--surface2);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+table.dt td{padding:10px 12px;border-bottom:1px solid var(--border2);vertical-align:middle}
 table.dt tbody tr:last-child td{border-bottom:none}
 table.dt tbody tr:hover td{background:#f8faff}
-/* TAGS */
-.tag{display:inline-flex;align-items:center;font-size:10px;padding:3px 8px;border-radius:6px;font-weight:700;font-family:'Cairo','Tajawal',monospace;white-space:nowrap}
+.tag{display:inline-flex;align-items:center;font-size:10px;padding:3px 9px;border-radius:6px;font-weight:700;font-family:'Cairo','Tajawal',monospace;white-space:nowrap}
 .tg{background:#dcfce7;color:#15803d}
 .tr{background:#fee2e2;color:#b91c1c}
 .tn{background:var(--border2);color:var(--text2)}
 .nm{font-family:'Cairo','Tajawal',monospace;font-weight:600;white-space:nowrap}
-/* WATERFALL */
-.wf{display:flex;flex-direction:column;gap:5px;margin-top:8px}
-.wf-row{display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:8px;background:var(--surface2)}
-.wf-label{min-width:170px;font-size:12px;font-weight:600;color:var(--text2);flex-shrink:0}
-.wf-bar-wrap{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
-.wf-bar{height:100%;border-radius:4px;transition:width .5s}
-.wf-val{min-width:95px;text-align:left;font-family:'Cairo',monospace;font-weight:700;font-size:12px;flex-shrink:0}
-/* INFO BANNERS */
-.info-banner{border-radius:8px;padding:10px 14px;font-size:11px;font-weight:600;margin-bottom:12px}
+.wf{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.wf-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;background:var(--surface2)}
+.wf-label{min-width:210px;font-size:12px;font-weight:600;color:var(--text2);flex-shrink:0}
+.wf-bar-wrap{flex:1;height:10px;background:var(--border);border-radius:5px;overflow:hidden;min-width:40px}
+.wf-bar{height:100%;border-radius:5px;transition:width .6s cubic-bezier(.4,0,.2,1)}
+.wf-val{min-width:100px;text-align:left;font-family:'Cairo',monospace;font-weight:700;font-size:13px;flex-shrink:0}
+.info-banner{border-radius:10px;padding:10px 16px;font-size:11px;font-weight:600;margin-bottom:12px}
 .info-green{background:#f0fdf4;border:1px solid #bbf7d0;color:#166534}
 .info-amber{background:#fffbeb;border:1px solid #fde68a;color:#92400e}
-/* RESPONSIVE */
-@media(max-width:1024px){.kg5{grid-template-columns:repeat(3,1fr)}.g3{grid-template-columns:1fr 1fr}.card{overflow-x:auto}}
-@media(max-width:768px){.kg5{grid-template-columns:1fr 1fr;gap:9px}.g2,.g3{grid-template-columns:1fr}.bar{height:56px;padding:0 12px}.logo-b img{height:28px}.t2,.upd{display:none}.wrap{padding:12px 10px}.kv{font-size:18px}.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}.tab{padding:7px 4px;font-size:9px;text-align:center}.card{overflow-x:auto}}
-@media(max-width:480px){.kg5{grid-template-columns:1fr 1fr}.kv{font-size:16px}}
-</style>
+@media(max-width:1024px){.kg5{grid-template-columns:repeat(3,1fr);gap:10px}.g3{grid-template-columns:1fr 1fr}.wf-label{min-width:140px}}
+@media(max-width:768px){.bar{height:56px;padding:0 12px}.logo-b img{height:28px}.t2,.upd{display:none}.badge{font-size:10px;padding:3px 10px}.wrap{padding:12px 10px;width:100%}.phdr h2{font-size:16px}.phdr p{display:none}.kg5{grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:8px}.kc{padding:14px 14px}.kv{font-size:18px}.kl{font-size:8px}.ks{font-size:10px}.g2,.g3{grid-template-columns:1fr}.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding:4px;flex-wrap:unset}.tab{padding:8px 4px;font-size:9.5px;border-radius:6px}.card{padding:14px 12px;margin-bottom:10px}.cw canvas{max-height:250px !important}.wf-label{min-width:100px;font-size:11px}.wf-val{font-size:11px;min-width:80px}table.dt{font-size:11px}table.dt th,table.dt td{padding:8px 9px}}
+@media(max-width:480px){.kg5{grid-template-columns:repeat(2,1fr);gap:7px}.kv{font-size:16px}.tabs{grid-template-columns:repeat(3,1fr)}.tab{font-size:9px}.cw canvas{max-height:200px !important}.bar{height:50px}.logo-b img{height:24px}.badge{display:none}}</style>
 </head>
 <body>
 <div class="bar">
@@ -254,122 +241,111 @@ table.dt tbody tr:hover td{background:#f8faff}
 </div>
 </div>
 </div>
-<script>
-
-var B=[{"name": "Jed - Hamadaniyyah (FR)", "name_ar": "\u0627\u0644\u062d\u0645\u062f\u0627\u0646\u064a\u0629", "color": "#f59e0b", "q1_revenue": 548541, "q1_net_revenue": 476992, "q1_gross_profit": 199860, "q1_gross_margin": 41.9, "q1_opex": 189638, "q1_salaries": 55473, "q1_rent": 31500, "q1_delivery_comm": 57472, "q1_royalty": 23849, "q1_marketing": 14309, "q1_net_profit": 10222, "q1_net_margin": 2.1, "q1_txn": 6327, "monthly": {"2025-10": {"revenue": 171056, "net_revenue": 148744, "txn": 2105, "gross_profit": 62324, "opex": 61157, "net_profit": 1167}, "2025-11": {"revenue": 163053, "net_revenue": 141785, "txn": 2031, "gross_profit": 59408, "opex": 59761, "net_profit": -353}, "2025-12": {"revenue": 170951, "net_revenue": 148653, "txn": 2000, "gross_profit": 62286, "opex": 61139, "net_profit": 1147}, "2026-01": {"revenue": 211695, "net_revenue": 184083, "txn": 2449, "gross_profit": 77131, "opex": 68242, "net_profit": 8889}, "2026-02": {"revenue": 126408, "net_revenue": 109920, "txn": 1557, "gross_profit": 46056, "opex": 53373, "net_profit": -7317}, "2026-03": {"revenue": 210438, "net_revenue": 182990, "txn": 2321, "gross_profit": 76673, "opex": 68022, "net_profit": 8651}}}, {"name": "Jed - Ajaweed (FR)", "name_ar": "\u0623\u062c\u0627\u0648\u064a\u062f", "color": "#2ba9ed", "q1_revenue": 540507, "q1_net_revenue": 470006, "q1_gross_profit": 190822, "q1_gross_margin": 40.6, "q1_opex": 194395, "q1_salaries": 65307, "q1_rent": 23751, "q1_delivery_comm": 62793, "q1_royalty": 23499, "q1_marketing": 14101, "q1_net_profit": -3573, "q1_net_margin": -0.8, "q1_txn": 6712, "monthly": {"2025-10": {"revenue": 165922, "net_revenue": 144280, "txn": 2240, "gross_profit": 58578, "opex": 62153, "net_profit": -3575}, "2025-11": {"revenue": 156773, "net_revenue": 136324, "txn": 2082, "gross_profit": 55348, "opex": 60453, "net_profit": -5105}, "2025-12": {"revenue": 168470, "net_revenue": 146496, "txn": 2217, "gross_profit": 59477, "opex": 62625, "net_profit": -3148}, "2026-01": {"revenue": 211034, "net_revenue": 183508, "txn": 2595, "gross_profit": 74504, "opex": 70532, "net_profit": 3972}, "2026-02": {"revenue": 127220, "net_revenue": 110626, "txn": 1640, "gross_profit": 44914, "opex": 54964, "net_profit": -10050}, "2026-03": {"revenue": 202253, "net_revenue": 175872, "txn": 2477, "gross_profit": 71404, "opex": 68901, "net_profit": 2503}}}, {"name": "Jed - Al Safa (FR)", "name_ar": "\u0627\u0644\u0635\u0641\u0627", "color": "#e92c30", "q1_revenue": 373046, "q1_net_revenue": 324388, "q1_gross_profit": 130728, "q1_gross_margin": 40.3, "q1_opex": 152694, "q1_salaries": 28572, "q1_rent": 45000, "q1_delivery_comm": 44635, "q1_royalty": 16220, "q1_marketing": 9732, "q1_net_profit": -21966, "q1_net_margin": -6.8, "q1_txn": 4458, "monthly": {"2025-10": {"revenue": 118034, "net_revenue": 102638, "txn": 1469, "gross_profit": 41363, "opex": 49703, "net_profit": -8340}, "2025-11": {"revenue": 109764, "net_revenue": 95447, "txn": 1367, "gross_profit": 38465, "opex": 48138, "net_profit": -9673}, "2025-12": {"revenue": 112638, "net_revenue": 97946, "txn": 1357, "gross_profit": 39472, "opex": 48681, "net_profit": -9209}, "2026-01": {"revenue": 142508, "net_revenue": 123920, "txn": 1721, "gross_profit": 49940, "opex": 54334, "net_profit": -4394}, "2026-02": {"revenue": 89490, "net_revenue": 77817, "txn": 1121, "gross_profit": 31360, "opex": 44301, "net_profit": -12941}, "2026-03": {"revenue": 141048, "net_revenue": 122650, "txn": 1616, "gross_profit": 49428, "opex": 54057, "net_profit": -4629}}}, {"name": "Jed- Al-Wazeeriyah (FR)", "name_ar": "\u0627\u0644\u0648\u0632\u064a\u0631\u064a\u0629", "color": "#06b6d4", "q1_revenue": 284917, "q1_net_revenue": 247754, "q1_gross_profit": 93403, "q1_gross_margin": 37.7, "q1_opex": 143306, "q1_salaries": 39498, "q1_rent": 36375, "q1_delivery_comm": 40577, "q1_royalty": 12389, "q1_marketing": 7432, "q1_net_profit": -49903, "q1_net_margin": -20.1, "q1_txn": 3519, "monthly": {"2025-10": {"revenue": 85427, "net_revenue": 74284, "txn": 1146, "gross_profit": 28005, "opex": 45744, "net_profit": -17739}, "2025-11": {"revenue": 78349, "net_revenue": 68130, "txn": 1057, "gross_profit": 25685, "opex": 44245, "net_profit": -18560}, "2025-12": {"revenue": 80768, "net_revenue": 70233, "txn": 1048, "gross_profit": 26478, "opex": 44758, "net_profit": -18280}, "2026-01": {"revenue": 104879, "net_revenue": 91199, "txn": 1293, "gross_profit": 34382, "opex": 49869, "net_profit": -15487}, "2026-02": {"revenue": 69398, "net_revenue": 60346, "txn": 900, "gross_profit": 22750, "opex": 42348, "net_profit": -19598}, "2026-03": {"revenue": 110640, "net_revenue": 96209, "txn": 1326, "gross_profit": 36271, "opex": 51090, "net_profit": -14819}}}, {"name": "Jed - Marwah (FR)", "name_ar": "\u0627\u0644\u0645\u0631\u0648\u0629", "color": "#22c55e", "q1_revenue": 588787, "q1_net_revenue": 511989, "q1_gross_profit": 210939, "q1_gross_margin": 41.2, "q1_opex": 266173, "q1_salaries": 102414, "q1_rent": 47250, "q1_delivery_comm": 64617, "q1_royalty": 25599, "q1_marketing": 15361, "q1_net_profit": -55234, "q1_net_margin": -10.8, "q1_txn": 6699, "monthly": {"2025-10": {"revenue": 202562, "net_revenue": 176141, "txn": 2432, "gross_profit": 72570, "opex": 89854, "net_profit": -17284}, "2025-11": {"revenue": 175839, "net_revenue": 152903, "txn": 2192, "gross_profit": 62996, "opex": 85063, "net_profit": -22067}, "2025-12": {"revenue": 187868, "net_revenue": 163363, "txn": 2285, "gross_profit": 67306, "opex": 87219, "net_profit": -19913}, "2026-01": {"revenue": 221792, "net_revenue": 192863, "txn": 2543, "gross_profit": 79460, "opex": 93303, "net_profit": -13843}, "2026-02": {"revenue": 146409, "net_revenue": 127312, "txn": 1775, "gross_profit": 52453, "opex": 79785, "net_profit": -27332}, "2026-03": {"revenue": 220586, "net_revenue": 191814, "txn": 2381, "gross_profit": 79027, "opex": 93086, "net_profit": -14059}}}, {"name": "Medinah - Immam Bukhari (FR)", "name_ar": "\u0627\u0644\u0645\u062f\u064a\u0646\u0629", "color": "#8b5cf6", "q1_revenue": 438616, "q1_net_revenue": 381405, "q1_gross_profit": 153706, "q1_gross_margin": 40.3, "q1_opex": 224478, "q1_salaries": 85539, "q1_rent": 47502, "q1_delivery_comm": 52388, "q1_royalty": 19071, "q1_marketing": 11443, "q1_net_profit": -70772, "q1_net_margin": -18.6, "q1_txn": 5019, "monthly": {"2025-10": {"revenue": 131942, "net_revenue": 114732, "txn": 1621, "gross_profit": 46237, "opex": 72130, "net_profit": -25893}, "2025-11": {"revenue": 122467, "net_revenue": 106493, "txn": 1534, "gross_profit": 42917, "opex": 70339, "net_profit": -27422}, "2025-12": {"revenue": 126416, "net_revenue": 109927, "txn": 1548, "gross_profit": 44301, "opex": 71086, "net_profit": -26785}, "2026-01": {"revenue": 167095, "net_revenue": 145300, "txn": 1893, "gross_profit": 58556, "opex": 78774, "net_profit": -20218}, "2026-02": {"revenue": 102474, "net_revenue": 89108, "txn": 1259, "gross_profit": 35911, "opex": 66561, "net_profit": -30650}, "2026-03": {"revenue": 169047, "net_revenue": 146997, "txn": 1867, "gross_profit": 59240, "opex": 79143, "net_profit": -19903}}}],DA={"Hunger Station": {"total": 631240, "count": 6544, "fee_rate": 16, "payment_fee": 2.5, "delivery_fee_sar": 12, "commission": 195307, "net": 435933, "effective_rate": 30.9}, "Keeta": {"total": 311193, "count": 3517, "fee_rate": 18, "payment_fee": 2.5, "delivery_fee_sar": 9, "commission": 95448, "net": 215745, "effective_rate": 30.7}, "Taker Website": {"total": 156552, "count": 1186, "fee_rate": 6, "payment_fee": 2.5, "delivery_fee_sar": 0, "commission": 13307, "net": 143245, "effective_rate": 8.5}, "Ninja": {"total": 121095, "count": 1396, "fee_rate": 16, "payment_fee": 2.5, "delivery_fee_sar": 12, "commission": 39155, "net": 81940, "effective_rate": 32.3}, "JAHEZ": {"total": 57121, "count": 571, "fee_rate": 13, "payment_fee": 2.5, "delivery_fee_sar": 0, "commission": 8854, "net": 48267, "effective_rate": 15.5}, "Marsool": {"total": 46542, "count": 412, "fee_rate": 12, "payment_fee": 2.5, "delivery_fee_sar": 11, "commission": 11281, "net": 35261, "effective_rate": 24.2}, "ToYou": {"total": 24864, "count": 257, "fee_rate": 17, "payment_fee": 2.5, "delivery_fee_sar": 10, "commission": 7418, "net": 17446, "effective_rate": 29.8}, "The Chefz": {"total": 14452, "count": 126, "fee_rate": 16, "payment_fee": 2.5, "delivery_fee_sar": 0, "commission": 2674, "net": 11778, "effective_rate": 18.5}, "COE Marketing": {"total": 5454, "count": 41, "fee_rate": 10, "payment_fee": 2.5, "delivery_fee_sar": 0, "commission": 682, "net": 4772, "effective_rate": 12.5}, "Tamara": {"total": 1204, "count": 5, "fee_rate": 10, "payment_fee": 2.5, "delivery_fee_sar": 0, "commission": 150, "net": 1054, "effective_rate": 12.5}, "Mr.Mandoob": {"total": 441, "count": 3, "fee_rate": 13, "payment_fee": 2.5, "delivery_fee_sar": 10, "commission": 98, "net": 343, "effective_rate": 22.2}},PT={"Online Paid": 1371423, "Mada Card": 819879, "Visa": 149104, "Master Card": 43816, "Marwah Cash": 41909, "Hamdaniyah Cash": 39975, "Ajaweed Cash": 39423, "Waziriyah Cash": 30190},ME={"2026-01": {"total": 646061, "salaries": 124265, "rent": 234707, "luopreev": 129836, "royalty": 32882}, "2026-02": {"total": 542371, "salaries": 122465, "rent": 185875, "luopreev": 52050, "royalty": 33000}, "2026-03": {"total": 433780, "salaries": 93765, "rent": 99600, "luopreev": 52050, "royalty": 27991}},MO={"2025-10":"\u0623\u0643\u062a\u0648\u0628\u0631","2025-11":"\u0646\u0648\u0641\u0645\u0628\u0631","2025-12":"\u062f\u064a\u0633\u0645\u0628\u0631","2026-01":"\u064a\u0646\u0627\u064a\u0631","2026-02":"\u0641\u0628\u0631\u0627\u064a\u0631","2026-03":"\u0645\u0627\u0631\u0633"},CH={};
+<script>var B=[{"name": "Jed - Hamadaniyyah (FR)", "name_ar": "\u0627\u0644\u062d\u0645\u062f\u0627\u0646\u064a\u0629", "color": "#f59e0b", "q1_revenue": 548541, "q1_net_revenue": 476992, "q1_gross_profit": 199860, "q1_gross_margin": 41.9, "q1_opex": 189638, "q1_salaries": 55473, "q1_rent": 31500, "q1_delivery_comm": 57472, "q1_royalty": 23849, "q1_marketing": 14309, "q1_net_profit": 10222, "q1_net_margin": 2.1, "q1_txn": 6327, "monthly": {"2025-10": {"revenue": 171056, "net_revenue": 148744, "txn": 2105, "gross_profit": 62324, "opex": 61157, "net_profit": 1167}, "2025-11": {"revenue": 163053, "net_revenue": 141785, "txn": 2031, "gross_profit": 59408, "opex": 59761, "net_profit": -353}, "2025-12": {"revenue": 170951, "net_revenue": 148653, "txn": 2000, "gross_profit": 62286, "opex": 61139, "net_profit": 1147}, "2026-01": {"revenue": 211695, "net_revenue": 184083, "txn": 2449, "gross_profit": 77131, "opex": 68242, "net_profit": 8889}, "2026-02": {"revenue": 126408, "net_revenue": 109920, "txn": 1557, "gross_profit": 46056, "opex": 53373, "net_profit": -7317}, "2026-03": {"revenue": 210438, "net_revenue": 182990, "txn": 2321, "gross_profit": 76673, "opex": 68022, "net_profit": 8651}}}, {"name": "Jed - Ajaweed (FR)", "name_ar": "\u0623\u062c\u0627\u0648\u064a\u062f", "color": "#2ba9ed", "q1_revenue": 540507, "q1_net_revenue": 470006, "q1_gross_profit": 190822, "q1_gross_margin": 40.6, "q1_opex": 194395, "q1_salaries": 65307, "q1_rent": 23751, "q1_delivery_comm": 62793, "q1_royalty": 23499, "q1_marketing": 14101, "q1_net_profit": -3573, "q1_net_margin": -0.8, "q1_txn": 6712, "monthly": {"2025-10": {"revenue": 165922, "net_revenue": 144280, "txn": 2240, "gross_profit": 58578, "opex": 62153, "net_profit": -3575}, "2025-11": {"revenue": 156773, "net_revenue": 136324, "txn": 2082, "gross_profit": 55348, "opex": 60453, "net_profit": -5105}, "2025-12": {"revenue": 168470, "net_revenue": 146496, "txn": 2217, "gross_profit": 59477, "opex": 62625, "net_profit": -3148}, "2026-01": {"revenue": 211034, "net_revenue": 183508, "txn": 2595, "gross_profit": 74504, "opex": 70532, "net_profit": 3972}, "2026-02": {"revenue": 127220, "net_revenue": 110626, "txn": 1640, "gross_profit": 44914, "opex": 54964, "net_profit": -10050}, "2026-03": {"revenue": 202253, "net_revenue": 175872, "txn": 2477, "gross_profit": 71404, "opex": 68901, "net_profit": 2503}}}, {"name": "Jed - Al Safa (FR)", "name_ar": "\u0627\u0644\u0635\u0641\u0627", "color": "#e92c30", "q1_revenue": 373046, "q1_net_revenue": 324388, "q1_gross_profit": 130728, "q1_gross_margin": 40.3, "q1_opex": 152694, "q1_salaries": 28572, "q1_rent": 45000, "q1_delivery_comm": 44635, "q1_royalty": 16220, "q1_marketing": 9732, "q1_net_profit": -21966, "q1_net_margin": -6.8, "q1_txn": 4458, "monthly": {"2025-10": {"revenue": 118034, "net_revenue": 102638, "txn": 1469, "gross_profit": 41363, "opex": 49703, "net_profit": -8340}, "2025-11": {"revenue": 109764, "net_revenue": 95447, "txn": 1367, "gross_profit": 38465, "opex": 48138, "net_profit": -9673}, "2025-12": {"revenue": 112638, "net_revenue": 97946, "txn": 1357, "gross_profit": 39472, "opex": 48681, "net_profit": -9209}, "2026-01": {"revenue": 142508, "net_revenue": 123920, "txn": 1721, "gross_profit": 49940, "opex": 54334, "net_profit": -4394}, "2026-02": {"revenue": 89490, "net_revenue": 77817, "txn": 1121, "gross_profit": 31360, "opex": 44301, "net_profit": -12941}, "2026-03": {"revenue": 141048, "net_revenue": 122650, "txn": 1616, "gross_profit": 49428, "opex": 54057, "net_profit": -4629}}}, {"name": "Jed- Al-Wazeeriyah (FR)", "name_ar": "\u0627\u0644\u0648\u0632\u064a\u0631\u064a\u0629", "color": "#06b6d4", "q1_revenue": 284917, "q1_net_revenue": 247754, "q1_gross_profit": 93403, "q1_gross_margin": 37.7, "q1_opex": 143306, "q1_salaries": 39498, "q1_rent": 36375, "q1_delivery_comm": 40577, "q1_royalty": 12389, "q1_marketing": 7432, "q1_net_profit": -49903, "q1_net_margin": -20.1, "q1_txn": 3519, "monthly": {"2025-10": {"revenue": 85427, "net_revenue": 74284, "txn": 1146, "gross_profit": 28005, "opex": 45744, "net_profit": -17739}, "2025-11": {"revenue": 78349, "net_revenue": 68130, "txn": 1057, "gross_profit": 25685, "opex": 44245, "net_profit": -18560}, "2025-12": {"revenue": 80768, "net_revenue": 70233, "txn": 1048, "gross_profit": 26478, "opex": 44758, "net_profit": -18280}, "2026-01": {"revenue": 104879, "net_revenue": 91199, "txn": 1293, "gross_profit": 34382, "opex": 49869, "net_profit": -15487}, "2026-02": {"revenue": 69398, "net_revenue": 60346, "txn": 900, "gross_profit": 22750, "opex": 42348, "net_profit": -19598}, "2026-03": {"revenue": 110640, "net_revenue": 96209, "txn": 1326, "gross_profit": 36271, "opex": 51090, "net_profit": -14819}}}, {"name": "Jed - Marwah (FR)", "name_ar": "\u0627\u0644\u0645\u0631\u0648\u0629", "color": "#22c55e", "q1_revenue": 588787, "q1_net_revenue": 511989, "q1_gross_profit": 210939, "q1_gross_margin": 41.2, "q1_opex": 266173, "q1_salaries": 102414, "q1_rent": 47250, "q1_delivery_comm": 64617, "q1_royalty": 25599, "q1_marketing": 15361, "q1_net_profit": -55234, "q1_net_margin": -10.8, "q1_txn": 6699, "monthly": {"2025-10": {"revenue": 202562, "net_revenue": 176141, "txn": 2432, "gross_profit": 72570, "opex": 89854, "net_profit": -17284}, "2025-11": {"revenue": 175839, "net_revenue": 152903, "txn": 2192, "gross_profit": 62996, "opex": 85063, "net_profit": -22067}, "2025-12": {"revenue": 187868, "net_revenue": 163363, "txn": 2285, "gross_profit": 67306, "opex": 87219, "net_profit": -19913}, "2026-01": {"revenue": 221792, "net_revenue": 192863, "txn": 2543, "gross_profit": 79460, "opex": 93303, "net_profit": -13843}, "2026-02": {"revenue": 146409, "net_revenue": 127312, "txn": 1775, "gross_profit": 52453, "opex": 79785, "net_profit": -27332}, "2026-03": {"revenue": 220586, "net_revenue": 191814, "txn": 2381, "gross_profit": 79027, "opex": 93086, "net_profit": -14059}}}, {"name": "Medinah - Immam Bukhari (FR)", "name_ar": "\u0627\u0644\u0645\u062f\u064a\u0646\u0629", "color": "#8b5cf6", "q1_revenue": 438616, "q1_net_revenue": 381405, "q1_gross_profit": 153706, "q1_gross_margin": 40.3, "q1_opex": 224478, "q1_salaries": 85539, "q1_rent": 47502, "q1_delivery_comm": 52388, "q1_royalty": 19071, "q1_marketing": 11443, "q1_net_profit": -70772, "q1_net_margin": -18.6, "q1_txn": 5019, "monthly": {"2025-10": {"revenue": 131942, "net_revenue": 114732, "txn": 1621, "gross_profit": 46237, "opex": 72130, "net_profit": -25893}, "2025-11": {"revenue": 122467, "net_revenue": 106493, "txn": 1534, "gross_profit": 42917, "opex": 70339, "net_profit": -27422}, "2025-12": {"revenue": 126416, "net_revenue": 109927, "txn": 1548, "gross_profit": 44301, "opex": 71086, "net_profit": -26785}, "2026-01": {"revenue": 167095, "net_revenue": 145300, "txn": 1893, "gross_profit": 58556, "opex": 78774, "net_profit": -20218}, "2026-02": {"revenue": 102474, "net_revenue": 89108, "txn": 1259, "gross_profit": 35911, "opex": 66561, "net_profit": -30650}, "2026-03": {"revenue": 169047, "net_revenue": 146997, "txn": 1867, "gross_profit": 59240, "opex": 79143, "net_profit": -19903}}}],DA={"Hunger Station": {"total": 631240, "count": 6544, "fee_rate": 16, "payment_fee": 2.5, "delivery_fee_sar": 12, "commission": 195307, "net": 435933, "effective_rate": 30.9}, "Keeta": {"total": 311193, "count": 3517, "fee_rate": 18, "payment_fee": 2.5, "delivery_fee_sar": 9, "commission": 95448, "net": 215745, "effective_rate": 30.7}, "Taker Website": {"total": 156552, "count": 1186, "fee_rate": 6, "payment_fee": 2.5, "delivery_fee_sar": 0, "commission": 13307, "net": 143245, "effective_rate": 8.5}, "Ninja": {"total": 121095, "count": 1396, "fee_rate": 16, "payment_fee": 2.5, "delivery_fee_sar": 12, "commission": 39155, "net": 81940, "effective_rate": 32.3}, "JAHEZ": {"total": 57121, "count": 571, "fee_rate": 13, "payment_fee": 2.5, "delivery_fee_sar": 0, "commission": 8854, "net": 48267, "effective_rate": 15.5}, "Marsool": {"total": 46542, "count": 412, "fee_rate": 12, "payment_fee": 2.5, "delivery_fee_sar": 11, "commission": 11281, "net": 35261, "effective_rate": 24.2}, "ToYou": {"total": 24864, "count": 257, "fee_rate": 17, "payment_fee": 2.5, "delivery_fee_sar": 10, "commission": 7418, "net": 17446, "effective_rate": 29.8}, "The Chefz": {"total": 14452, "count": 126, "fee_rate": 16, "payment_fee": 2.5, "delivery_fee_sar": 0, "commission": 2674, "net": 11778, "effective_rate": 18.5}, "COE Marketing": {"total": 5454, "count": 41, "fee_rate": 10, "payment_fee": 2.5, "delivery_fee_sar": 0, "commission": 682, "net": 4772, "effective_rate": 12.5}, "Tamara": {"total": 1204, "count": 5, "fee_rate": 10, "payment_fee": 2.5, "delivery_fee_sar": 0, "commission": 150, "net": 1054, "effective_rate": 12.5}, "Mr.Mandoob": {"total": 441, "count": 3, "fee_rate": 13, "payment_fee": 2.5, "delivery_fee_sar": 10, "commission": 98, "net": 343, "effective_rate": 22.2}},PT={"Online Paid": 1371423, "Mada Card": 819879, "Visa": 149104, "Master Card": 43816, "Marwah Cash": 41909, "Hamdaniyah Cash": 39975, "Ajaweed Cash": 39423, "Waziriyah Cash": 30190},ME={"2026-01": {"total": 646061, "salaries": 124265, "rent": 234707, "luopreev": 129836, "royalty": 32882}, "2026-02": {"total": 542371, "salaries": 122465, "rent": 185875, "luopreev": 52050, "royalty": 33000}, "2026-03": {"total": 433780, "salaries": 93765, "rent": 99600, "luopreev": 52050, "royalty": 27991}},MO={"2025-10": "&#1571;&#1603;&#1578;&#1608;&#1576;&#1585;", "2025-11": "&#1606;&#1608;&#1601;&#1605;&#1576;&#1585;", "2025-12": "&#1583;&#1610;&#1587;&#1605;&#1576;&#1585;", "2026-01": "&#1610;&#1606;&#1575;&#1610;&#1585;", "2026-02": "&#1601;&#1576;&#1585;&#1575;&#1610;&#1585;", "2026-03": "&#1605;&#1575;&#1585;&#1587;"},CH={};
 function fmt(v){var s=v<0?'-':'';v=Math.abs(v);if(v>=1e6)return s+'SAR '+(v/1e6).toFixed(1)+'M';if(v>=1e3)return s+'SAR '+(v/1e3).toFixed(1)+'K';return s+'SAR '+Math.round(v);}
+
 Chart.defaults.font.family="'Cairo','Tajawal',sans-serif";
 Chart.defaults.color="#94a3b8";
 Chart.defaults.plugins.tooltip.backgroundColor="#0f172a";
 Chart.defaults.plugins.tooltip.titleColor="#fff";
-Chart.defaults.plugins.tooltip.bodyColor="#94a3b8";
-Chart.defaults.plugins.tooltip.padding=10;
-Chart.defaults.plugins.tooltip.cornerRadius=8;
+Chart.defaults.plugins.tooltip.bodyColor="#c7d2fe";
+Chart.defaults.plugins.tooltip.padding=12;
+Chart.defaults.plugins.tooltip.cornerRadius=10;
+
+function fmt(v){var s=v<0?'-':'';v=Math.abs(v);if(v>=1e6)return s+'SAR '+(v/1e6).toFixed(1)+'M';if(v>=1e3)return s+'SAR '+(v/1e3).toFixed(1)+'K';return s+'SAR '+Math.round(v).toLocaleString();}
 
 function sw(n){
-  for(var i=0;i<9;i++){
-    var t=document.getElementById('t'+i),p=document.getElementById('p'+i);
-    if(t)t.className='tab'+(i===n?' on':'');
-    if(p)p.style.display=(i===n)?'block':'none';
-  }
-  if(n===0)setTimeout(dOv,60);
-  else if(n===1)setTimeout(dPnl,60);
-  else if(n===2)setTimeout(dBr,60);
-  else if(n===4)setTimeout(dExp,60);
-  else if(n===5)setTimeout(dDel,60);
-  else if(n===7)setTimeout(dPay,60);
+  for(var i=0;i<9;i++){var t=document.getElementById('t'+i),p=document.getElementById('p'+i);if(t)t.className='tab'+(i===n?' on':'');if(p)p.style.display=(i===n)?'block':'none';}
+  if(n===0)setTimeout(dOv,60);else if(n===1)setTimeout(dPnl,60);else if(n===2)setTimeout(dBr,60);else if(n===3)setTimeout(dTrend,60);else if(n===4)setTimeout(dExp,60);else if(n===5)setTimeout(dDel,60);else if(n===7)setTimeout(dPay,60);
 }
-function mk(id,cfg){var el=document.getElementById(id);if(!el)return;if(CH[id])CH[id].destroy();try{CH[id]=new Chart(el,cfg);}catch(e){console.error(id,e);}}
+function mk(id,cfg){var el=document.getElementById(id);if(!el)return;if(CH[id]){CH[id].destroy();delete CH[id];}try{CH[id]=new Chart(el,cfg);}catch(e){console.error(id,e);}}
 
-/* OVERVIEW */
 function dOv(){
   if(CH.ch_rev_ov)return;
-  var Bsorted=B.slice().sort(function(a,b){return b.q1_revenue-a.q1_revenue;});
-  var labels=Bsorted.map(function(b){return b.name_ar||b.name;});
-  mk('ch_rev_ov',{type:'bar',data:{labels:labels,datasets:[{label:'Revenues',data:Bsorted.map(function(b){return b.q1_revenue;}),backgroundColor:Bsorted.map(function(b){return b.color;}),borderRadius:7,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+fmt(c.raw);}}}},scales:{x:{ticks:{color:'#64748b'},grid:{display:false}},y:{ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'}}}}});
-  var npSorted=B.slice().sort(function(a,b){return b.q1_net_profit-a.q1_net_profit;});
-  mk('ch_np_ov',{type:'bar',data:{labels:npSorted.map(function(b){return b.name_ar||b.name;}),datasets:[{label:'Net Profit',data:npSorted.map(function(b){return b.q1_net_profit;}),backgroundColor:npSorted.map(function(b){return b.q1_net_profit>=0?'rgba(22,163,74,.85)':'rgba(220,38,38,.85)';}),borderRadius:7,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+fmt(c.raw);}}}},scales:{x:{ticks:{color:'#64748b'},grid:{display:false}},y:{ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'}}}}});
+  var Br=B.slice().sort(function(a,b){return b.q1_revenue-a.q1_revenue;});
+  mk('ch_rev_ov',{type:'bar',data:{labels:Br.map(function(b){return b.name_ar||b.name;}),datasets:[{data:Br.map(function(b){return b.q1_revenue;}),backgroundColor:Br.map(function(b){return b.color;}),borderRadius:8,borderSkipped:false,barThickness:32}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,layout:{padding:{right:70}},plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return '  '+fmt(c.raw);}}}},
+    scales:{x:{ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'},border:{display:false}},y:{ticks:{color:'#1e293b',font:{size:12,weight:'600'}},grid:{display:false},border:{display:false}}}}});
+  var Bnp=B.slice().sort(function(a,b){return b.q1_net_profit-a.q1_net_profit;});
+  mk('ch_np_ov',{type:'bar',data:{labels:Bnp.map(function(b){return b.name_ar||b.name;}),datasets:[{data:Bnp.map(function(b){return b.q1_net_profit;}),backgroundColor:Bnp.map(function(b){return b.q1_net_profit>=0?'rgba(22,163,74,.85)':'rgba(220,38,38,.85)';}),borderRadius:8,borderSkipped:false,barThickness:32}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,layout:{padding:{right:70}},plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){var b=Bnp[c.dataIndex];return ['  '+fmt(c.raw),'  '+b.q1_net_margin.toFixed(1)+'%'];}}}},
+    scales:{x:{ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'},border:{display:false}},y:{ticks:{color:'#1e293b',font:{size:12,weight:'600'}},grid:{display:false},border:{display:false}}}}});
 }
 
-/* P&L Monthly Trend */
 function dPnl(){
   if(CH.ch_pnl)return;
   var months=['2026-01','2026-02','2026-03'];
   var labels=months.map(function(m){return MO[m]||m;});
   var revArr=months.map(function(m){return B.reduce(function(s,b){return s+(b.monthly&&b.monthly[m]?b.monthly[m].net_revenue||0:0);},0);});
-  var gpArr =months.map(function(m){return B.reduce(function(s,b){return s+(b.monthly&&b.monthly[m]?b.monthly[m].gross_profit||0:0);},0);});
-  var meArr =months.map(function(m){return ME[m]?ME[m].total:0;});
-  var npArr =months.map(function(m,i){return gpArr[i]-meArr[i];});
+  var gpArr=months.map(function(m){return B.reduce(function(s,b){return s+(b.monthly&&b.monthly[m]?b.monthly[m].gross_profit||0:0);},0);});
+  var exArr=months.map(function(m){return ME[m]?ME[m].total:0;});
+  var npArr=months.map(function(m,i){return gpArr[i]-exArr[i];});
   mk('ch_pnl',{type:'bar',data:{labels:labels,datasets:[
-    {label:'Net Revenue',data:revArr,backgroundColor:'rgba(43,169,237,.55)',borderRadius:6,borderSkipped:false},
-    {label:'Gross Profit',data:gpArr,backgroundColor:'rgba(22,163,74,.6)',borderRadius:6,borderSkipped:false},
-    {label:'Expenses',data:meArr,backgroundColor:'rgba(220,38,38,.55)',borderRadius:6,borderSkipped:false},
-    {label:'Net Profit',data:npArr,type:'line',fill:false,borderColor:'#0f172a',borderWidth:2.5,pointRadius:6,pointBackgroundColor:npArr.map(function(v){return v>=0?'#16a34a':'#dc2626';}),pointBorderColor:'#fff',pointBorderWidth:2}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{color:'#475569',font:{size:10},padding:10}}},scales:{x:{ticks:{color:'#64748b'},grid:{display:false}},y:{ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'}}}}});
+    {type:'bar',label:'\u0635\u0627\u0641\u064a \u0627\u0644\u0625\u064a\u0631\u0627\u062f\u0627\u062a',data:revArr,backgroundColor:'rgba(43,169,237,.2)',borderColor:'rgba(43,169,237,.7)',borderWidth:2,borderRadius:8,borderSkipped:false,order:3},
+    {type:'bar',label:'\u0627\u0644\u0631\u0628\u062d \u0627\u0644\u062e\u0627\u0645',data:gpArr,backgroundColor:'rgba(22,163,74,.2)',borderColor:'rgba(22,163,74,.7)',borderWidth:2,borderRadius:8,borderSkipped:false,order:2},
+    {type:'bar',label:'\u0627\u0644\u0645\u0635\u0627\u0631\u064a\u0641 (Odoo)',data:exArr,backgroundColor:'rgba(220,38,38,.2)',borderColor:'rgba(220,38,38,.7)',borderWidth:2,borderRadius:8,borderSkipped:false,order:1},
+    {type:'line',label:'\u0635\u0627\u0641\u064a \u0627\u0644\u0631\u0628\u062d',data:npArr,borderColor:'#0f172a',borderWidth:3,pointBackgroundColor:npArr.map(function(v){return v>=0?'#16a34a':'#dc2626';}),pointBorderColor:'#fff',pointBorderWidth:3,pointRadius:9,fill:false,tension:0,order:0}
+  ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{position:'top',labels:{color:'#475569',font:{size:11},padding:14,boxWidth:12,usePointStyle:true}},tooltip:{callbacks:{label:function(c){return ' '+c.dataset.label+': '+fmt(c.raw);}}}},
+    scales:{x:{ticks:{color:'#334155',font:{size:14,weight:'700'}},grid:{display:false},border:{display:false}},y:{ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'},border:{display:false}}}}});
 }
-
-/* Branch P&L */
 function dBr(){
-  if(CH.ch_br)return;
-  var Bsort=B.slice().sort(function(a,b){return b.q1_net_profit-a.q1_net_profit;});
-  var labels=Bsort.map(function(b){return b.name_ar||b.name;});
-  mk('ch_br',{type:'bar',data:{labels:labels,datasets:[
-    {label:'Gross Profit',data:Bsort.map(function(b){return b.q1_gross_profit;}),backgroundColor:'rgba(43,169,237,.55)',borderRadius:5,borderSkipped:false},
-    {label:'OpEx',data:Bsort.map(function(b){return b.q1_opex;}),backgroundColor:'rgba(220,38,38,.5)',borderRadius:5,borderSkipped:false},
-    {label:'Net Profit',data:Bsort.map(function(b){return b.q1_net_profit;}),type:'line',fill:false,borderColor:'#0f172a',borderWidth:2,pointRadius:7,pointBackgroundColor:Bsort.map(function(b){return b.q1_net_profit>=0?'#16a34a':'#dc2626';}),pointBorderColor:'#fff',pointBorderWidth:2}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{color:'#475569',font:{size:10},padding:10}}},scales:{x:{ticks:{color:'#64748b'},grid:{display:false}},y:{ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'}}}}});
-  mk('ch_br_share',{type:'doughnut',data:{labels:B.map(function(b){return b.name_ar||b.name;}),datasets:[{data:B.map(function(b){return b.q1_revenue;}),backgroundColor:B.map(function(b){return b.color;}),borderWidth:3,borderColor:'#fff',hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{color:'#475569',font:{size:10},boxWidth:10,padding:8}},tooltip:{callbacks:{label:function(c){var t=B.reduce(function(s,b){return s+b.q1_revenue;},0);return ' '+fmt(c.raw)+' ('+((c.raw/t)*100).toFixed(1)+'%)';}}}}}});
-  /* Expense composition per branch &#8212; stacked bar */
-  var Bexp=B.slice().sort(function(a,b){return b.q1_opex-a.q1_opex;});
-  var expLabels=Bexp.map(function(b){return b.name_ar||b.name;});
-  mk('ch_br_exp',{type:'bar',data:{labels:expLabels,datasets:[
-    {label:'Salaries',data:Bexp.map(function(b){return b.q1_salaries;}),backgroundColor:'rgba(139,92,246,.8)',borderRadius:4,borderSkipped:false},
-    {label:'Rent',data:Bexp.map(function(b){return b.q1_rent;}),backgroundColor:'rgba(245,158,11,.8)',borderRadius:4,borderSkipped:false},
-    {label:'Delivery',data:Bexp.map(function(b){return b.q1_delivery_comm;}),backgroundColor:'rgba(220,38,38,.7)',borderRadius:4,borderSkipped:false},
-    {label:'Royalty',data:Bexp.map(function(b){return b.q1_royalty;}),backgroundColor:'rgba(6,182,212,.8)',borderRadius:4,borderSkipped:false},
-    {label:'Marketing',data:Bexp.map(function(b){return b.q1_marketing;}),backgroundColor:'rgba(236,72,153,.8)',borderRadius:4,borderSkipped:false}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{color:'#475569',font:{size:10},padding:10}}},scales:{x:{stacked:true,ticks:{color:'#64748b'},grid:{display:false}},y:{stacked:true,ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'}}}}});
+  if(CH.ch_br_np)return;
+  var Bnp=B.slice().sort(function(a,b){return b.q1_net_profit-a.q1_net_profit;});
+  mk('ch_br_np',{type:'bar',data:{labels:Bnp.map(function(b){return b.name_ar||b.name;}),datasets:[{data:Bnp.map(function(b){return b.q1_net_profit;}),backgroundColor:Bnp.map(function(b){return b.q1_net_profit>=0?'rgba(22,163,74,.85)':'rgba(220,38,38,.85)';}),borderRadius:8,borderSkipped:false,barThickness:40}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,layout:{padding:{right:80}},plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){var b=Bnp[c.dataIndex];return ['  '+fmt(c.raw),'  '+b.q1_net_margin.toFixed(1)+'%'];}}}},
+    scales:{x:{ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'},border:{display:false}},y:{ticks:{color:'#1e293b',font:{size:13,weight:'700'}},grid:{display:false},border:{display:false}}}}});
+  var Brev=B.slice().sort(function(a,b){return b.q1_revenue-a.q1_revenue;});
+  mk('ch_rev_share',{type:'doughnut',data:{labels:Brev.map(function(b){return b.name_ar||b.name;}),datasets:[{data:Brev.map(function(b){return b.q1_revenue;}),backgroundColor:Brev.map(function(b){return b.color;}),borderWidth:4,borderColor:'#fff',hoverOffset:10}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{color:'#475569',font:{size:11},boxWidth:10,padding:10,usePointStyle:true}},tooltip:{callbacks:{label:function(c){var t=B.reduce(function(s,b){return s+b.q1_revenue;},0);return ' '+fmt(c.raw)+' ('+((c.raw/t)*100).toFixed(1)+'%)';}}}}}});
+  var Bop=B.slice().sort(function(a,b){return b.q1_opex-a.q1_opex;});
+  mk('ch_br_exp',{type:'bar',data:{labels:Bop.map(function(b){return b.name_ar||b.name;}),datasets:[
+    {label:'Salaries',data:Bop.map(function(b){return b.q1_salaries;}),backgroundColor:'rgba(139,92,246,.8)',borderRadius:4,borderSkipped:false},
+    {label:'Rent',data:Bop.map(function(b){return b.q1_rent;}),backgroundColor:'rgba(245,158,11,.8)',borderRadius:4,borderSkipped:false},
+    {label:'Delivery',data:Bop.map(function(b){return b.q1_delivery_comm;}),backgroundColor:'rgba(220,38,38,.7)',borderRadius:4,borderSkipped:false},
+    {label:'Royalty',data:Bop.map(function(b){return b.q1_royalty;}),backgroundColor:'rgba(6,182,212,.8)',borderRadius:4,borderSkipped:false},
+    {label:'Marketing',data:Bop.map(function(b){return b.q1_marketing;}),backgroundColor:'rgba(236,72,153,.8)',borderRadius:4,borderSkipped:false}
+  ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'top',labels:{color:'#475569',font:{size:11},boxWidth:10,padding:10,usePointStyle:true}},tooltip:{callbacks:{label:function(c){return ' '+c.dataset.label+': '+fmt(c.raw);}}}},
+    scales:{x:{stacked:true,ticks:{color:'#475569',font:{size:11,weight:'600'}},grid:{display:false},border:{display:false}},y:{stacked:true,ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'},border:{display:false}}}}});
 }
-
-/* Monthly Trend */
 function dTrend(){
   if(CH.ch_trend)return;
   var months=['2025-10','2025-11','2025-12','2026-01','2026-02','2026-03'];
   var labels=months.map(function(m){return MO[m]||m;});
-  mk('ch_trend',{type:'line',data:{labels:labels,datasets:B.map(function(b){return{label:b.name_ar||b.name,data:months.map(function(m){return b.monthly&&b.monthly[m]?b.monthly[m].revenue||0:0;}),borderColor:b.color,backgroundColor:b.color+'22',borderWidth:2.5,pointRadius:4,pointBackgroundColor:b.color,fill:false,tension:.3};})},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{color:'#475569',font:{size:10},padding:8,boxWidth:10}}},scales:{x:{ticks:{color:'#64748b'},grid:{display:false}},y:{ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'}}}}});
+  mk('ch_trend',{type:'line',data:{labels:labels,datasets:B.map(function(b){return{label:b.name_ar||b.name,data:months.map(function(m){return b.monthly&&b.monthly[m]?b.monthly[m].revenue||0:0;}),borderColor:b.color,backgroundColor:b.color+'22',borderWidth:2.5,pointRadius:5,pointHoverRadius:8,pointBackgroundColor:b.color,pointBorderColor:'#fff',pointBorderWidth:2,fill:false,tension:.3};})},
+    options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'top',labels:{color:'#475569',font:{size:11},boxWidth:10,padding:12,usePointStyle:true}},tooltip:{callbacks:{label:function(c){return ' '+c.dataset.label+': '+fmt(c.raw);}}}},
+    scales:{x:{ticks:{color:'#334155',font:{size:12,weight:'600'}},grid:{display:false},border:{display:false}},y:{ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'},border:{display:false}}}}});
 }
 
-/* Expenses */
 function dExp(){
   if(CH.ch_exp)return;
-  var lbs=['Salaries','Rent','Catering','Royalty','Govt','Insurance','Electricity','Bank','Other'];
-  var vals=[230985,520182,233936,93873,56375,41461,14785,12612,418003];
-  var clrs=['#8b5cf6','#f59e0b','#2ba9ed','#06b6d4','#ec4899','#e92c30','#22c55e','#94a3b8','#64748b'];
-  mk('ch_exp',{type:'doughnut',data:{labels:lbs,datasets:[{data:vals,backgroundColor:clrs,borderWidth:3,borderColor:'#fff',hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{position:'right',labels:{color:'#475569',font:{size:10},boxWidth:10,padding:8}},tooltip:{callbacks:{label:function(c){return ' '+fmt(c.raw)+' ('+((c.raw/1622212)*100).toFixed(1)+'%)';}}}}}});
+  var data=[{l:"\u0627\u0644\u0625\u064a\u062c\u0627\u0631\u0627\u062a",v:520182,c:"#f59e0b"},{l:"\u0645\u0635\u0627\u0631\u064a\u0641 \u0623\u062e\u0631\u0649",v:418003,c:"#94a3b8"},{l:"\u062e\u062f\u0645\u0627\u062a \u0644\u0648\u0628\u0631\u064a\u0641",v:233936,c:"#2ba9ed"},{l:"\u0627\u0644\u0631\u0648\u0627\u062a\u0628",v:230985,c:"#8b5cf6"},{l:"\u0631\u0633\u0648\u0645 \u0627\u0645\u062a\u064a\u0627\u0632",v:93873,c:"#06b6d4"},{l:"\u0631\u0633\u0648\u0645 \u062d\u0643\u0648\u0645\u064a\u0629",v:56375,c:"#ec4899"},{l:"\u062a\u0623\u0645\u064a\u0646",v:41461,c:"#e92c30"},{l:"\u0643\u0647\u0631\u0628\u0627\u0621",v:14785,c:"#22c55e"},{l:"\u0628\u0646\u0643\u064a\u0629",v:12612,c:"#64748b"}];
+  mk('ch_exp',{type:'bar',data:{labels:data.map(function(d){return d.l;}),datasets:[{data:data.map(function(d){return d.v;}),backgroundColor:data.map(function(d){return d.c;}),borderRadius:6,borderSkipped:false,barThickness:28}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,layout:{padding:{right:80}},plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+fmt(c.raw)+' ('+(c.raw/1622212*100).toFixed(1)+'%)';}}}},
+    scales:{x:{ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'},border:{display:false}},y:{ticks:{color:'#1e293b',font:{size:12,weight:'600'}},grid:{display:false},border:{display:false}}}}});
 }
 
-/* Delivery */
 function dDel(){
   if(CH.ch_del)return;
-  var keys=Object.keys(DA);var totals=keys.map(function(k){return DA[k].total;});
-  var clrs=['#2ba9ed','#e92c30','#22c55e','#f59e0b','#8b5cf6','#06b6d4','#ec4899','#10b981','#94a3b8','#0ea5e9','#f97316'];
-  mk('ch_del',{type:'doughnut',data:{labels:keys,datasets:[{data:totals,backgroundColor:clrs,borderWidth:3,borderColor:'#fff',hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{position:'right',labels:{color:'#475569',font:{size:10},boxWidth:10,padding:8}},tooltip:{callbacks:{label:function(c){return ' '+fmt(c.raw);}}}}}});
+  var keys=Object.keys(DA).sort(function(a,b){return DA[b].total-DA[a].total;});
+  var CLRS=['#2ba9ed','#e92c30','#22c55e','#f59e0b','#8b5cf6','#06b6d4','#ec4899','#10b981','#94a3b8','#0ea5e9','#f97316'];
+  mk('ch_del',{type:'doughnut',data:{labels:keys,datasets:[{data:keys.map(function(k){return DA[k].total;}),backgroundColor:CLRS,borderWidth:4,borderColor:'#fff',hoverOffset:8}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:{position:'right',labels:{color:'#475569',font:{size:11},boxWidth:10,padding:8,usePointStyle:true}},tooltip:{callbacks:{label:function(c){var t=keys.reduce(function(s,k){return s+DA[k].total;},0);return ' '+fmt(c.raw)+' ('+((c.raw/t)*100).toFixed(1)+'%)';}}}}}});
   mk('ch_del_net',{type:'bar',data:{labels:keys,datasets:[
-    {label:'Revenue',data:totals,backgroundColor:'rgba(43,169,237,.55)',borderRadius:5,borderSkipped:false},
-    {label:'Commission',data:keys.map(function(k){return DA[k].commission;}),backgroundColor:'rgba(220,38,38,.6)',borderRadius:5,borderSkipped:false},
-    {label:'Net',data:keys.map(function(k){return DA[k].net;}),backgroundColor:'rgba(22,163,74,.7)',borderRadius:5,borderSkipped:false}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{color:'#475569',font:{size:10},padding:10}}},scales:{x:{ticks:{color:'#64748b',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'}}}}});
+    {label:'Revenue',data:keys.map(function(k){return DA[k].total;}),backgroundColor:'rgba(43,169,237,.6)',borderRadius:5,borderSkipped:false},
+    {label:'Commission',data:keys.map(function(k){return DA[k].commission;}),backgroundColor:'rgba(220,38,38,.7)',borderRadius:5,borderSkipped:false},
+    {label:'Net',data:keys.map(function(k){return DA[k].net;}),backgroundColor:'rgba(22,163,74,.75)',borderRadius:5,borderSkipped:false}
+  ]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,layout:{padding:{right:60}},interaction:{mode:'index',intersect:false},plugins:{legend:{position:'top',labels:{color:'#475569',font:{size:11},boxWidth:10,padding:10,usePointStyle:true}},tooltip:{callbacks:{label:function(c){return ' '+c.dataset.label+': '+fmt(c.raw);}}}},
+    scales:{x:{ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'},border:{display:false}},y:{ticks:{color:'#1e293b',font:{size:11,weight:'600'}},grid:{display:false},border:{display:false}}}}});
 }
-
-/* Payments */
 function dPay(){
   if(CH.ch_pay)return;
-  var keys=Object.keys(PT);var vals=keys.map(function(k){return PT[k];});
-  var clrs=['#2ba9ed','#e92c30','#22c55e','#f59e0b','#8b5cf6','#06b6d4','#ec4899','#94a3b8'];
-  mk('ch_pay',{type:'doughnut',data:{labels:keys,datasets:[{data:vals,backgroundColor:clrs,borderWidth:3,borderColor:'#fff',hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{position:'right',labels:{color:'#475569',font:{size:10},boxWidth:10,padding:8}},tooltip:{callbacks:{label:function(c){var t=vals.reduce(function(a,b){return a+b;},0);return ' '+fmt(c.raw)+' ('+((c.raw/t)*100).toFixed(1)+'%)';}}}}}}); 
+  var keys=Object.keys(PT).sort(function(a,b){return PT[b]-PT[a];});
+  var CLRS=['#2ba9ed','#e92c30','#22c55e','#f59e0b','#8b5cf6','#06b6d4','#ec4899','#94a3b8'];
+  mk('ch_pay',{type:'bar',data:{labels:keys,datasets:[{data:keys.map(function(k){return PT[k];}),backgroundColor:CLRS,borderRadius:6,borderSkipped:false,barThickness:26}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,layout:{padding:{right:80}},plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){var t=Object.values(PT).reduce(function(a,b){return a+b;},0);return ' '+fmt(c.raw)+' ('+((c.raw/t)*100).toFixed(1)+'%)';}}}},
+    scales:{x:{ticks:{color:'#94a3b8',callback:function(v){return fmt(v);}},grid:{color:'rgba(226,232,240,.5)'},border:{display:false}},y:{ticks:{color:'#1e293b',font:{size:11,weight:'600'}},grid:{display:false},border:{display:false}}}}});
 }
-dOv();
-
-</script>
+dOv();</script>
 </body>
 </html>
