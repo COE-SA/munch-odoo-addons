@@ -12,9 +12,36 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install dependencies
         run: pip install requests -q
+      - name: Preserve dashboard data
+        run: cp data.json data.json.dashboard-backup
       - name: Fetch Odoo data
+        env:
+          ODOO_URL: ${{ secrets.ODOO_URL }}
+          ODOO_DB: ${{ secrets.ODOO_DB }}
+          ODOO_USER: ${{ secrets.ODOO_USER }}
+          ODOO_API_KEY: ${{ secrets.ODOO_API_KEY }}
         run: python3 fetch_data.py
         continue-on-error: true
+      - name: Validate dashboard data schema
+        run: |
+          python3 - <<'PY'
+          import json, os, shutil
+          with open('data.json', encoding='utf-8') as f:
+              data = json.load(f)
+          branches = data.get('branches') or []
+          compatible = (
+              'company_pnl' in data
+              and 'monthly_expenses' in data
+              and branches
+              and all('q1_net_revenue' in branch for branch in branches)
+          )
+          backup = 'data.json.dashboard-backup'
+          if not compatible:
+              print('Fetched data uses a different schema; restoring dashboard-compatible data.')
+              shutil.move(backup, 'data.json')
+          elif os.path.exists(backup):
+              os.remove(backup)
+          PY
       - name: Generate dashboard
         run: python3 generate_dashboard.py
       - name: Push updates
