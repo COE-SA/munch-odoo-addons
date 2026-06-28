@@ -1,11 +1,17 @@
-import xmlrpc.client, json
+import xmlrpc.client, json, os
 from datetime import datetime, timezone, timedelta
 from calendar import monthrange
 
-URL  = 'https://munchbakerydev-compass.odoo.com'
-DB   = 'munchbakerydev-compass-live-15510994'
-USER = 'HASSAN'
-KEY  = '123bdf4e7b61fd73d3997b6a2155d7a8cf214526'
+URL  = os.environ.get('ODOO_URL', '')
+DB   = os.environ.get('ODOO_DB', '')
+USER = os.environ.get('ODOO_USER', '')
+KEY  = os.environ.get('ODOO_API_KEY', '')
+
+missing = [name for name, value in {
+    'ODOO_URL': URL, 'ODOO_DB': DB, 'ODOO_USER': USER, 'ODOO_API_KEY': KEY
+}.items() if not value]
+if missing:
+    raise SystemExit('Missing required environment variables: ' + ', '.join(missing))
 
 # ── Riyadh timezone (UTC+3) ──────────────────────────────────────────────
 RIYADH = timezone(timedelta(hours=3))
