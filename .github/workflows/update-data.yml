@@ -1,52 +1,57 @@
-name: Update Monthly Data
+name: Refresh Odoo financial history
+
 on:
   schedule:
-    - cron: '0 6 1 * *'
+    # 07:15 Asia/Riyadh on the first day of every month.
+    - cron: '15 4 1 * *'
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - fetch_history.py
+      - .github/workflows/update-data.yml
+
 permissions:
   contents: write
+
+concurrency:
+  group: monthly-odoo-financial-refresh
+  cancel-in-progress: false
+
 jobs:
-  update:
+  refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-      - name: Install dependencies
-        run: pip install requests -q
-      - name: Preserve dashboard data
-        run: cp data.json data.json.dashboard-backup
-      - name: Fetch Odoo data
+
+      - name: Fetch complete history from Odoo
         env:
           ODOO_URL: ${{ secrets.ODOO_URL }}
           ODOO_DB: ${{ secrets.ODOO_DB }}
           ODOO_USER: ${{ secrets.ODOO_USER }}
           ODOO_API_KEY: ${{ secrets.ODOO_API_KEY }}
-        run: python3 fetch_data.py
-        continue-on-error: true
-      - name: Validate dashboard data schema
+        run: python3 fetch_history.py
+
+      - name: Validate executive dataset
         run: |
           python3 - <<'PY'
-          import json, os, shutil
-          with open('data.json', encoding='utf-8') as f:
-              data = json.load(f)
-          branches = data.get('branches') or []
-          compatible = (
-              'company_pnl' in data
-              and 'monthly_expenses' in data
-              and branches
-              and all('q1_net_revenue' in branch for branch in branches)
-          )
-          backup = 'data.json.dashboard-backup'
-          if not compatible:
-              print('Fetched data uses a different schema; restoring dashboard-compatible data.')
-              shutil.move(backup, 'data.json')
-          elif os.path.exists(backup):
-              os.remove(backup)
+          import json
+          from datetime import date
+          with open('data.json', encoding='utf-8') as handle:
+              data = json.load(handle)
+          assert data.get('schema_version') == 2
+          assert data.get('months'), 'No monthly history returned by Odoo'
+          assert data.get('meta', {}).get('earliest_date')
+          assert data.get('meta', {}).get('period_end') < date.today().isoformat()
+          assert all('net_profit' in row for row in data['months'])
+          print('Validated', len(data['months']), 'closed months')
           PY
-      - name: Generate dashboard
-        run: python3 generate_dashboard.py
-      - name: Push updates
+
+      - name: Publish refreshed dataset
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add data.json index.html
-          git diff --staged --quiet || (git commit -m "Monthly report: $(date +%Y-%m)" && git push)
+          git add data.json
+          git diff --staged --quiet || (git commit -m "Financial history through $(date -u +%Y-%m)" && git push)
