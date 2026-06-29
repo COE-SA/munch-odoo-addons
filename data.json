@@ -1,978 +1,574 @@
 {
-  "report_month": "الربع الأول 2026 (يناير - مارس)",
-  "report_period": "2026-01-01 إلى 2026-03-31",
-  "data_source": "Odoo POS & Accounting — بيانات مكتملة حتى مارس 2026",
-  "updated": "2026-06-22 (Riyadh)",
-  "date_from": "2026-01-01",
-  "date_to": "2026-03-31",
-  "ytd_from": "2026-01-01",
-  "ytd_to": "2026-03-31",
+  "schema_version": 2,
+  "meta": {
+    "generated_at": "2026-06-29T15:56+03:00",
+    "earliest_date": "2025-01-01",
+    "period_end": "2026-05-31",
+    "current_year": "2026",
+    "closed_months": 5,
+    "source": "Odoo — posted general ledger and POS",
+    "basis": "Cumulative through the latest closed calendar month",
+    "currency": "SAR"
+  },
+  "months": [
+    {
+      "month": "2025-01",
+      "revenue": 13894018.79,
+      "cogs": 5260690.08,
+      "gross_profit": 8633328.71,
+      "gross_margin": 62.14,
+      "opex": 6274784.26,
+      "net_profit": 2358544.45,
+      "net_margin": 16.98,
+      "expenses": {
+        "other": 1843590.95,
+        "salaries": 2052938.63,
+        "insurance": 126468.87,
+        "rent": 1239868.66,
+        "utilities": 223632.84,
+        "government": 181546.16,
+        "marketing": 7650.0,
+        "royalty": 599088.15
+      }
+    }
+  ],
+  "annual": [
+    {
+      "year": "2025",
+      "revenue": 13894018.79,
+      "cogs": 5260690.08,
+      "gross_profit": 8633328.71,
+      "opex": 6274784.26,
+      "net_profit": 2358544.45,
+      "gross_margin": 62.14,
+      "net_margin": 16.98,
+      "expenses": {
+        "other": 1843590.95,
+        "salaries": 2052938.63,
+        "insurance": 126468.87,
+        "rent": 1239868.66,
+        "utilities": 223632.84,
+        "government": 181546.16,
+        "marketing": 7650.0,
+        "royalty": 599088.15
+      }
+    }
+  ],
+  "current_ytd": {
+    "revenue": 0,
+    "cogs": 0,
+    "gross_profit": 0,
+    "opex": 0,
+    "net_profit": 0,
+    "gross_margin": 0,
+    "net_margin": 0,
+    "expenses": {}
+  },
+  "prior_ytd": {
+    "revenue": 13894018.79,
+    "cogs": 5260690.08,
+    "gross_profit": 8633328.71,
+    "opex": 6274784.26,
+    "net_profit": 2358544.45,
+    "gross_margin": 62.14,
+    "net_margin": 16.98,
+    "expenses": {
+      "other": 1843590.95,
+      "salaries": 2052938.63,
+      "insurance": 126468.87,
+      "rent": 1239868.66,
+      "utilities": 223632.84,
+      "government": 181546.16,
+      "marketing": 7650.0,
+      "royalty": 599088.15
+    }
+  },
   "branches": [
     {
-      "name": "Jed - Hamadaniyyah (FR)",
-      "name_ar": "الحمدانية",
+      "name": "Jed - Marwah (FR) (Marwah)",
       "color": "#f59e0b",
-      "total": 548541,
-      "total_txn": 6327,
-      "avg_ticket": 87,
-      "q1_revenue": 548541,
-      "q1_net_revenue": 476992,
-      "q1_txn": 6327,
-      "q1_cogs": 277132,
-      "q1_gross_profit": 199860,
-      "q1_gross_margin": 41.9,
-      "q1_salaries": 55473,
-      "q1_rent": 31500,
-      "q1_delivery_comm": 57472,
-      "q1_royalty": 23849,
-      "q1_marketing": 14309,
-      "q1_electricity": 6000,
-      "q1_opex": 189638,
-      "q1_net_profit": 10222,
-      "q1_net_margin": 2.1,
-      "q1_rev_share": 19.8,
       "monthly": {
+        "2024-10": {
+          "revenue": 177412.43,
+          "transactions": 2388
+        },
+        "2024-11": {
+          "revenue": 180900.44,
+          "transactions": 2383
+        },
+        "2024-12": {
+          "revenue": 181741.84,
+          "transactions": 2403
+        },
+        "2025-01": {
+          "revenue": 216615.15,
+          "transactions": 2609
+        },
+        "2025-02": {
+          "revenue": 194808.62,
+          "transactions": 2540
+        },
+        "2025-03": {
+          "revenue": 177060.29,
+          "transactions": 1878
+        },
+        "2025-04": {
+          "revenue": 204569.4,
+          "transactions": 2619
+        },
+        "2025-05": {
+          "revenue": 274914.89,
+          "transactions": 3224
+        },
+        "2025-06": {
+          "revenue": 267326.67,
+          "transactions": 3035
+        },
+        "2025-07": {
+          "revenue": 207733.44,
+          "transactions": 2544
+        },
+        "2025-08": {
+          "revenue": 185701.53,
+          "transactions": 2238
+        },
+        "2025-09": {
+          "revenue": 198134.19,
+          "transactions": 2389
+        },
         "2025-10": {
-          "revenue": 171056,
-          "net_revenue": 148744,
-          "txn": 2105,
-          "gross_profit": 62324,
-          "opex": 61157,
-          "net_profit": 1167
+          "revenue": 202509.14,
+          "transactions": 2436
         },
         "2025-11": {
-          "revenue": 163053,
-          "net_revenue": 141785,
-          "txn": 2031,
-          "gross_profit": 59408,
-          "opex": 59761,
-          "net_profit": -353
+          "revenue": 175705.89,
+          "transactions": 2188
         },
         "2025-12": {
-          "revenue": 170951,
-          "net_revenue": 148653,
-          "txn": 2000,
-          "gross_profit": 62286,
-          "opex": 61139,
-          "net_profit": 1147
+          "revenue": 189578.04,
+          "transactions": 2309
         },
         "2026-01": {
-          "revenue": 211695,
-          "net_revenue": 184083,
-          "txn": 2449,
-          "gross_profit": 77131,
-          "opex": 68242,
-          "net_profit": 8889
+          "revenue": 220081.48,
+          "transactions": 2520
         },
         "2026-02": {
-          "revenue": 126408,
-          "net_revenue": 109920,
-          "txn": 1557,
-          "gross_profit": 46056,
-          "opex": 53373,
-          "net_profit": -7317
+          "revenue": 146839.45,
+          "transactions": 1782
         },
         "2026-03": {
-          "revenue": 210438,
-          "net_revenue": 182990,
-          "txn": 2321,
-          "gross_profit": 76673,
-          "opex": 68022,
-          "net_profit": 8651
+          "revenue": 219927.87,
+          "transactions": 2366
+        },
+        "2026-04": {
+          "revenue": 162791.22,
+          "transactions": 1971
+        },
+        "2026-05": {
+          "revenue": 244419.86,
+          "transactions": 2711
         }
       },
-      "gross_profit_real": 199860,
-      "gross_margin_real": 41.9,
-      "cogs_real": 277132,
-      "qoq": 66.5,
-      "xl_revenue": 476992,
-      "xl_net_profit": 10222,
-      "xl_net_margin": 2.1,
-      "xl_gross_profit": 199860,
-      "xl_gross_margin": 41.9,
-      "xl_salaries": 55473,
-      "xl_rent": 31500,
-      "xl_delivery_fee": 57472,
-      "xl_op_expenses": 189638,
-      "xl_royalty": 23849,
-      "xl_marketing": 14309
+      "ytd_revenue": 994059.88,
+      "share": 21.08,
+      "estimated_gross_profit": 0.0,
+      "estimated_opex": 0.0,
+      "estimated_net_profit": 0.0
     },
     {
-      "name": "Jed - Ajaweed (FR)",
-      "name_ar": "أجاويد",
+      "name": "Jed - Ajaweed (FR) (Ajaweed)",
       "color": "#2ba9ed",
-      "total": 540507,
-      "total_txn": 6712,
-      "avg_ticket": 81,
-      "q1_revenue": 540507,
-      "q1_net_revenue": 470006,
-      "q1_txn": 6712,
-      "q1_cogs": 279184,
-      "q1_gross_profit": 190822,
-      "q1_gross_margin": 40.6,
-      "q1_salaries": 65307,
-      "q1_rent": 23751,
-      "q1_delivery_comm": 62793,
-      "q1_royalty": 23499,
-      "q1_marketing": 14101,
-      "q1_electricity": 3909,
-      "q1_opex": 194395,
-      "q1_net_profit": -3573,
-      "q1_net_margin": -0.8,
-      "q1_rev_share": 19.5,
       "monthly": {
+        "2024-10": {
+          "revenue": 180113.05,
+          "transactions": 2496
+        },
+        "2024-11": {
+          "revenue": 174809.98,
+          "transactions": 2359
+        },
+        "2024-12": {
+          "revenue": 162862.0,
+          "transactions": 2444
+        },
+        "2025-01": {
+          "revenue": 185691.95,
+          "transactions": 2595
+        },
+        "2025-02": {
+          "revenue": 193723.09,
+          "transactions": 2703
+        },
+        "2025-03": {
+          "revenue": 161536.4,
+          "transactions": 2046
+        },
+        "2025-04": {
+          "revenue": 172686.62,
+          "transactions": 2329
+        },
+        "2025-05": {
+          "revenue": 281494.25,
+          "transactions": 3454
+        },
+        "2025-06": {
+          "revenue": 307317.32,
+          "transactions": 3343
+        },
+        "2025-07": {
+          "revenue": 210599.42,
+          "transactions": 2585
+        },
+        "2025-08": {
+          "revenue": 174017.85,
+          "transactions": 2162
+        },
+        "2025-09": {
+          "revenue": 157154.29,
+          "transactions": 2084
+        },
         "2025-10": {
-          "revenue": 165922,
-          "net_revenue": 144280,
-          "txn": 2240,
-          "gross_profit": 58578,
-          "opex": 62153,
-          "net_profit": -3575
+          "revenue": 166171.33,
+          "transactions": 2243
         },
         "2025-11": {
-          "revenue": 156773,
-          "net_revenue": 136324,
-          "txn": 2082,
-          "gross_profit": 55348,
-          "opex": 60453,
-          "net_profit": -5105
+          "revenue": 156568.73,
+          "transactions": 2080
         },
         "2025-12": {
-          "revenue": 168470,
-          "net_revenue": 146496,
-          "txn": 2217,
-          "gross_profit": 59477,
-          "opex": 62625,
-          "net_profit": -3148
+          "revenue": 169820.28,
+          "transactions": 2239
         },
         "2026-01": {
-          "revenue": 211034,
-          "net_revenue": 183508,
-          "txn": 2595,
-          "gross_profit": 74504,
-          "opex": 70532,
-          "net_profit": 3972
+          "revenue": 209525.9,
+          "transactions": 2570
         },
         "2026-02": {
-          "revenue": 127220,
-          "net_revenue": 110626,
-          "txn": 1640,
-          "gross_profit": 44914,
-          "opex": 54964,
-          "net_profit": -10050
+          "revenue": 127328.75,
+          "transactions": 1642
         },
         "2026-03": {
-          "revenue": 202253,
-          "net_revenue": 175872,
-          "txn": 2477,
-          "gross_profit": 71404,
-          "opex": 68901,
-          "net_profit": 2503
+          "revenue": 203018.7,
+          "transactions": 2252
+        },
+        "2026-04": {
+          "revenue": 164452.7,
+          "transactions": 2132
+        },
+        "2026-05": {
+          "revenue": 271511.41,
+          "transactions": 3106
         }
       },
-      "gross_profit_real": 190822,
-      "gross_margin_real": 40.6,
-      "cogs_real": 279184,
-      "qoq": 59.0,
-      "xl_revenue": 470006,
-      "xl_net_profit": -3573,
-      "xl_net_margin": -0.8,
-      "xl_gross_profit": 190822,
-      "xl_gross_margin": 40.6,
-      "xl_salaries": 65307,
-      "xl_rent": 23751,
-      "xl_delivery_fee": 62793,
-      "xl_op_expenses": 194395,
-      "xl_royalty": 23499,
-      "xl_marketing": 14101
+      "ytd_revenue": 975837.46,
+      "share": 20.7,
+      "estimated_gross_profit": 0.0,
+      "estimated_opex": 0.0,
+      "estimated_net_profit": 0.0
     },
     {
-      "name": "Jed - Al Safa (FR)",
-      "name_ar": "الصفا",
-      "color": "#e92c30",
-      "total": 373046,
-      "total_txn": 4458,
-      "avg_ticket": 84,
-      "q1_revenue": 373046,
-      "q1_net_revenue": 324388,
-      "q1_txn": 4458,
-      "q1_cogs": 193660,
-      "q1_gross_profit": 130728,
-      "q1_gross_margin": 40.3,
-      "q1_salaries": 28572,
-      "q1_rent": 45000,
-      "q1_delivery_comm": 44635,
-      "q1_royalty": 16220,
-      "q1_marketing": 9732,
-      "q1_electricity": 7500,
-      "q1_opex": 152694,
-      "q1_net_profit": -21966,
-      "q1_net_margin": -6.8,
-      "q1_rev_share": 13.4,
-      "monthly": {
-        "2025-10": {
-          "revenue": 118034,
-          "net_revenue": 102638,
-          "txn": 1469,
-          "gross_profit": 41363,
-          "opex": 49703,
-          "net_profit": -8340
-        },
-        "2025-11": {
-          "revenue": 109764,
-          "net_revenue": 95447,
-          "txn": 1367,
-          "gross_profit": 38465,
-          "opex": 48138,
-          "net_profit": -9673
-        },
-        "2025-12": {
-          "revenue": 112638,
-          "net_revenue": 97946,
-          "txn": 1357,
-          "gross_profit": 39472,
-          "opex": 48681,
-          "net_profit": -9209
-        },
-        "2026-01": {
-          "revenue": 142508,
-          "net_revenue": 123920,
-          "txn": 1721,
-          "gross_profit": 49940,
-          "opex": 54334,
-          "net_profit": -4394
-        },
-        "2026-02": {
-          "revenue": 89490,
-          "net_revenue": 77817,
-          "txn": 1121,
-          "gross_profit": 31360,
-          "opex": 44301,
-          "net_profit": -12941
-        },
-        "2026-03": {
-          "revenue": 141048,
-          "net_revenue": 122650,
-          "txn": 1616,
-          "gross_profit": 49428,
-          "opex": 54057,
-          "net_profit": -4629
-        }
-      },
-      "gross_profit_real": 130728,
-      "gross_margin_real": 40.3,
-      "cogs_real": 193660,
-      "qoq": 57.6,
-      "xl_revenue": 324388,
-      "xl_net_profit": -21966,
-      "xl_net_margin": -6.8,
-      "xl_gross_profit": 130728,
-      "xl_gross_margin": 40.3,
-      "xl_salaries": 28572,
-      "xl_rent": 45000,
-      "xl_delivery_fee": 44635,
-      "xl_op_expenses": 152694,
-      "xl_royalty": 16220,
-      "xl_marketing": 9732
-    },
-    {
-      "name": "Jed- Al-Wazeeriyah (FR)",
-      "name_ar": "الوزيرية",
-      "color": "#06b6d4",
-      "total": 284917,
-      "total_txn": 3519,
-      "avg_ticket": 81,
-      "q1_revenue": 284917,
-      "q1_net_revenue": 247754,
-      "q1_txn": 3519,
-      "q1_cogs": 154351,
-      "q1_gross_profit": 93403,
-      "q1_gross_margin": 37.7,
-      "q1_salaries": 39498,
-      "q1_rent": 36375,
-      "q1_delivery_comm": 40577,
-      "q1_royalty": 12389,
-      "q1_marketing": 7432,
-      "q1_electricity": 6000,
-      "q1_opex": 143306,
-      "q1_net_profit": -49903,
-      "q1_net_margin": -20.1,
-      "q1_rev_share": 10.3,
-      "monthly": {
-        "2025-10": {
-          "revenue": 85427,
-          "net_revenue": 74284,
-          "txn": 1146,
-          "gross_profit": 28005,
-          "opex": 45744,
-          "net_profit": -17739
-        },
-        "2025-11": {
-          "revenue": 78349,
-          "net_revenue": 68130,
-          "txn": 1057,
-          "gross_profit": 25685,
-          "opex": 44245,
-          "net_profit": -18560
-        },
-        "2025-12": {
-          "revenue": 80768,
-          "net_revenue": 70233,
-          "txn": 1048,
-          "gross_profit": 26478,
-          "opex": 44758,
-          "net_profit": -18280
-        },
-        "2026-01": {
-          "revenue": 104879,
-          "net_revenue": 91199,
-          "txn": 1293,
-          "gross_profit": 34382,
-          "opex": 49869,
-          "net_profit": -15487
-        },
-        "2026-02": {
-          "revenue": 69398,
-          "net_revenue": 60346,
-          "txn": 900,
-          "gross_profit": 22750,
-          "opex": 42348,
-          "net_profit": -19598
-        },
-        "2026-03": {
-          "revenue": 110640,
-          "net_revenue": 96209,
-          "txn": 1326,
-          "gross_profit": 36271,
-          "opex": 51090,
-          "net_profit": -14819
-        }
-      },
-      "gross_profit_real": 93403,
-      "gross_margin_real": 37.7,
-      "cogs_real": 154351,
-      "qoq": 59.4,
-      "xl_revenue": 247754,
-      "xl_net_profit": -49903,
-      "xl_net_margin": -20.1,
-      "xl_gross_profit": 93403,
-      "xl_gross_margin": 37.7,
-      "xl_salaries": 39498,
-      "xl_rent": 36375,
-      "xl_delivery_fee": 40577,
-      "xl_op_expenses": 143306,
-      "xl_royalty": 12389,
-      "xl_marketing": 7432
-    },
-    {
-      "name": "Jed - Marwah (FR)",
-      "name_ar": "المروة",
+      "name": "Jed - Hamadaniyyah (FR) (Hamadaniyah)",
       "color": "#22c55e",
-      "total": 588787,
-      "total_txn": 6699,
-      "avg_ticket": 88,
-      "q1_revenue": 588787,
-      "q1_net_revenue": 511989,
-      "q1_txn": 6699,
-      "q1_cogs": 301050,
-      "q1_gross_profit": 210939,
-      "q1_gross_margin": 41.2,
-      "q1_salaries": 102414,
-      "q1_rent": 47250,
-      "q1_delivery_comm": 64617,
-      "q1_royalty": 25599,
-      "q1_marketing": 15361,
-      "q1_electricity": 9897,
-      "q1_opex": 266173,
-      "q1_net_profit": -55234,
-      "q1_net_margin": -10.8,
-      "q1_rev_share": 21.2,
       "monthly": {
+        "2024-10": {
+          "revenue": 166279.3,
+          "transactions": 2281
+        },
+        "2024-11": {
+          "revenue": 181732.94,
+          "transactions": 2410
+        },
+        "2024-12": {
+          "revenue": 169332.55,
+          "transactions": 2233
+        },
+        "2025-01": {
+          "revenue": 180924.25,
+          "transactions": 2427
+        },
+        "2025-02": {
+          "revenue": 188257.27,
+          "transactions": 2408
+        },
+        "2025-03": {
+          "revenue": 157841.14,
+          "transactions": 1842
+        },
+        "2025-04": {
+          "revenue": 176727.79,
+          "transactions": 2279
+        },
+        "2025-05": {
+          "revenue": 261270.1,
+          "transactions": 3016
+        },
+        "2025-06": {
+          "revenue": 287143.45,
+          "transactions": 3119
+        },
+        "2025-07": {
+          "revenue": 194490.8,
+          "transactions": 2362
+        },
+        "2025-08": {
+          "revenue": 177916.98,
+          "transactions": 2125
+        },
+        "2025-09": {
+          "revenue": 162391.29,
+          "transactions": 1945
+        },
         "2025-10": {
-          "revenue": 202562,
-          "net_revenue": 176141,
-          "txn": 2432,
-          "gross_profit": 72570,
-          "opex": 89854,
-          "net_profit": -17284
+          "revenue": 171553.91,
+          "transactions": 2113
         },
         "2025-11": {
-          "revenue": 175839,
-          "net_revenue": 152903,
-          "txn": 2192,
-          "gross_profit": 62996,
-          "opex": 85063,
-          "net_profit": -22067
+          "revenue": 162359.42,
+          "transactions": 2021
         },
         "2025-12": {
-          "revenue": 187868,
-          "net_revenue": 163363,
-          "txn": 2285,
-          "gross_profit": 67306,
-          "opex": 87219,
-          "net_profit": -19913
+          "revenue": 172412.8,
+          "transactions": 2018
         },
         "2026-01": {
-          "revenue": 221792,
-          "net_revenue": 192863,
-          "txn": 2543,
-          "gross_profit": 79460,
-          "opex": 93303,
-          "net_profit": -13843
+          "revenue": 210517.42,
+          "transactions": 2434
         },
         "2026-02": {
-          "revenue": 146409,
-          "net_revenue": 127312,
-          "txn": 1775,
-          "gross_profit": 52453,
-          "opex": 79785,
-          "net_profit": -27332
+          "revenue": 126363.84,
+          "transactions": 1558
         },
         "2026-03": {
-          "revenue": 220586,
-          "net_revenue": 191814,
-          "txn": 2381,
-          "gross_profit": 79027,
-          "opex": 93086,
-          "net_profit": -14059
+          "revenue": 210394.57,
+          "transactions": 2320
+        },
+        "2026-04": {
+          "revenue": 158681.8,
+          "transactions": 1998
+        },
+        "2026-05": {
+          "revenue": 241328.95,
+          "transactions": 2630
         }
       },
-      "gross_profit_real": 210939,
-      "gross_margin_real": 41.2,
-      "cogs_real": 301050,
-      "qoq": 50.7,
-      "xl_revenue": 511989,
-      "xl_net_profit": -55234,
-      "xl_net_margin": -10.8,
-      "xl_gross_profit": 210939,
-      "xl_gross_margin": 41.2,
-      "xl_salaries": 102414,
-      "xl_rent": 47250,
-      "xl_delivery_fee": 64617,
-      "xl_op_expenses": 266173,
-      "xl_royalty": 25599,
-      "xl_marketing": 15361
+      "ytd_revenue": 947286.58,
+      "share": 20.09,
+      "estimated_gross_profit": 0.0,
+      "estimated_opex": 0.0,
+      "estimated_net_profit": 0.0
     },
     {
-      "name": "Medinah - Immam Bukhari (FR)",
-      "name_ar": "المدينة",
+      "name": "Medinah - Immam Bukhari (FR) (Defaa)",
+      "color": "#06b6d4",
+      "monthly": {
+        "2024-10": {
+          "revenue": 158436.67,
+          "transactions": 2463
+        },
+        "2024-11": {
+          "revenue": 150771.55,
+          "transactions": 2222
+        },
+        "2024-12": {
+          "revenue": 136873.12,
+          "transactions": 2130
+        },
+        "2025-01": {
+          "revenue": 136087.69,
+          "transactions": 1979
+        },
+        "2025-02": {
+          "revenue": 156078.33,
+          "transactions": 2231
+        },
+        "2025-03": {
+          "revenue": 119392.33,
+          "transactions": 1533
+        },
+        "2025-04": {
+          "revenue": 131174.05,
+          "transactions": 1803
+        },
+        "2025-05": {
+          "revenue": 264507.77,
+          "transactions": 3089
+        },
+        "2025-06": {
+          "revenue": 243235.55,
+          "transactions": 2640
+        },
+        "2025-07": {
+          "revenue": 152595.73,
+          "transactions": 1987
+        },
+        "2025-08": {
+          "revenue": 142224.4,
+          "transactions": 1731
+        },
+        "2025-09": {
+          "revenue": 126496.75,
+          "transactions": 1612
+        },
+        "2025-10": {
+          "revenue": 133993.69,
+          "transactions": 1822
+        },
+        "2025-11": {
+          "revenue": 113746.91,
+          "transactions": 1581
+        },
+        "2025-12": {
+          "revenue": 136748.9,
+          "transactions": 1747
+        },
+        "2026-01": {
+          "revenue": 151051.42,
+          "transactions": 1810
+        },
+        "2026-02": {
+          "revenue": 87681.05,
+          "transactions": 1106
+        },
+        "2026-03": {
+          "revenue": 152170.25,
+          "transactions": 1666
+        },
+        "2026-04": {
+          "revenue": 126112.95,
+          "transactions": 1586
+        },
+        "2026-05": {
+          "revenue": 213587.68,
+          "transactions": 2402
+        }
+      },
+      "ytd_revenue": 730603.35,
+      "share": 15.49,
+      "estimated_gross_profit": 0.0,
+      "estimated_opex": 0.0,
+      "estimated_net_profit": 0.0
+    },
+    {
+      "name": "Jed - Al Safa (FR) (Safa)",
+      "color": "#e92c30",
+      "monthly": {
+        "2026-02": {
+          "revenue": 97625.67,
+          "transactions": 1180
+        },
+        "2026-03": {
+          "revenue": 169777.03,
+          "transactions": 1881
+        },
+        "2026-04": {
+          "revenue": 141448.26,
+          "transactions": 1647
+        },
+        "2026-05": {
+          "revenue": 199556.89,
+          "transactions": 2218
+        }
+      },
+      "ytd_revenue": 608407.85,
+      "share": 12.9,
+      "estimated_gross_profit": 0.0,
+      "estimated_opex": 0.0,
+      "estimated_net_profit": 0.0
+    },
+    {
+      "name": "Jed- Al-Wazeeriyah (FR) (Waziriyah)",
       "color": "#8b5cf6",
-      "total": 438616,
-      "total_txn": 5019,
-      "avg_ticket": 87,
-      "q1_revenue": 438616,
-      "q1_net_revenue": 381405,
-      "q1_txn": 5019,
-      "q1_cogs": 227699,
-      "q1_gross_profit": 153706,
-      "q1_gross_margin": 40.3,
-      "q1_salaries": 85539,
-      "q1_rent": 47502,
-      "q1_delivery_comm": 52388,
-      "q1_royalty": 19071,
-      "q1_marketing": 11443,
-      "q1_electricity": 7500,
-      "q1_opex": 224478,
-      "q1_net_profit": -70772,
-      "q1_net_margin": -18.6,
-      "q1_rev_share": 15.8,
       "monthly": {
+        "2024-10": {
+          "revenue": 86195.1,
+          "transactions": 1423
+        },
+        "2024-11": {
+          "revenue": 90254.88,
+          "transactions": 1425
+        },
+        "2024-12": {
+          "revenue": 91242.4,
+          "transactions": 1429
+        },
+        "2025-01": {
+          "revenue": 91013.8,
+          "transactions": 1418
+        },
+        "2025-02": {
+          "revenue": 99808.31,
+          "transactions": 1379
+        },
+        "2025-03": {
+          "revenue": 85349.2,
+          "transactions": 1125
+        },
+        "2025-04": {
+          "revenue": 94200.6,
+          "transactions": 1437
+        },
+        "2025-05": {
+          "revenue": 143853.65,
+          "transactions": 1913
+        },
+        "2025-06": {
+          "revenue": 138138.85,
+          "transactions": 1770
+        },
+        "2025-07": {
+          "revenue": 98150.95,
+          "transactions": 1340
+        },
+        "2025-08": {
+          "revenue": 90246.05,
+          "transactions": 1150
+        },
+        "2025-09": {
+          "revenue": 80263.43,
+          "transactions": 1132
+        },
         "2025-10": {
-          "revenue": 131942,
-          "net_revenue": 114732,
-          "txn": 1621,
-          "gross_profit": 46237,
-          "opex": 72130,
-          "net_profit": -25893
+          "revenue": 89241.78,
+          "transactions": 1234
         },
         "2025-11": {
-          "revenue": 122467,
-          "net_revenue": 106493,
-          "txn": 1534,
-          "gross_profit": 42917,
-          "opex": 70339,
-          "net_profit": -27422
+          "revenue": 87176.14,
+          "transactions": 1172
         },
         "2025-12": {
-          "revenue": 126416,
-          "net_revenue": 109927,
-          "txn": 1548,
-          "gross_profit": 44301,
-          "opex": 71086,
-          "net_profit": -26785
+          "revenue": 94565.49,
+          "transactions": 1293
         },
         "2026-01": {
-          "revenue": 167095,
-          "net_revenue": 145300,
-          "txn": 1893,
-          "gross_profit": 58556,
-          "opex": 78774,
-          "net_profit": -20218
+          "revenue": 104725.29,
+          "transactions": 1326
         },
         "2026-02": {
-          "revenue": 102474,
-          "net_revenue": 89108,
-          "txn": 1259,
-          "gross_profit": 35911,
-          "opex": 66561,
-          "net_profit": -30650
+          "revenue": 59872.94,
+          "transactions": 906
         },
         "2026-03": {
-          "revenue": 169047,
-          "net_revenue": 146997,
-          "txn": 1867,
-          "gross_profit": 59240,
-          "opex": 79143,
-          "net_profit": -19903
+          "revenue": 84537.73,
+          "transactions": 1064
+        },
+        "2026-04": {
+          "revenue": 82749.41,
+          "transactions": 1180
+        },
+        "2026-05": {
+          "revenue": 127111.02,
+          "transactions": 1581
         }
       },
-      "gross_profit_real": 153706,
-      "gross_margin_real": 40.3,
-      "cogs_real": 227699,
-      "qoq": 65.0,
-      "xl_revenue": 381405,
-      "xl_net_profit": -70772,
-      "xl_net_margin": -18.6,
-      "xl_gross_profit": 153706,
-      "xl_gross_margin": 40.3,
-      "xl_salaries": 85539,
-      "xl_rent": 47502,
-      "xl_delivery_fee": 52388,
-      "xl_op_expenses": 224478,
-      "xl_royalty": 19071,
-      "xl_marketing": 11443
+      "ytd_revenue": 458996.39,
+      "share": 9.73,
+      "estimated_gross_profit": 0.0,
+      "estimated_opex": 0.0,
+      "estimated_net_profit": 0.0
     }
   ],
-  "company_pnl": {
-    "period": "Q1 2026",
-    "revenue_incl_vat": 2774414,
-    "net_revenue": 2412534,
-    "cogs": 1433076,
-    "gross_profit": 979458,
-    "gross_margin": 40.6,
-    "opex_odoo": 1622212,
-    "opex_estimated": 1170684,
-    "net_profit": -191226,
-    "net_margin": -7.9,
-    "opex_breakdown_q1": {
-      "salaries": 230985,
-      "rent": 520182,
-      "luopreev_food": 233936,
-      "royalty": 93873,
-      "govt_fees": 56375,
-      "insurance": 41461,
-      "electricity": 14785,
-      "bank_fees": 12612,
-      "other": 418003
-    }
-  },
-  "monthly_expenses": {
-    "2026-01": {
-      "total": 646061,
-      "salaries": 124265,
-      "rent": 234707,
-      "luopreev": 129836,
-      "royalty": 32882
-    },
-    "2026-02": {
-      "total": 542371,
-      "salaries": 122465,
-      "rent": 185875,
-      "luopreev": 52050,
-      "royalty": 33000
-    },
-    "2026-03": {
-      "total": 433780,
-      "salaries": 93765,
-      "rent": 99600,
-      "luopreev": 52050,
-      "royalty": 27991
-    }
-  },
-  "delivery_apps": {
-    "Hunger Station": {
-      "total": 631240,
-      "count": 6544,
-      "fee_rate": 16,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 12,
-      "commission": 195307,
-      "net": 435933,
-      "effective_rate": 30.9
-    },
-    "Keeta": {
-      "total": 311193,
-      "count": 3517,
-      "fee_rate": 18,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 9,
-      "commission": 95448,
-      "net": 215745,
-      "effective_rate": 30.7
-    },
-    "Taker Website": {
-      "total": 156552,
-      "count": 1186,
-      "fee_rate": 6,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 0,
-      "commission": 13307,
-      "net": 143245,
-      "effective_rate": 8.5
-    },
-    "Ninja": {
-      "total": 121095,
-      "count": 1396,
-      "fee_rate": 16,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 12,
-      "commission": 39155,
-      "net": 81940,
-      "effective_rate": 32.3
-    },
-    "JAHEZ": {
-      "total": 57121,
-      "count": 571,
-      "fee_rate": 13,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 0,
-      "commission": 8854,
-      "net": 48267,
-      "effective_rate": 15.5
-    },
-    "Marsool": {
-      "total": 46542,
-      "count": 412,
-      "fee_rate": 12,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 11,
-      "commission": 11281,
-      "net": 35261,
-      "effective_rate": 24.2
-    },
-    "ToYou": {
-      "total": 24864,
-      "count": 257,
-      "fee_rate": 17,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 10,
-      "commission": 7418,
-      "net": 17446,
-      "effective_rate": 29.8
-    },
-    "The Chefz": {
-      "total": 14452,
-      "count": 126,
-      "fee_rate": 16,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 0,
-      "commission": 2674,
-      "net": 11778,
-      "effective_rate": 18.5
-    },
-    "COE Marketing": {
-      "total": 5454,
-      "count": 41,
-      "fee_rate": 10,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 0,
-      "commission": 682,
-      "net": 4772,
-      "effective_rate": 12.5
-    },
-    "Tamara": {
-      "total": 1204,
-      "count": 5,
-      "fee_rate": 10,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 0,
-      "commission": 150,
-      "net": 1054,
-      "effective_rate": 12.5
-    },
-    "Mr.Mandoob": {
-      "total": 441,
-      "count": 3,
-      "fee_rate": 13,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 10,
-      "commission": 98,
-      "net": 343,
-      "effective_rate": 22.2
-    }
-  },
-  "delivery_apps_total": {
-    "total": 1370158,
-    "count": 14058,
-    "commission": 374374,
-    "net": 995784
-  },
-  "payment_totals": {
-    "Online Paid": 1371423,
-    "Mada Card": 819879,
-    "Visa": 149104,
-    "Master Card": 43816,
-    "Marwah Cash": 41909,
-    "Hamdaniyah Cash": 39975,
-    "Ajaweed Cash": 39423,
-    "Waziriyah Cash": 30190,
-    "Defaa Cash": 24709,
-    "Safa Cash": 24552,
-    "Amex Card": 1463,
-    "Taker Wallet": 561
-  },
-  "products": [
-    {
-      "name": "كيك مناسبات",
-      "qty": 99244,
-      "revenue": 86299
-    },
-    {
-      "name": "Red Velvet Mini Cupcake",
-      "qty": 13555,
-      "revenue": 44050
-    },
-    {
-      "name": "Dream Mini Cupcake",
-      "qty": 11940,
-      "revenue": 39003
-    },
-    {
-      "name": "Blue Velvet Mini Cupcake",
-      "qty": 11384,
-      "revenue": 37515
-    },
-    {
-      "name": "Purple Velvet Mini Cupcake",
-      "qty": 10660,
-      "revenue": 35218
-    },
-    {
-      "name": "Strawberry Mini Cupcake",
-      "qty": 9019,
-      "revenue": 30135
-    },
-    {
-      "name": "Nutella Mini Cupcake",
-      "qty": 8403,
-      "revenue": 27135
-    },
-    {
-      "name": "Vanilla Mini Cupcake",
-      "qty": 8060,
-      "revenue": 26630
-    },
-    {
-      "name": "Carrot Mini Cupcake",
-      "qty": 8009,
-      "revenue": 26890
-    },
-    {
-      "name": "Lotus Mini Cupcake",
-      "qty": 7826,
-      "revenue": 25960
-    }
-  ],
-  "purchase_orders_q1": {
-    "2026-01": 225937,
-    "2026-02": 119896,
-    "2026-03": 273399,
-    "total": 619232
-  },
-  "pos_returns": {
-    "count": 0,
-    "total": 0
-  },
-  "hourly": [
-    15000,
-    12000,
-    5000,
-    3000,
-    1500,
-    1000,
-    800,
-    600,
-    700,
-    3000,
-    4000,
-    5500,
-    8000,
-    12000,
-    18000,
-    25000,
-    38000,
-    52000,
-    55000,
-    58000,
-    60000,
-    55000,
-    50000,
-    45000
-  ],
-  "daily": {},
-  "delivery_ytd": {
-    "Hunger Station": {
-      "total": 631240,
-      "count": 6544,
-      "fee_rate": 16,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 12,
-      "commission": 195307,
-      "net": 435933,
-      "effective_rate": 30.9
-    },
-    "Keeta": {
-      "total": 311193,
-      "count": 3517,
-      "fee_rate": 18,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 9,
-      "commission": 95448,
-      "net": 215745,
-      "effective_rate": 30.7
-    },
-    "Taker Website": {
-      "total": 156552,
-      "count": 1186,
-      "fee_rate": 6,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 0,
-      "commission": 13307,
-      "net": 143245,
-      "effective_rate": 8.5
-    },
-    "Ninja": {
-      "total": 121095,
-      "count": 1396,
-      "fee_rate": 16,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 12,
-      "commission": 39155,
-      "net": 81940,
-      "effective_rate": 32.3
-    },
-    "JAHEZ": {
-      "total": 57121,
-      "count": 571,
-      "fee_rate": 13,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 0,
-      "commission": 8854,
-      "net": 48267,
-      "effective_rate": 15.5
-    },
-    "Marsool": {
-      "total": 46542,
-      "count": 412,
-      "fee_rate": 12,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 11,
-      "commission": 11281,
-      "net": 35261,
-      "effective_rate": 24.2
-    },
-    "ToYou": {
-      "total": 24864,
-      "count": 257,
-      "fee_rate": 17,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 10,
-      "commission": 7418,
-      "net": 17446,
-      "effective_rate": 29.8
-    },
-    "The Chefz": {
-      "total": 14452,
-      "count": 126,
-      "fee_rate": 16,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 0,
-      "commission": 2674,
-      "net": 11778,
-      "effective_rate": 18.5
-    },
-    "COE Marketing": {
-      "total": 5454,
-      "count": 41,
-      "fee_rate": 10,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 0,
-      "commission": 682,
-      "net": 4772,
-      "effective_rate": 12.5
-    },
-    "Tamara": {
-      "total": 1204,
-      "count": 5,
-      "fee_rate": 10,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 0,
-      "commission": 150,
-      "net": 1054,
-      "effective_rate": 12.5
-    },
-    "Mr.Mandoob": {
-      "total": 441,
-      "count": 3,
-      "fee_rate": 13,
-      "payment_fee": 2.5,
-      "delivery_fee_sar": 10,
-      "commission": 98,
-      "net": 343,
-      "effective_rate": 22.2
-    }
-  },
-  "excel_pnl": {
-    "source": "مدمج مع بيانات Odoo"
-  },
-  "revenue_by_branch_month": {
-    "Jed - Hamadaniyyah (FR)": {
-      "2025-10": 171056,
-      "2025-11": 163053,
-      "2025-12": 170951,
-      "2026-01": 211695,
-      "2026-02": 126408,
-      "2026-03": 210438
-    },
-    "Jed - Ajaweed (FR)": {
-      "2025-10": 165922,
-      "2025-11": 156773,
-      "2025-12": 168470,
-      "2026-01": 211034,
-      "2026-02": 127220,
-      "2026-03": 202253
-    },
-    "Jed - Al Safa (FR)": {
-      "2025-10": 118034,
-      "2025-11": 109764,
-      "2025-12": 112638,
-      "2026-01": 142508,
-      "2026-02": 89490,
-      "2026-03": 141048
-    },
-    "Jed- Al-Wazeeriyah (FR)": {
-      "2025-10": 85427,
-      "2025-11": 78349,
-      "2025-12": 80768,
-      "2026-01": 104879,
-      "2026-02": 69398,
-      "2026-03": 110640
-    },
-    "Jed - Marwah (FR)": {
-      "2025-10": 202562,
-      "2025-11": 175839,
-      "2025-12": 187868,
-      "2026-01": 221792,
-      "2026-02": 146409,
-      "2026-03": 220586
-    },
-    "Medinah - Immam Bukhari (FR)": {
-      "2025-10": 131942,
-      "2025-11": 122467,
-      "2025-12": 126416,
-      "2026-01": 167095,
-      "2026-02": 102474,
-      "2026-03": 169047
-    }
+  "data_quality": {
+    "rent_timing": "Rent is shown as posted in Odoo. Payment timing may distort a month until lease schedules are supplied.",
+    "branch_profit": "Branch profit is an allocation estimate based on POS sales share; company P&L is based on posted GL entries."
   }
 }
