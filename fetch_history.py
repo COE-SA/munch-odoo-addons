@@ -77,10 +77,10 @@ if not first_rows:
     raise SystemExit("No posted P&L entries were found")
 earliest = str(first_rows[0]["date"])
 
-lines = paged("account.move.line", [
+line_groups = call("account.move.line", "read_group", [[
     ["move_id.state", "=", "posted"], ["account_id", "in", pnl_ids],
     ["date", ">=", earliest], ["date", "<=", period_end_s],
-], ["date", "account_id", "balance", "debit", "credit", "name"])
+], ["balance:sum"], ["account_id", "date:month"]], {"lazy": False})
 
 monthly = defaultdict(lambda: {
     "revenue": 0.0, "cogs": 0.0, "opex": 0.0, "net_profit": 0.0,
@@ -108,12 +108,17 @@ def expense_bucket(account):
     return "other"
 
 
-for line in lines:
+for line in line_groups:
     aid = line["account_id"][0] if isinstance(line.get("account_id"), list) else line.get("account_id")
     account = account_map.get(aid, {})
     account_type = account.get("account_type")
     balance = float(line.get("balance") or 0.0)
-    m = monthly[month_key(line["date"])]
+    date_floor = next((term[2] for term in line.get("__domain", [])
+                       if isinstance(term, list) and len(term) >= 3
+                       and term[0] == "date" and term[1] == ">="), None)
+    if not date_floor:
+        raise SystemExit("Odoo did not return a monthly boundary for GL aggregation")
+    m = monthly[month_key(date_floor)]
     if account_type in {"income", "income_other"}:
         m["revenue"] += -balance
     elif account_type == "expense_direct_cost":
