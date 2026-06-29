@@ -43,6 +43,7 @@ jobs:
               data = json.load(handle)
           assert data.get('schema_version') == 2
           assert data.get('months'), 'No monthly history returned by Odoo'
+          assert len(data['months']) > 1, 'Historical months collapsed during aggregation'
           assert data.get('meta', {}).get('earliest_date')
           assert data.get('meta', {}).get('period_end') < date.today().isoformat()
           assert all('net_profit' in row for row in data['months'])
