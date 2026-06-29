@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "meta": {
-    "generated_at": "2026-06-29T16:05+03:00",
+    "generated_at": "2026-06-29T16:09+03:00",
     "earliest_date": "2025-01-01",
     "period_end": "2026-05-31",
     "current_year": "2026",
@@ -766,7 +766,7 @@
       "estimated_net_profit": 195915.21
     },
     {
-      "name": "Jed - Al Safa (FR) (Safa)",
+      "name": "Jed - Al Safa (FR) (not used)",
       "color": "#e92c30",
       "monthly": {
         "2026-02": {
