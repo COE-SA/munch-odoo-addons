@@ -113,9 +113,9 @@ for line in line_groups:
     account = account_map.get(aid, {})
     account_type = account.get("account_type")
     balance = float(line.get("balance") or 0.0)
-    date_floor = next((term[2] for term in line.get("__domain", [])
-                       if isinstance(term, list) and len(term) >= 3
-                       and term[0] == "date" and term[1] == ">="), None)
+    date_floor = max((term[2] for term in line.get("__domain", [])
+                      if isinstance(term, list) and len(term) >= 3
+                      and term[0] == "date" and term[1] == ">="), default=None)
     if not date_floor:
         raise SystemExit("Odoo did not return a monthly boundary for GL aggregation")
     m = monthly[month_key(date_floor)]
