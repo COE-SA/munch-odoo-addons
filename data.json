@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
   "meta": {
-    "generated_at": "2026-06-29T16:09+03:00",
+    "generated_at": "2026-07-01T11:32+03:00",
     "earliest_date": "2025-01-01",
-    "period_end": "2026-05-31",
+    "period_end": "2026-06-30",
     "current_year": "2026",
-    "closed_months": 5,
+    "closed_months": 6,
     "source": "Odoo — posted general ledger and POS",
     "basis": "Cumulative through the latest closed calendar month",
     "currency": "SAR"
@@ -320,6 +320,19 @@
       "expenses": {
         "other": 8033.76
       }
+    },
+    {
+      "month": "2026-06",
+      "revenue": 1215970.24,
+      "cogs": 333142.89,
+      "gross_profit": 882827.35,
+      "gross_margin": 72.6,
+      "opex": 3592.55,
+      "net_profit": 879234.8,
+      "net_margin": 72.31,
+      "expenses": {
+        "other": 3592.55
+      }
     }
   ],
   "annual": [
@@ -345,15 +358,15 @@
     },
     {
       "year": "2026",
-      "revenue": 4482103.75,
-      "cogs": 1506431.31,
-      "gross_profit": 2975672.44,
-      "opex": 1711268.51,
-      "net_profit": 1264403.93,
-      "gross_margin": 66.39,
-      "net_margin": 28.21,
+      "revenue": 5698073.99,
+      "cogs": 1839574.2,
+      "gross_profit": 3858499.79,
+      "opex": 1714861.06,
+      "net_profit": 2143638.73,
+      "gross_margin": 67.72,
+      "net_margin": 37.62,
       "expenses": {
-        "other": 495292.92,
+        "other": 498885.47,
         "salaries": 486961.67,
         "insurance": 27531.0,
         "rent": 530582.0,
@@ -364,15 +377,15 @@
     }
   ],
   "current_ytd": {
-    "revenue": 4482103.75,
-    "cogs": 1506431.31,
-    "gross_profit": 2975672.44,
-    "opex": 1711268.51,
-    "net_profit": 1264403.93,
-    "gross_margin": 66.39,
-    "net_margin": 28.21,
+    "revenue": 5698073.99,
+    "cogs": 1839574.2,
+    "gross_profit": 3858499.79,
+    "opex": 1714861.06,
+    "net_profit": 2143638.73,
+    "gross_margin": 67.72,
+    "net_margin": 37.62,
     "expenses": {
-      "other": 495292.92,
+      "other": 498885.47,
       "salaries": 486961.67,
       "insurance": 27531.0,
       "rent": 530582.0,
@@ -382,20 +395,20 @@
     }
   },
   "prior_ytd": {
-    "revenue": 4058399.03,
-    "cogs": 1664273.72,
-    "gross_profit": 2394125.31,
-    "opex": 1683725.42,
-    "net_profit": 710399.89,
-    "gross_margin": 58.99,
-    "net_margin": 17.5,
+    "revenue": 5163288.77,
+    "cogs": 2153861.1,
+    "gross_profit": 3009427.67,
+    "opex": 1978335.76,
+    "net_profit": 1031091.91,
+    "gross_margin": 58.29,
+    "net_margin": 19.97,
     "expenses": {
-      "other": 400635.12,
-      "salaries": 593451.84,
-      "insurance": 52298.91,
-      "utilities": 74147.04,
-      "rent": 336997.62,
-      "government": 47839.26,
+      "other": 465118.8,
+      "salaries": 727901.85,
+      "insurance": 58680.8,
+      "utilities": 87441.8,
+      "rent": 395997.62,
+      "government": 64839.26,
       "royalty": 177855.63,
       "marketing": 500.0
     }
@@ -484,13 +497,17 @@
         "2026-05": {
           "revenue": 244419.86,
           "transactions": 2711
+        },
+        "2026-06": {
+          "revenue": 264270.14,
+          "transactions": 2846
         }
       },
-      "ytd_revenue": 994059.88,
-      "share": 21.08,
-      "estimated_gross_profit": 627333.29,
-      "estimated_opex": 360770.79,
-      "estimated_net_profit": 266562.5
+      "ytd_revenue": 1258330.02,
+      "share": 20.65,
+      "estimated_gross_profit": 796809.61,
+      "estimated_opex": 354131.88,
+      "estimated_net_profit": 442677.73
     },
     {
       "name": "Jed - Ajaweed (FR) (Ajaweed)",
@@ -575,13 +592,17 @@
         "2026-05": {
           "revenue": 271511.41,
           "transactions": 3106
+        },
+        "2026-06": {
+          "revenue": 267097.15,
+          "transactions": 3118
         }
       },
-      "ytd_revenue": 975837.46,
-      "share": 20.7,
-      "estimated_gross_profit": 615833.45,
-      "estimated_opex": 354157.39,
-      "estimated_net_profit": 261676.06
+      "ytd_revenue": 1242934.61,
+      "share": 20.4,
+      "estimated_gross_profit": 787060.81,
+      "estimated_opex": 349799.15,
+      "estimated_net_profit": 437261.66
     },
     {
       "name": "Jed - Hamadaniyyah (FR) (Hamadaniyah)",
@@ -666,16 +687,20 @@
         "2026-05": {
           "revenue": 241328.95,
           "transactions": 2630
+        },
+        "2026-06": {
+          "revenue": 282982.45,
+          "transactions": 3038
         }
       },
-      "ytd_revenue": 947286.58,
-      "share": 20.09,
-      "estimated_gross_profit": 597815.5,
-      "estimated_opex": 343795.52,
-      "estimated_net_profit": 254019.98
+      "ytd_revenue": 1230269.03,
+      "share": 20.19,
+      "estimated_gross_profit": 779040.61,
+      "estimated_opex": 346234.67,
+      "estimated_net_profit": 432805.94
     },
     {
-      "name": "Medinah - Immam Bukhari (FR) (not used)",
+      "name": "Medinah - Immam Bukhari (FR) (Defaa)",
       "color": "#06b6d4",
       "monthly": {
         "2024-10": {
@@ -757,16 +782,20 @@
         "2026-05": {
           "revenue": 213587.68,
           "transactions": 2402
+        },
+        "2026-06": {
+          "revenue": 211109.63,
+          "transactions": 2325
         }
       },
-      "ytd_revenue": 730603.35,
-      "share": 15.49,
-      "estimated_gross_profit": 461070.62,
-      "estimated_opex": 265155.4,
-      "estimated_net_profit": 195915.21
+      "ytd_revenue": 941712.98,
+      "share": 15.45,
+      "estimated_gross_profit": 596318.88,
+      "estimated_opex": 265026.33,
+      "estimated_net_profit": 331292.56
     },
     {
-      "name": "Jed - Al Safa (FR) (not used)",
+      "name": "Jed - Al Safa (FR) (Safa)",
       "color": "#e92c30",
       "monthly": {
         "2026-02": {
@@ -784,13 +813,17 @@
         "2026-05": {
           "revenue": 199556.89,
           "transactions": 2218
+        },
+        "2026-06": {
+          "revenue": 216201.88,
+          "transactions": 2301
         }
       },
-      "ytd_revenue": 608407.85,
-      "share": 12.9,
-      "estimated_gross_profit": 383955.24,
-      "estimated_opex": 220807.4,
-      "estimated_net_profit": 163147.83
+      "ytd_revenue": 824609.73,
+      "share": 13.53,
+      "estimated_gross_profit": 522165.84,
+      "estimated_opex": 232069.96,
+      "estimated_net_profit": 290095.89
     },
     {
       "name": "Jed- Al-Wazeeriyah (FR) (Waziriyah)",
@@ -875,13 +908,17 @@
         "2026-05": {
           "revenue": 127111.02,
           "transactions": 1581
+        },
+        "2026-06": {
+          "revenue": 136530.22,
+          "transactions": 1580
         }
       },
-      "ytd_revenue": 458996.39,
-      "share": 9.73,
-      "estimated_gross_profit": 289664.36,
-      "estimated_opex": 166582.01,
-      "estimated_net_profit": 123082.35
+      "ytd_revenue": 595526.61,
+      "share": 9.77,
+      "estimated_gross_profit": 377104.03,
+      "estimated_opex": 167599.08,
+      "estimated_net_profit": 209504.95
     }
   ],
   "data_quality": {
