@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
   "meta": {
-    "generated_at": "2026-07-01T11:32+03:00",
+    "generated_at": "2026-08-01T09:41+03:00",
     "earliest_date": "2025-01-01",
-    "period_end": "2026-06-30",
+    "period_end": "2026-07-31",
     "current_year": "2026",
-    "closed_months": 6,
+    "closed_months": 7,
     "source": "Odoo — posted general ledger and POS",
     "basis": "Cumulative through the latest closed calendar month",
     "currency": "SAR"
@@ -277,15 +277,15 @@
     },
     {
       "month": "2026-03",
-      "revenue": 1012349.84,
+      "revenue": 1011376.8,
       "cogs": 417500.38,
-      "gross_profit": 594849.46,
-      "gross_margin": 58.76,
-      "opex": 422200.93,
-      "net_profit": 172648.53,
-      "net_margin": 17.05,
+      "gross_profit": 593876.42,
+      "gross_margin": 58.72,
+      "opex": 405093.78,
+      "net_profit": 188782.64,
+      "net_margin": 18.67,
       "expenses": {
-        "other": 111002.03,
+        "other": 93894.88,
         "salaries": 123698.33,
         "utilities": 15574.2,
         "insurance": 7810.53,
@@ -311,27 +311,40 @@
     {
       "month": "2026-05",
       "revenue": 1153119.45,
-      "cogs": 294297.99,
-      "gross_profit": 858821.46,
-      "gross_margin": 74.48,
+      "cogs": 295028.91,
+      "gross_profit": 858090.54,
+      "gross_margin": 74.41,
       "opex": 8033.76,
-      "net_profit": 850787.7,
-      "net_margin": 73.78,
+      "net_profit": 850056.78,
+      "net_margin": 73.72,
       "expenses": {
         "other": 8033.76
       }
     },
     {
       "month": "2026-06",
-      "revenue": 1215970.24,
+      "revenue": 1230218.55,
       "cogs": 333142.89,
-      "gross_profit": 882827.35,
-      "gross_margin": 72.6,
+      "gross_profit": 897075.66,
+      "gross_margin": 72.92,
       "opex": 3592.55,
-      "net_profit": 879234.8,
-      "net_margin": 72.31,
+      "net_profit": 893483.11,
+      "net_margin": 72.63,
       "expenses": {
         "other": 3592.55
+      }
+    },
+    {
+      "month": "2026-07",
+      "revenue": 948731.63,
+      "cogs": 244126.29,
+      "gross_profit": 704605.34,
+      "gross_margin": 74.27,
+      "opex": 7464.4,
+      "net_profit": 697140.94,
+      "net_margin": 73.48,
+      "expenses": {
+        "other": 7464.4
       }
     }
   ],
@@ -358,15 +371,15 @@
     },
     {
       "year": "2026",
-      "revenue": 5698073.99,
-      "cogs": 1839574.2,
-      "gross_profit": 3858499.79,
-      "opex": 1714861.06,
-      "net_profit": 2143638.73,
-      "gross_margin": 67.72,
-      "net_margin": 37.62,
+      "revenue": 6660080.89,
+      "cogs": 2084431.41,
+      "gross_profit": 4575649.48,
+      "opex": 1705218.31,
+      "net_profit": 2870431.17,
+      "gross_margin": 68.7,
+      "net_margin": 43.1,
       "expenses": {
-        "other": 498885.47,
+        "other": 489242.72,
         "salaries": 486961.67,
         "insurance": 27531.0,
         "rent": 530582.0,
@@ -377,15 +390,15 @@
     }
   ],
   "current_ytd": {
-    "revenue": 5698073.99,
-    "cogs": 1839574.2,
-    "gross_profit": 3858499.79,
-    "opex": 1714861.06,
-    "net_profit": 2143638.73,
-    "gross_margin": 67.72,
-    "net_margin": 37.62,
+    "revenue": 6660080.89,
+    "cogs": 2084431.41,
+    "gross_profit": 4575649.48,
+    "opex": 1705218.31,
+    "net_profit": 2870431.17,
+    "gross_margin": 68.7,
+    "net_margin": 43.1,
     "expenses": {
-      "other": 498885.47,
+      "other": 489242.72,
       "salaries": 486961.67,
       "insurance": 27531.0,
       "rent": 530582.0,
@@ -395,120 +408,25 @@
     }
   },
   "prior_ytd": {
-    "revenue": 5163288.77,
-    "cogs": 2153861.1,
-    "gross_profit": 3009427.67,
-    "opex": 1978335.76,
-    "net_profit": 1031091.91,
-    "gross_margin": 58.29,
-    "net_margin": 19.97,
+    "revenue": 5940426.16,
+    "cogs": 2263318.21,
+    "gross_profit": 3677107.95,
+    "opex": 2681085.46,
+    "net_profit": 996022.49,
+    "gross_margin": 61.9,
+    "net_margin": 16.77,
     "expenses": {
-      "other": 465118.8,
-      "salaries": 727901.85,
-      "insurance": 58680.8,
-      "utilities": 87441.8,
-      "rent": 395997.62,
-      "government": 64839.26,
-      "royalty": 177855.63,
+      "other": 610752.66,
+      "salaries": 869323.51,
+      "insurance": 64865.65,
+      "utilities": 108723.96,
+      "rent": 656785.66,
+      "government": 86664.26,
+      "royalty": 283469.76,
       "marketing": 500.0
     }
   },
   "branches": [
-    {
-      "name": "Jed - Marwah (FR) (Marwah)",
-      "color": "#f59e0b",
-      "monthly": {
-        "2024-10": {
-          "revenue": 177412.43,
-          "transactions": 2388
-        },
-        "2024-11": {
-          "revenue": 180900.44,
-          "transactions": 2383
-        },
-        "2024-12": {
-          "revenue": 181741.84,
-          "transactions": 2403
-        },
-        "2025-01": {
-          "revenue": 216615.15,
-          "transactions": 2609
-        },
-        "2025-02": {
-          "revenue": 194808.62,
-          "transactions": 2540
-        },
-        "2025-03": {
-          "revenue": 177060.29,
-          "transactions": 1878
-        },
-        "2025-04": {
-          "revenue": 204569.4,
-          "transactions": 2619
-        },
-        "2025-05": {
-          "revenue": 274914.89,
-          "transactions": 3224
-        },
-        "2025-06": {
-          "revenue": 267326.67,
-          "transactions": 3035
-        },
-        "2025-07": {
-          "revenue": 207733.44,
-          "transactions": 2544
-        },
-        "2025-08": {
-          "revenue": 185701.53,
-          "transactions": 2238
-        },
-        "2025-09": {
-          "revenue": 198134.19,
-          "transactions": 2389
-        },
-        "2025-10": {
-          "revenue": 202509.14,
-          "transactions": 2436
-        },
-        "2025-11": {
-          "revenue": 175705.89,
-          "transactions": 2188
-        },
-        "2025-12": {
-          "revenue": 189578.04,
-          "transactions": 2309
-        },
-        "2026-01": {
-          "revenue": 220081.48,
-          "transactions": 2520
-        },
-        "2026-02": {
-          "revenue": 146839.45,
-          "transactions": 1782
-        },
-        "2026-03": {
-          "revenue": 219927.87,
-          "transactions": 2366
-        },
-        "2026-04": {
-          "revenue": 162791.22,
-          "transactions": 1971
-        },
-        "2026-05": {
-          "revenue": 244419.86,
-          "transactions": 2711
-        },
-        "2026-06": {
-          "revenue": 264270.14,
-          "transactions": 2846
-        }
-      },
-      "ytd_revenue": 1258330.02,
-      "share": 20.65,
-      "estimated_gross_profit": 796809.61,
-      "estimated_opex": 354131.88,
-      "estimated_net_profit": 442677.73
-    },
     {
       "name": "Jed - Ajaweed (FR) (Ajaweed)",
       "color": "#2ba9ed",
@@ -596,13 +514,116 @@
         "2026-06": {
           "revenue": 267097.15,
           "transactions": 3118
+        },
+        "2026-07": {
+          "revenue": 235147.9,
+          "transactions": 2687
         }
       },
-      "ytd_revenue": 1242934.61,
-      "share": 20.4,
-      "estimated_gross_profit": 787060.81,
-      "estimated_opex": 349799.15,
-      "estimated_net_profit": 437261.66
+      "ytd_revenue": 1478082.51,
+      "share": 20.63,
+      "estimated_gross_profit": 943742.82,
+      "estimated_opex": 351706.91,
+      "estimated_net_profit": 592035.91
+    },
+    {
+      "name": "Jed - Marwah (FR) (Marwah)",
+      "color": "#f59e0b",
+      "monthly": {
+        "2024-10": {
+          "revenue": 177412.43,
+          "transactions": 2388
+        },
+        "2024-11": {
+          "revenue": 180900.44,
+          "transactions": 2383
+        },
+        "2024-12": {
+          "revenue": 181741.84,
+          "transactions": 2403
+        },
+        "2025-01": {
+          "revenue": 216615.15,
+          "transactions": 2609
+        },
+        "2025-02": {
+          "revenue": 194808.62,
+          "transactions": 2540
+        },
+        "2025-03": {
+          "revenue": 177060.29,
+          "transactions": 1878
+        },
+        "2025-04": {
+          "revenue": 204569.4,
+          "transactions": 2619
+        },
+        "2025-05": {
+          "revenue": 274914.89,
+          "transactions": 3224
+        },
+        "2025-06": {
+          "revenue": 267326.67,
+          "transactions": 3035
+        },
+        "2025-07": {
+          "revenue": 207733.44,
+          "transactions": 2544
+        },
+        "2025-08": {
+          "revenue": 185701.53,
+          "transactions": 2238
+        },
+        "2025-09": {
+          "revenue": 198134.19,
+          "transactions": 2389
+        },
+        "2025-10": {
+          "revenue": 202509.14,
+          "transactions": 2436
+        },
+        "2025-11": {
+          "revenue": 175705.89,
+          "transactions": 2188
+        },
+        "2025-12": {
+          "revenue": 189578.04,
+          "transactions": 2309
+        },
+        "2026-01": {
+          "revenue": 220081.48,
+          "transactions": 2520
+        },
+        "2026-02": {
+          "revenue": 146839.45,
+          "transactions": 1782
+        },
+        "2026-03": {
+          "revenue": 219927.87,
+          "transactions": 2366
+        },
+        "2026-04": {
+          "revenue": 162791.22,
+          "transactions": 1971
+        },
+        "2026-05": {
+          "revenue": 244419.86,
+          "transactions": 2711
+        },
+        "2026-06": {
+          "revenue": 264270.14,
+          "transactions": 2846
+        },
+        "2026-07": {
+          "revenue": 208100.5,
+          "transactions": 2510
+        }
+      },
+      "ytd_revenue": 1466430.52,
+      "share": 20.46,
+      "estimated_gross_profit": 936303.13,
+      "estimated_opex": 348934.34,
+      "estimated_net_profit": 587368.79
     },
     {
       "name": "Jed - Hamadaniyyah (FR) (Hamadaniyah)",
@@ -691,13 +712,17 @@
         "2026-06": {
           "revenue": 282982.45,
           "transactions": 3038
+        },
+        "2026-07": {
+          "revenue": 214731.0,
+          "transactions": 2448
         }
       },
-      "ytd_revenue": 1230269.03,
-      "share": 20.19,
-      "estimated_gross_profit": 779040.61,
-      "estimated_opex": 346234.67,
-      "estimated_net_profit": 432805.94
+      "ytd_revenue": 1445000.03,
+      "share": 20.16,
+      "estimated_gross_profit": 922619.94,
+      "estimated_opex": 343835.0,
+      "estimated_net_profit": 578784.95
     },
     {
       "name": "Medinah - Immam Bukhari (FR) (Defaa)",
@@ -786,13 +811,17 @@
         "2026-06": {
           "revenue": 211109.63,
           "transactions": 2325
+        },
+        "2026-07": {
+          "revenue": 154435.08,
+          "transactions": 1827
         }
       },
-      "ytd_revenue": 941712.98,
-      "share": 15.45,
-      "estimated_gross_profit": 596318.88,
-      "estimated_opex": 265026.33,
-      "estimated_net_profit": 331292.56
+      "ytd_revenue": 1096148.06,
+      "share": 15.3,
+      "estimated_gross_profit": 699881.0,
+      "estimated_opex": 260826.34,
+      "estimated_net_profit": 439054.66
     },
     {
       "name": "Jed - Al Safa (FR) (Safa)",
@@ -817,16 +846,20 @@
         "2026-06": {
           "revenue": 216201.88,
           "transactions": 2301
+        },
+        "2026-07": {
+          "revenue": 159297.31,
+          "transactions": 1806
         }
       },
-      "ytd_revenue": 824609.73,
-      "share": 13.53,
-      "estimated_gross_profit": 522165.84,
-      "estimated_opex": 232069.96,
-      "estimated_net_profit": 290095.89
+      "ytd_revenue": 983907.04,
+      "share": 13.73,
+      "estimated_gross_profit": 628216.08,
+      "estimated_opex": 234118.8,
+      "estimated_net_profit": 394097.28
     },
     {
-      "name": "Jed- Al-Wazeeriyah (FR) (Waziriyah)",
+      "name": "Jed- Al-Wazeeriyah (FR) (not used)",
       "color": "#8b5cf6",
       "monthly": {
         "2024-10": {
@@ -912,13 +945,17 @@
         "2026-06": {
           "revenue": 136530.22,
           "transactions": 1580
+        },
+        "2026-07": {
+          "revenue": 101251.11,
+          "transactions": 1293
         }
       },
-      "ytd_revenue": 595526.61,
-      "share": 9.77,
-      "estimated_gross_profit": 377104.03,
-      "estimated_opex": 167599.08,
-      "estimated_net_profit": 209504.95
+      "ytd_revenue": 696777.72,
+      "share": 9.72,
+      "estimated_gross_profit": 444886.51,
+      "estimated_opex": 165796.93,
+      "estimated_net_profit": 279089.58
     }
   ],
   "data_quality": {
