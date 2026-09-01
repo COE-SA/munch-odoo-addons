@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
   "meta": {
-    "generated_at": "2026-08-01T09:41+03:00",
+    "generated_at": "2026-09-01T12:25+03:00",
     "earliest_date": "2025-01-01",
-    "period_end": "2026-07-31",
+    "period_end": "2026-08-31",
     "current_year": "2026",
-    "closed_months": 7,
+    "closed_months": 8,
     "source": "Odoo — posted general ledger and POS",
     "basis": "Cumulative through the latest closed calendar month",
     "currency": "SAR"
@@ -35,11 +35,11 @@
       "cogs": 322814.6,
       "gross_profit": 447214.87,
       "gross_margin": 58.08,
-      "opex": 271740.17,
-      "net_profit": 175474.7,
-      "net_margin": 22.79,
+      "opex": 270766.78,
+      "net_profit": 176448.09,
+      "net_margin": 22.91,
       "expenses": {
-        "other": 59420.19,
+        "other": 58446.8,
         "salaries": 103610.31,
         "insurance": 6848.08,
         "rent": 73540.0,
@@ -241,110 +241,143 @@
     {
       "month": "2026-01",
       "revenue": 989359.25,
-      "cogs": 443854.03,
-      "gross_profit": 545505.22,
-      "gross_margin": 55.14,
-      "opex": 638335.02,
-      "net_profit": -92829.8,
-      "net_margin": -9.38,
+      "cogs": 443377.33,
+      "gross_profit": 545981.92,
+      "gross_margin": 55.19,
+      "opex": 704410.24,
+      "net_profit": -158428.32,
+      "net_margin": -16.01,
       "expenses": {
-        "other": 210922.7,
+        "other": 237749.3,
         "salaries": 150165.0,
         "insurance": 7533.08,
         "rent": 234707.0,
         "government": 2125.0,
-        "royalty": 32882.24
+        "royalty": 72130.86
       }
     },
     {
       "month": "2026-02",
       "revenue": 587664.77,
-      "cogs": 182790.78,
-      "gross_profit": 404873.99,
-      "gross_margin": 68.9,
-      "opex": 534040.47,
-      "net_profit": -129166.48,
-      "net_margin": -21.98,
+      "cogs": 183476.99,
+      "gross_profit": 404187.78,
+      "gross_margin": 68.78,
+      "opex": 581545.04,
+      "net_profit": -177357.26,
+      "net_margin": -30.18,
       "expenses": {
-        "other": 117676.1,
+        "other": 137189.83,
         "salaries": 152098.34,
         "utilities": 22099.12,
         "insurance": 12187.39,
         "rent": 186875.0,
         "government": 3855.9,
-        "royalty": 39248.62
+        "royalty": 67239.46
       }
     },
     {
       "month": "2026-03",
       "revenue": 1011376.8,
-      "cogs": 417500.38,
-      "gross_profit": 593876.42,
-      "gross_margin": 58.72,
-      "opex": 405093.78,
-      "net_profit": 188782.64,
-      "net_margin": 18.67,
+      "cogs": 481617.15,
+      "gross_profit": 529759.65,
+      "gross_margin": 52.38,
+      "opex": 502469.05,
+      "net_profit": 27290.6,
+      "net_margin": 2.7,
       "expenses": {
-        "other": 93894.88,
-        "salaries": 123698.33,
+        "other": 127294.77,
+        "salaries": 124865.33,
         "utilities": 15574.2,
-        "insurance": 7810.53,
-        "rent": 109000.0,
+        "insurance": 22909.67,
+        "rent": 111000.0,
         "government": 27125.0,
-        "royalty": 27990.84
+        "royalty": 73700.08
       }
     },
     {
       "month": "2026-04",
-      "revenue": 739610.44,
-      "cogs": 167988.13,
-      "gross_profit": 571622.31,
-      "gross_margin": 77.29,
-      "opex": 108658.33,
-      "net_profit": 462963.98,
-      "net_margin": 62.6,
+      "revenue": 739610.45,
+      "cogs": 191295.16,
+      "gross_profit": 548315.29,
+      "gross_margin": 74.14,
+      "opex": 378637.48,
+      "net_profit": 169677.81,
+      "net_margin": 22.94,
       "expenses": {
-        "other": 47658.33,
-        "salaries": 61000.0
+        "other": 127572.7,
+        "salaries": 178527.31,
+        "utilities": 24803.28,
+        "rent": 3000.0,
+        "insurance": 1400.0,
+        "government": 4509.4,
+        "delivery": 2243.4,
+        "royalty": 36581.39
       }
     },
     {
       "month": "2026-05",
-      "revenue": 1153119.45,
-      "cogs": 295028.91,
-      "gross_profit": 858090.54,
-      "gross_margin": 74.41,
-      "opex": 8033.76,
-      "net_profit": 850056.78,
-      "net_margin": 73.72,
+      "revenue": 1153119.46,
+      "cogs": 328655.76,
+      "gross_profit": 824463.7,
+      "gross_margin": 71.5,
+      "opex": 392939.68,
+      "net_profit": 431524.02,
+      "net_margin": 37.42,
       "expenses": {
-        "other": 8033.76
+        "other": 110021.74,
+        "salaries": 148151.67,
+        "rent": 27750.5,
+        "utilities": 11758.26,
+        "government": 35214.0,
+        "delivery": 3119.83,
+        "royalty": 56923.68
       }
     },
     {
       "month": "2026-06",
-      "revenue": 1230218.55,
-      "cogs": 333142.89,
-      "gross_profit": 897075.66,
-      "gross_margin": 72.92,
-      "opex": 3592.55,
-      "net_profit": 893483.11,
-      "net_margin": 72.63,
+      "revenue": 1230218.57,
+      "cogs": 368188.77,
+      "gross_profit": 862029.8,
+      "gross_margin": 70.07,
+      "opex": 336548.6,
+      "net_profit": 525481.2,
+      "net_margin": 42.71,
       "expenses": {
-        "other": 3592.55
+        "other": 92647.85,
+        "salaries": 141932.51,
+        "utilities": 35168.25,
+        "rent": 3000.0,
+        "delivery": 3473.87,
+        "royalty": 60326.12
       }
     },
     {
       "month": "2026-07",
-      "revenue": 948731.63,
-      "cogs": 244126.29,
-      "gross_profit": 704605.34,
-      "gross_margin": 74.27,
-      "opex": 7464.4,
-      "net_profit": 697140.94,
-      "net_margin": 73.48,
+      "revenue": 957757.22,
+      "cogs": 263772.79,
+      "gross_profit": 693984.43,
+      "gross_margin": 72.46,
+      "opex": -33251.29,
+      "net_profit": 727235.72,
+      "net_margin": 75.93,
       "expenses": {
-        "other": 7464.4
+        "other": 12782.04,
+        "rent": 3000.0,
+        "utilities": 4114.42,
+        "royalty": -53147.75
+      }
+    },
+    {
+      "month": "2026-08",
+      "revenue": 728223.85,
+      "cogs": 182004.8,
+      "gross_profit": 546219.05,
+      "gross_margin": 75.01,
+      "opex": 8114.25,
+      "net_profit": 538104.8,
+      "net_margin": 73.89,
+      "expenses": {
+        "other": 8114.25
       }
     }
   ],
@@ -354,12 +387,12 @@
       "revenue": 9411915.04,
       "cogs": 3754258.77,
       "gross_profit": 5657656.27,
-      "opex": 4563515.75,
-      "net_profit": 1094140.52,
+      "opex": 4562542.36,
+      "net_profit": 1095113.91,
       "gross_margin": 60.11,
-      "net_margin": 11.63,
+      "net_margin": 11.64,
       "expenses": {
-        "other": 1348298.03,
+        "other": 1347324.64,
         "salaries": 1565976.96,
         "insurance": 98937.87,
         "utilities": 185959.52,
@@ -371,59 +404,61 @@
     },
     {
       "year": "2026",
-      "revenue": 6660080.89,
-      "cogs": 2084431.41,
-      "gross_profit": 4575649.48,
-      "opex": 1705218.31,
-      "net_profit": 2870431.17,
-      "gross_margin": 68.7,
-      "net_margin": 43.1,
+      "revenue": 7397330.37,
+      "cogs": 2442388.75,
+      "gross_profit": 4954941.62,
+      "opex": 2871413.05,
+      "net_profit": 2083528.57,
+      "gross_margin": 66.98,
+      "net_margin": 28.17,
       "expenses": {
-        "other": 489242.72,
-        "salaries": 486961.67,
-        "insurance": 27531.0,
-        "rent": 530582.0,
-        "government": 33105.9,
-        "royalty": 100121.7,
-        "utilities": 37673.32
+        "other": 853372.48,
+        "salaries": 895740.16,
+        "insurance": 44030.14,
+        "rent": 569332.5,
+        "government": 72829.3,
+        "royalty": 313753.84,
+        "utilities": 113517.53,
+        "delivery": 8837.1
       }
     }
   ],
   "current_ytd": {
-    "revenue": 6660080.89,
-    "cogs": 2084431.41,
-    "gross_profit": 4575649.48,
-    "opex": 1705218.31,
-    "net_profit": 2870431.17,
-    "gross_margin": 68.7,
-    "net_margin": 43.1,
+    "revenue": 7397330.37,
+    "cogs": 2442388.75,
+    "gross_profit": 4954941.62,
+    "opex": 2871413.05,
+    "net_profit": 2083528.57,
+    "gross_margin": 66.98,
+    "net_margin": 28.17,
     "expenses": {
-      "other": 489242.72,
-      "salaries": 486961.67,
-      "insurance": 27531.0,
-      "rent": 530582.0,
-      "government": 33105.9,
-      "royalty": 100121.7,
-      "utilities": 37673.32
+      "other": 853372.48,
+      "salaries": 895740.16,
+      "insurance": 44030.14,
+      "rent": 569332.5,
+      "government": 72829.3,
+      "royalty": 313753.84,
+      "utilities": 113517.53,
+      "delivery": 8837.1
     }
   },
   "prior_ytd": {
-    "revenue": 5940426.16,
-    "cogs": 2263318.21,
-    "gross_profit": 3677107.95,
-    "opex": 2681085.46,
-    "net_profit": 996022.49,
-    "gross_margin": 61.9,
-    "net_margin": 16.77,
+    "revenue": 6654481.96,
+    "cogs": 2587664.88,
+    "gross_profit": 4066817.08,
+    "opex": 3077649.2,
+    "net_profit": 989167.88,
+    "gross_margin": 61.11,
+    "net_margin": 14.86,
     "expenses": {
-      "other": 610752.66,
-      "salaries": 869323.51,
-      "insurance": 64865.65,
-      "utilities": 108723.96,
-      "rent": 656785.66,
-      "government": 86664.26,
-      "royalty": 283469.76,
-      "marketing": 500.0
+      "other": 731440.26,
+      "salaries": 1024138.51,
+      "insurance": 72841.32,
+      "utilities": 127235.8,
+      "rent": 705286.66,
+      "government": 89239.26,
+      "royalty": 320967.39,
+      "marketing": 6500.0
     }
   },
   "branches": [
@@ -518,13 +553,17 @@
         "2026-07": {
           "revenue": 235147.9,
           "transactions": 2687
+        },
+        "2026-08": {
+          "revenue": 154390.72,
+          "transactions": 1936
         }
       },
-      "ytd_revenue": 1478082.51,
-      "share": 20.63,
-      "estimated_gross_profit": 943742.82,
-      "estimated_opex": 351706.91,
-      "estimated_net_profit": 592035.91
+      "ytd_revenue": 1632473.23,
+      "share": 20.54,
+      "estimated_gross_profit": 1017864.51,
+      "estimated_opex": 589857.49,
+      "estimated_net_profit": 428007.02
     },
     {
       "name": "Jed - Marwah (FR) (Marwah)",
@@ -617,13 +656,17 @@
         "2026-07": {
           "revenue": 208100.5,
           "transactions": 2510
+        },
+        "2026-08": {
+          "revenue": 152379.85,
+          "transactions": 1928
         }
       },
-      "ytd_revenue": 1466430.52,
-      "share": 20.46,
-      "estimated_gross_profit": 936303.13,
-      "estimated_opex": 348934.34,
-      "estimated_net_profit": 587368.79
+      "ytd_revenue": 1618810.37,
+      "share": 20.37,
+      "estimated_gross_profit": 1009345.57,
+      "estimated_opex": 584920.73,
+      "estimated_net_profit": 424424.85
     },
     {
       "name": "Jed - Hamadaniyyah (FR) (Hamadaniyah)",
@@ -716,13 +759,17 @@
         "2026-07": {
           "revenue": 214731.0,
           "transactions": 2448
+        },
+        "2026-08": {
+          "revenue": 160773.45,
+          "transactions": 1946
         }
       },
-      "ytd_revenue": 1445000.03,
-      "share": 20.16,
-      "estimated_gross_profit": 922619.94,
-      "estimated_opex": 343835.0,
-      "estimated_net_profit": 578784.95
+      "ytd_revenue": 1605773.48,
+      "share": 20.21,
+      "estimated_gross_profit": 1001216.93,
+      "estimated_opex": 580210.14,
+      "estimated_net_profit": 421006.79
     },
     {
       "name": "Medinah - Immam Bukhari (FR) (Defaa)",
@@ -815,13 +862,17 @@
         "2026-07": {
           "revenue": 154435.08,
           "transactions": 1827
+        },
+        "2026-08": {
+          "revenue": 109048.75,
+          "transactions": 1333
         }
       },
-      "ytd_revenue": 1096148.06,
-      "share": 15.3,
-      "estimated_gross_profit": 699881.0,
-      "estimated_opex": 260826.34,
-      "estimated_net_profit": 439054.66
+      "ytd_revenue": 1205196.81,
+      "share": 15.17,
+      "estimated_gross_profit": 751453.1,
+      "estimated_opex": 435470.77,
+      "estimated_net_profit": 315982.33
     },
     {
       "name": "Jed - Al Safa (FR) (Safa)",
@@ -850,16 +901,20 @@
         "2026-07": {
           "revenue": 159297.31,
           "transactions": 1806
+        },
+        "2026-08": {
+          "revenue": 133517.2,
+          "transactions": 1484
         }
       },
-      "ytd_revenue": 983907.04,
-      "share": 13.73,
-      "estimated_gross_profit": 628216.08,
-      "estimated_opex": 234118.8,
-      "estimated_net_profit": 394097.28
+      "ytd_revenue": 1117424.24,
+      "share": 14.06,
+      "estimated_gross_profit": 696725.96,
+      "estimated_opex": 403756.12,
+      "estimated_net_profit": 292969.84
     },
     {
-      "name": "Jed- Al-Wazeeriyah (FR) (not used)",
+      "name": "Jed- Al-Wazeeriyah (FR) (Waziriyah)",
       "color": "#8b5cf6",
       "monthly": {
         "2024-10": {
@@ -949,13 +1004,17 @@
         "2026-07": {
           "revenue": 101251.11,
           "transactions": 1293
+        },
+        "2026-08": {
+          "revenue": 70387.22,
+          "transactions": 928
         }
       },
-      "ytd_revenue": 696777.72,
-      "share": 9.72,
-      "estimated_gross_profit": 444886.51,
-      "estimated_opex": 165796.93,
-      "estimated_net_profit": 279089.58
+      "ytd_revenue": 767164.94,
+      "share": 9.65,
+      "estimated_gross_profit": 478335.54,
+      "estimated_opex": 277197.8,
+      "estimated_net_profit": 201137.74
     }
   ],
   "data_quality": {
